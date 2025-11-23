@@ -6,16 +6,14 @@ import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import Home from './pages/Home';
 import About from './pages/About';
-import Services from './pages/Services';
-import Portfolio from './pages/Portfolio';
-import Pricing from './pages/Pricing';
+import Rooms from './pages/Rooms'; // Add Rooms page
+import Gallery from './pages/Gallery'; // Add Gallery page
 import Contact from './pages/Contact';
 import Terms from './pages/Terms'; 
 import OnboardingAgreement from './pages/OnboardingAgreement'; 
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
-import Offer from './pages/Offer';
-import GrowthServices from './pages/GrowthServices';
+
 function App() {
   return (
     <Router>
@@ -42,16 +40,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/rooms" element={<Rooms />} /> {/* Add Rooms route */}
+            <Route path="/gallery" element={<Gallery />} /> {/* Add Gallery route */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/onboarding-agreement" element={<OnboardingAgreement />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="/growth-services" element={<GrowthServices />} />
-            
-            <Route path="/Offer" element={<Offer />} />
             
             {/* ✅ PAYMENT SUCCESS PAGE */}
             <Route path="/payment/success" element={
@@ -70,7 +64,7 @@ function App() {
                       Return to Home
                     </a>
                     <a 
-                      href="https://wa.me/919521281509" 
+                      href="https://wa.me/917044755109" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
@@ -93,13 +87,13 @@ function App() {
                   </p>
                   <div className="space-y-3">
                     <a 
-                      href="/pricing" 
-                      className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
+                      href="/rooms" 
+                      className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
                     >
                       Try Again
                     </a>
                     <a 
-                      href="https://wa.me/919521281509" 
+                      href="https://wa.me/917044755109" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
@@ -107,7 +101,7 @@ function App() {
                       💬 WhatsApp Support
                     </a>
                     <a 
-                      href="tel:+919521281509"
+                      href="tel:+917044755109"
                       className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
                     >
                       📞 Call Support

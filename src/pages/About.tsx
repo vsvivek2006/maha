@@ -1,283 +1,317 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import { Phone, MessageCircle, MapPin, Star, Users, Heart, Shield, Clock, Award } from "lucide-react";
 
-const About: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  // Company stats
-  const stats = [
-    { number: "1000+", label: "Happy Clients", icon: "😊", delay: "0s" },
-    { number: "1500+", label: "Projects Delivered", icon: "🚀", delay: "0.1s" },
-    { number: "3+", label: "Years Experience", icon: "⏳", delay: "0.2s" },
-    { number: "270%", label: "Avg. Client Growth", icon: "📈", delay: "0.3s" },
+const About = () => {
+  // Team members
+  const teamMembers = [
+    {
+      name: "Shri Krishna Das Ji",
+      role: "Founder & Manager",
+      experience: "15+ years in hospitality",
+      description: "Spiritual guide and hospitality expert dedicated to serving pilgrims in Vrindavan",
+      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Radha Rani Sharma",
+      role: "Head of Housekeeping",
+      experience: "12+ years experience",
+      description: "Ensures pristine cleanliness and comfortable stay for all our guests",
+      image: "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      name: "Gopal Singh",
+      role: "Guest Relations Manager",
+      experience: "10+ years in service",
+      description: "Your personal guide for temple visits and spiritual activities in Vrindavan",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
   ];
 
-  // Core values
+  // Values and principles
   const values = [
     {
-      icon: "🦅",
-      title: "Eagle-Eye Precision",
-      description: "We target the most valuable backlinks with surgical precision, ensuring maximum impact on your search rankings.",
-      delay: "0s"
+      icon: "🙏",
+      title: "Spiritual Service",
+      description: "We consider our work as seva (service) to the pilgrims visiting the holy land of Vrindavan"
+    },
+    {
+      icon: "💫",
+      title: "Authentic Experience",
+      description: "Providing genuine Braj culture experience with modern comfort and traditional values"
     },
     {
       icon: "🛡️",
-      title: "Google Safe",
-      description: "100% white-hat techniques that comply with Google's guidelines, protecting your website from penalties.",
-      delay: "0.1s"
+      title: "Guest Safety",
+      description: "Complete security and hygiene standards for peaceful and worry-free stay"
     },
     {
-      icon: "⚡",
-      title: "Fast Results",
-      description: "Quick indexing and rapid ranking improvements with our super-fast backlink delivery system.",
-      delay: "0.2s"
-    },
-    {
-      icon: "📊",
-      title: "Transparent Reporting",
-      description: "Comprehensive reports showing every backlink placed, with detailed analytics and performance tracking.",
-      delay: "0.3s"
-    },
-  ];
-
-  // Work process
-  const process = [
-    {
-      step: "01",
-      title: "Package Selection",
-      description: "Choose the perfect backlink package that matches your website's needs and budget.",
-      icon: "📦",
-      delay: "0s"
-    },
-    {
-      step: "02",
-      title: "Secure Payment",
-      description: "Safe & secure payment through our trusted Razorpay gateway with instant confirmation.",
-      icon: "💳",
-      delay: "0.2s"
-    },
-    {
-      step: "03",
-      title: "Details Submission",
-      description: "Provide your website URLs and target keywords through our simple order form.",
-      icon: "📝",
-      delay: "0.4s"
-    },
-    {
-      step: "04",
-      title: "Backlink Delivery",
-      description: "Receive comprehensive report with all placed backlinks and performance tracking.",
-      icon: "📊",
-      delay: "0.6s"
+      icon: "❤️",
+      title: "Personal Care",
+      description: "Treating every guest as part of our family with personalized attention and care"
     }
   ];
 
-  // Achievements
-  const achievements = [
-    { number: "50K+", label: "Backlinks Placed", icon: "🔗", delay: "0s" },
-    { number: "1000+", label: "Websites Ranked", icon: "🏆", delay: "0.1s" },
-    { number: "98%", label: "Client Satisfaction", icon: "⭐", delay: "0.2s" },
-    { number: "4 Weeks", label: "Avg. Results Time", icon: "⚡", delay: "0.3s" }
+  // Milestones
+  const milestones = [
+    { year: "2010", event: "Radhika Sadan Established", description: "Started with 5 rooms near Prikarma Marg" },
+    { year: "2013", event: "First Renovation", description: "Upgraded facilities with modern amenities" },
+    { year: "2016", event: "Family Suite Addition", description: "Added spacious family accommodations" },
+    { year: "2019", event: "Digital Presence", description: "Launched online booking and website" },
+    { year: "2022", event: "Premium Rooms", description: "Introduced AC rooms with premium features" },
+    { year: "2024", event: "5000+ Guests Served", description: "Milestone of serving thousands of pilgrims" }
   ];
 
-  // Testimonials
-  const testimonials = [
-    {
-      text: "360EagleWeb's demo package convinced me to go for their premium service. My website jumped from page 5 to page 1 in just 4 weeks! The backlink quality is exceptional.",
-      author: "Rajesh Kumar",
-      company: "E-commerce Store Owner",
-      rating: 5,
-      delay: "0s"
-    },
-    {
-      text: "Professional service with transparent reporting. I can see every backlink they placed and my organic traffic increased by 200% in 6 weeks. Highly recommended!",
-      author: "Priya Sharma", 
-      company: "Blogger & Content Creator",
-      rating: 5,
-      delay: "0.1s"
-    },
-    {
-      text: "The Eagle Pro package transformed my local business website. We now appear on Google's first page for all major local keywords. Great value for money!",
-      author: "Amit Patel",
-      company: "Local Business Owner",
-      rating: 5,
-      delay: "0.2s"
-    }
-  ];
-
-  // Why choose us points
-  const whyChooseUs = [
-    {
-      icon: "💰",
-      title: "Most Affordable",
-      description: "Premium backlink services starting from just ₹1 for demo. No hidden costs or recurring charges.",
-      delay: "0s"
-    },
-    {
-      icon: "⚡",
-      title: "Fast Delivery",
-      description: "Quick 3-10 days delivery with super fast indexing and ping back services.",
-      delay: "0.1s"
-    },
-    {
-      icon: "🎯",
-      title: "Targeted Strategy",
-      description: "Eagle-eye precision in targeting relevant and high-authority backlinks for your niche.",
-      delay: "0.2s"
-    },
-    {
-      icon: "📊",
-      title: "Detailed Reports",
-      description: "Comprehensive white-label reports showing all placed backlinks with analytics.",
-      delay: "0.3s"
-    },
-    {
-      icon: "🛡️",
-      title: "100% Safe",
-      description: "Google algorithm safe techniques that protect your website from penalties.",
-      delay: "0.4s"
-    },
-    {
-      icon: "🏆",
-      title: "Proven Results",
-      description: "1000+ satisfied clients and 1500+ successful backlink campaigns delivered.",
-      delay: "0.5s"
-    }
+  // Guest statistics
+  const stats = [
+    { number: "5000+", label: "Happy Pilgrims", description: "Served since establishment" },
+    { number: "98%", label: "Guest Satisfaction", description: "Repeat visitors and referrals" },
+    { number: "24/7", label: "Service", description: "Round the clock guest support" },
+    { number: "2-8 min", label: "Temple Access", description: "Walking distance to all major temples" }
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       <Helmet>
-        <title>About 360EagleWeb | Premium Backlink Services & SEO Agency</title>
-        <meta
-          name="description"
-          content="Meet 360EagleWeb: India's trusted backlink service provider. With 1000+ clients and 1500+ projects, we deliver premium dofollow backlinks from ₹1. 3+ years of proven SEO experience."
+        <title>About Radhika Sadan - Premium Guest House in Vrindavan | Our Story</title>
+        <meta 
+          name="description" 
+          content="Learn about Radhika Sadan Guest House in Vrindavan - Our 15+ years of serving pilgrims near Prikarma Marg, Paramhans Ji Maharaj. Authentic Braj hospitality with modern comfort."
         />
-        <meta
-          name="keywords"
-          content="about 360EagleWeb, backlink services, SEO company, dofollow backlinks, premium backlinks, affordable SEO, link building agency, Google safe backlinks"
+        <meta 
+          name="keywords" 
+          content="about Radhika Sadan, Vrindavan guest house history, Prikarma Marg accommodation, Mathura Vrindavan stay, spiritual guest house, Braj hospitality, pilgrim accommodation Vrindavan, Radhika Sadan team, guest house about us"
         />
-        <link rel="canonical" href="https://360eagleweb.com/about" />
+        <link rel="canonical" href="https://radhikasadan.com/about" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="About Radhika Sadan - Authentic Guest House in Vrindavan" />
+        <meta property="og:description" content="Discover our story of serving pilgrims for 15+ years near Prikarma Marg, Vrindavan. Experience genuine Braj hospitality with modern comfort." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://radhikasadan.com/about" />
+        
+        {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "360EagleWeb",
-            "url": "https://360eagleweb.com",
-            "logo": "https://360eagleweb.com/logo.png",
-            "description": "A leading backlink service provider specializing in premium dofollow backlinks and SEO services.",
+            "@type": "Hotel",
+            "name": "Radhika Sadan Guest House",
+            "description": "Premium Guest House in Vrindavan near Prikarma Marg, serving pilgrims with authentic Braj hospitality since 2010",
+            "url": "https://radhikasadan.com",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "India",
+              "streetAddress": "Near Prikarma Marg, Close to premanand ji maharaj ashram",
+              "addressLocality": "Vrindavan",
+              "addressRegion": "Uttar Pradesh",
+              "postalCode": "281121",
               "addressCountry": "IN"
             },
-            "areaServed": "Worldwide",
-            "founder": {
-              "@type": "Person",
-              "name": "Vivek Singh"
-            },
-            "sameAs": []
+            "telephone": "+917044755109",
+            "email": "bookings@radhikasadan.com",
+            "founder": "Shri Krishna Das Ji",
+            "foundingDate": "2010",
+            "numberOfRooms": "15",
+            "areaServed": "Vrindavan Mathura",
+            "knowsAbout": ["Pilgrim Accommodation", "Spiritual Tourism", "Braj Culture", "Vrindavan Temples"]
           })}
         </script>
       </Helmet>
 
-      {/* === HERO SECTION === */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-600 text-white py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-yellow-400 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-1/2 right-20 w-16 h-16 bg-cyan-400 rounded-full blur-xl animate-bounce"></div>
-          <div className="absolute bottom-20 left-1/3 w-24 h-24 bg-purple-400 rounded-full blur-xl animate-ping"></div>
-        </div>
-        
+      {/* Hero Section */}
+      <section className="relative py-20 bg-gradient-to-br from-orange-500 to-red-500 text-white">
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-bounce">
-            🦅 India's #1 Backlink Service Provider
-          </div>
-
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-in-up">
-            About <span className="text-yellow-400">360EagleWeb</span>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+            About Radhika Sadan
           </h1>
-
-          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-blue-100 leading-relaxed animate-fade-in-up delay-300">
-            We are a <strong className="text-yellow-400">premium backlink service agency</strong>, 
-            helping <strong>1000+ websites</strong> achieve higher Google rankings through professional 
-            <strong> dofollow backlinks, SEO optimization</strong> and 
-            <strong> white-hat link building</strong> strategies at unbeatable prices.
+          <p className="text-xl md:text-2xl mb-8 text-orange-100 max-w-4xl mx-auto">
+            Serving Pilgrims with Authentic Braj Hospitality Since 2010 - Your Spiritual Home in Vrindavan
           </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <span className="bg-white text-orange-600 px-4 py-2 rounded-full font-bold">🏩 15+ Years of Service</span>
+            <span className="bg-green-500 text-white px-4 py-2 rounded-full font-bold">🙏 5000+ Happy Pilgrims</span>
+            <span className="bg-blue-500 text-white px-4 py-2 rounded-full font-bold">📍 Near Prikarma Marg</span>
+          </div>
+        </div>
+      </section>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-500">
-            <Link
-              to="/services"
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl shadow-yellow-400/25"
-            >
-              <span>View Our Packages</span>
-            </Link>
+      {/* Our Story Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+                Our Humble Beginning
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                <strong>Radhika Sadan</strong> was established in <strong>2010</strong> with a simple yet profound vision - to provide 
+                comfortable and affordable accommodation to pilgrims visiting the holy land of <strong>Vrindavan</strong>. What started 
+                as a small guest house with just 5 rooms near <strong>Prikarma Marg</strong> has now grown into a trusted name 
+                in spiritual hospitality.
+              </p>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Located in the heart of <strong>Vrindavan</strong>, just minutes away from <strong>premanand ji maharaj ashram </strong> 
+                and <strong>Gouri Gopal Vraddhashram </strong>, we have been blessed to serve thousands of pilgrims from across India and 
+                around the world. Our mission has always been to make every guest feel the divine energy of Braj while 
+                enjoying modern comforts.
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                We believe that visiting <strong>Vrindavan</strong> is not just a journey, but a spiritual transformation. 
+                That's why we go beyond just providing rooms - we create experiences that touch the soul and create 
+                memories for lifetime.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/rooms"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 text-center"
+                >
+                  View Our Rooms
+                </Link>
+                <a
+                  href="tel:+917044755109"
+                  className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                >
+                  <Phone className="h-5 w-5" />
+                  Call Us
+                </a>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <img
+                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="Radhika Sadan Guest House Building in Vrindavan"
+                className="rounded-3xl shadow-2xl w-full h-96 object-cover"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-orange-200">
+                <div className="text-center">
+                  <div className="text-3xl text-orange-500 mb-2">🏩</div>
+                  <div className="text-2xl font-bold text-gray-900">15+ Years</div>
+                  <div className="text-gray-600">of Service</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Our Journey in Numbers
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Years of dedicated service to pilgrims visiting the holy land of Vrindavan
+            </p>
           </div>
 
-          {/* Stats Preview */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="text-center p-4 bg-white/10 rounded-lg backdrop-blur-sm transform transition-all duration-500 hover:scale-110"
-                style={{animationDelay: stat.delay}}
-              >
-                <div className="text-2xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-yellow-400">{stat.number}</div>
-                <div className="text-white/80 text-sm">{stat.label}</div>
+              <div key={index} className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+                <div className="text-4xl font-bold text-orange-600 mb-2">{stat.number}</div>
+                <div className="text-xl font-semibold text-gray-900 mb-2">{stat.label}</div>
+                <div className="text-gray-600">{stat.description}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === OUR STORY SECTION === */}
+      {/* Our Values Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-up">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Founded with a clear mission, <strong className="text-blue-600">360EagleWeb</strong> emerged to solve a critical 
-                  problem in the SEO industry: <em className="text-blue-600">overpriced, low-quality backlink services</em> that 
-                  often put websites at risk with Google penalties.
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  We built 360EagleWeb to provide <strong>transparent, results-driven backlink services</strong> 
-                  at prices that make sense for businesses of all sizes.
-                </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Today, we're proud to have served <strong className="text-blue-600">1000+ websites</strong> worldwide, 
-                  delivering <strong className="text-blue-600">1500+ successful backlink campaigns</strong> that have 
-                  helped businesses achieve <strong>page 1 Google rankings</strong> and significant organic growth.
-                </p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Our Core Values
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              The principles that guide our service and define the Radhika Sadan experience
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {values.map((value, index) => (
+              <div key={index} className="text-center group p-6 bg-orange-50 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-300 border-2 border-orange-200 hover:border-orange-300">
+                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">{value.description}</p>
               </div>
-              
-              <div className="mt-8">
-                <Link
-                  to="/services"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-center inline-block"
-                >
-                  View Packages
-                </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Team Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Meet Our Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Dedicated professionals committed to making your Vrindavan stay memorable and spiritually enriching
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-200">
+                <div className="h-64 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                  <p className="text-orange-600 font-semibold mb-2">{member.role}</p>
+                  <p className="text-gray-500 text-sm mb-3">{member.experience}</p>
+                  <p className="text-gray-600">{member.description}</p>
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Milestones Timeline */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Our Journey
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From humble beginnings to becoming a trusted name in Vrindavan hospitality
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-orange-200 h-full"></div>
             
-            <div className="grid grid-cols-2 gap-6 animate-fade-in-up delay-300">
-              {stats.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl text-center transform transition-all duration-500 hover:scale-105 hover:shadow-lg group"
-                >
-                  <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">{stat.icon}</div>
-                  <div className="text-3xl font-bold text-blue-600 mb-2">{stat.number}</div>
-                  <div className="text-gray-700 font-medium">{stat.label}</div>
+            <div className="space-y-12">
+              {milestones.map((milestone, index) => (
+                <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                  {/* Content */}
+                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-orange-200 hover:shadow-xl transition-all duration-300">
+                      <div className="text-2xl font-bold text-orange-600 mb-2">{milestone.year}</div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.event}</h3>
+                      <p className="text-gray-600">{milestone.description}</p>
+                    </div>
+                  </div>
+                  
+                  {/* Timeline dot */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-orange-500 rounded-full border-4 border-white shadow-lg"></div>
+                  
+                  {/* Empty space for alignment */}
+                  <div className="w-1/2"></div>
                 </div>
               ))}
             </div>
@@ -285,259 +319,115 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* === MISSION & VISION === */}
-      <section className="py-20 bg-gray-50">
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Why Choose Radhika Sadan?
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Driving website rankings and organic growth through premium backlink strategies and proven SEO methodologies
+              What makes us the preferred choice for pilgrims visiting Vrindavan
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up">
-              <div className="text-5xl mb-6">🎯</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                To empower websites of all sizes with <strong className="text-blue-600">affordable, high-quality backlink services</strong>. 
-                We believe every website deserves access to premium 
-                <strong> dofollow backlinks and SEO strategies</strong> that deliver 
-                measurable ranking improvements and sustainable organic growth.
-              </p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up delay-200">
-              <div className="text-5xl mb-6">🦅</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                To become the world's most trusted <strong className="text-blue-600">backlink service provider</strong>, 
-                recognized for delivering exceptional <strong>link building and SEO services</strong> 
-                that help websites dominate search rankings. We aim to be the first choice for 
-                businesses seeking reliable ranking improvements.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* === CORE VALUES === */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-            <p className="text-xl text-gray-600">The fundamental principles that guide every backlink campaign we deliver</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div 
-                key={index}
-                className="bg-gray-50 p-6 rounded-2xl hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 text-center group animate-fade-in-up"
-                style={{animationDelay: value.delay}}
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === WHY CHOOSE US === */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose 360EagleWeb?</h2>
-            <p className="text-xl text-gray-600">Discover what sets us apart from other backlink service providers</p>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyChooseUs.map((point, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group animate-fade-in-up"
-                style={{animationDelay: point.delay}}
-              >
-                <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">{point.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{point.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{point.description}</p>
-              </div>
-            ))}
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+              <div className="text-4xl text-orange-500 mb-4">📍</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Prime Vrindavan Location</h3>
+              <p className="text-gray-600 text-lg">
+                Situated in the heart of Vrindavan, just 2-8 minutes walking distance from all major temples including 
+                Banke Bihari, ISKCON, and Prem Mandir. Perfect location for spiritual activities.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+              <div className="text-4xl text-orange-500 mb-4">🙏</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Spiritual Guidance</h3>
+              <p className="text-gray-600 text-lg">
+                Our team provides guidance for temple visits, parikrama routes, and spiritual activities. 
+                Experience Vrindavan like a local with our personalized assistance.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+              <div className="text-4xl text-orange-500 mb-4">🏩</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Modern Comfort</h3>
+              <p className="text-gray-600 text-lg">
+                Enjoy the perfect blend of traditional hospitality and modern amenities. All rooms equipped with 
+                comfortable beds, attached bathrooms, hot water, and free WiFi.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+              <div className="text-4xl text-orange-500 mb-4">🍴</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Pure Vegetarian Food</h3>
+              <p className="text-gray-600 text-lg">
+                Experience authentic Braj cuisine with our pure vegetarian meal options. Hygienic, delicious, 
+                and prepared with traditional recipes passed down through generations.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+              <div className="text-4xl text-orange-500 mb-4">🛡️</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Safe & Secure</h3>
+              <p className="text-gray-600 text-lg">
+                24/7 security, CCTV surveillance, and safe environment for families, solo travelers, and 
+                elderly pilgrims. Your safety is our top priority.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+              <div className="text-4xl text-orange-500 mb-4">💰</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Value for Money</h3>
+              <p className="text-gray-600 text-lg">
+                Affordable pricing without compromising on quality and service. Special discounts for 
+                long stays, group bookings, and advance payments.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* === OUR PROCESS === */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Work Process</h2>
-            <p className="text-xl text-gray-600">A systematic approach that ensures success for every backlink campaign</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 text-center group animate-fade-in-up"
-                style={{animationDelay: step.delay}}
-              >
-                <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">{step.icon}</div>
-                <div className="text-2xl font-bold text-blue-600 mb-2">{step.step}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{step.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === ACHIEVEMENTS === */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Achievements</h2>
-            <p className="text-xl text-blue-100">Milestones that showcase our commitment to excellence</p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
-              <div 
-                key={index}
-                className="text-center transform transition-all duration-500 hover:scale-110 animate-fade-in-up"
-                style={{animationDelay: achievement.delay}}
-              >
-                <div className="text-4xl mb-4">{achievement.icon}</div>
-                <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">{achievement.number}</div>
-                <div className="text-blue-100 text-sm md:text-base">{achievement.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === TESTIMONIALS === */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600">Real success stories from websites we've helped rank higher</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index}
-                className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 animate-fade-in-up"
-                style={{animationDelay: testimonial.delay}}
-              >
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-lg">⭐</span>
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic leading-relaxed">"{testimonial.text}"</p>
-                <div>
-                  <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                  <p className="text-blue-600 text-sm">{testimonial.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === FINAL CTA === */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Soar Your Rankings?</h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Join <strong className="text-yellow-400">1000+ successful websites</strong> that trust 360EagleWeb for their 
-            backlink needs. Let's boost your search rankings together!
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+            Experience Radhika Sadan Hospitality
+          </h2>
+          <p className="text-xl md:text-2xl mb-8 text-orange-100 leading-relaxed">
+            Join thousands of satisfied pilgrims who have made Radhika Sadan their spiritual home in Vrindavan
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              to="/services"
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 shadow-2xl"
+              to="/rooms"
+              className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
             >
-              <span>View Packages</span>
+              <span>View Rooms & Book Now</span>
             </Link>
+            <a
+              href="https://wa.me/917044755109"
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+            >
+              <MessageCircle className="h-6 w-6" />
+              <span>WhatsApp Inquiry</span>
+            </a>
+            <a
+              href="tel:+917044755109"
+              className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+            >
+              <Phone className="h-6 w-6" />
+              <span>Call: +91 70447 55109</span>
+            </a>
           </div>
           
-          <p className="text-blue-200 mt-6 text-sm">
-            ✅ Free Strategy Session ✅ 24/7 Support ✅ Money-Back Guarantee
+          <p className="text-orange-200 mt-8 text-xl flex items-center justify-center gap-3">
+            <Heart className="h-6 w-6" />
+            <span>Jai Shri Radhe Krishna - Welcome to Your Spiritual Home in Vrindavan!</span>
           </p>
         </div>
       </section>
-
-      {/* === MOBILE BOTTOM NAVIGATION BAR === */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
-        <div className="flex justify-around items-center py-3">
-          {/* Home */}
-          <Link
-            to="/"
-            className="flex flex-col items-center space-y-1 text-blue-600"
-          >
-            <span className="text-lg">🏠</span>
-            <span className="text-xs font-medium">Home</span>
-          </Link>
-
-          {/* Search */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
-          >
-            <span className="text-lg">🔍</span>
-            <span className="text-xs font-medium">Search</span>
-          </button>
-
-          {/* Add to Cart - Blog Backlinks */}
-          <Link
-            to="/pricing"
-            className="flex flex-col items-center space-y-1 text-green-600 hover:text-green-700 relative"
-          >
-            <span className="text-lg">🛒</span>
-            <span className="text-xs font-medium">Add to Cart</span>
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-              ₹100
-            </span>
-          </Link>
-
-          {/* Pricing */}
-          <Link
-            to="/pricing"
-            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
-          >
-            <span className="text-lg">💰</span>
-            <span className="text-xs font-medium">Pricing</span>
-          </Link>
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out both;
-        }
-        .delay-300 {
-          animation-delay: 0.3s;
-        }
-        .delay-500 {
-          animation-delay: 0.5s;
-        }
-      `}</style>
     </div>
   );
 };

@@ -6,9 +6,10 @@ import {
   MapPin,
   MessageCircle,
   Instagram,
-  Linkedin,
   Facebook,
-  X
+  X,
+  Star,
+  Heart
 } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -18,8 +19,9 @@ const Footer: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
-    address: "",
-    email: "",
+    guests: "",
+    checkin: "",
+    checkout: "",
     message: "",
   });
 
@@ -27,25 +29,26 @@ const Footer: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+  const handleWhatsAppBooking = (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, mobile, address, email, message } = formData;
+    const { name, mobile, guests, checkin, checkout, message } = formData;
 
-    if (!name || !mobile || !address || !email) {
-      alert("Please fill all required fields!");
+    if (!name || !mobile) {
+      alert("Please fill name and mobile number!");
       return;
     }
 
-    const whatsappNumber = "919310533973";
-    const text = `📩 *New B2B Lead Inquiry*
+    const whatsappNumber = "917044755109";
+    const text = `🏩 *Radhika Sadan - Room Booking Inquiry*
 
 *Name:* ${name}
 *Mobile:* ${mobile}
-*Email:* ${email}
-*Address:* ${address}
-*Message:* ${message || "No additional message"}
+*Guests:* ${guests || "Not specified"}
+*Check-in:* ${checkin || "Flexible"}
+*Check-out:* ${checkout || "Flexible"}
+*Special Request:* ${message || "No special request"}
 
-Let's grow business together 🚀`;
+I would like to book a room at Radhika Sadan Guest House in Mathura. Please share available rooms and rates.`;
 
     const encodedText = encodeURIComponent(text);
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
@@ -56,47 +59,54 @@ Let's grow business together 🚀`;
   return (
     <>
       {/* FOOTER SECTION */}
-      <footer className="bg-gray-900 text-white relative">
+      <footer className="bg-gradient-to-b from-yellow-50 to-orange-50 text-gray-800 relative border-t-4 border-yellow-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand + Contact Info */}
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="flex-shrink-0 bg-white p-3 rounded-full"> {/* White bg for logo */}
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="flex-shrink-0 bg-white p-2 rounded-full shadow-lg">
                   <img
                     src="/logo.svg"
-                    alt="360EagleWeb Logo"
+                    alt="Radhika Sadan Guest House Mathura Vrindavan"
                     className="h-16 w-16 object-contain"
                   />
                 </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-yellow-700" style={{ fontFamily: '"Playfair Display", serif' }}>
+                    Radhika Sadan
+                  </h2>
+                  <p className="text-orange-600 text-sm">
+                    Premium Guest House in Mathura Vrindavan
+                  </p>
+                </div>
               </div>
 
-              <p className="text-gray-300 mb-6 max-w-md text-lg leading-relaxed">
-                Creative Digital Solutions That Deliver Growth 🚀
-                <br />
-                We provide branding, digital marketing, and web development solutions that help you succeed online.
+              <p className="text-gray-700 mb-6 max-w-md text-lg leading-relaxed">
+                Experience divine hospitality at <strong>Radhika Sadan</strong> - your peaceful retreat in the holy land of Mathura Vrindavan. 
+                We offer comfortable accommodation with modern amenities, perfect for pilgrims and spiritual seekers.
               </p>
 
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  <Phone className="h-5 w-5 text-purple-400" />
-                  <a href="tel:+919310533973" className="hover:text-purple-300 text-lg">
-                    +91 93105 33973
+                  <Phone className="h-5 w-5 text-green-600" />
+                  <a href="tel:+917044755109" className="hover:text-green-700 text-lg font-semibold">
+                    +91 70447 55109
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-purple-400" />
+                  <Mail className="h-5 w-5 text-orange-600" />
                   <a
-                    href="mailto:info@360eagleweb.com"
-                    className="hover:text-purple-300 text-lg"
+                    href="mailto:bookings@radhikasadan.com"
+                    className="hover:text-orange-700 text-lg"
                   >
-                    info@360eagleweb.com
+                    bookings@radhikasadan.com
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-purple-400" />
+                  <MapPin className="h-5 w-5 text-red-600" />
                   <span className="text-lg">
-                   Greater Noida, Uttar Pradesh 201306
+                    Near Banke Bihari Temple, Vrindavan, Mathura, Uttar Pradesh
                   </span>
                 </div>
               </div>
@@ -104,19 +114,19 @@ Let's grow business together 🚀`;
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-yellow-400">Quick Links</h3>
+              <h3 className="text-lg font-semibold mb-4 text-yellow-700">Quick Navigation</h3>
               <ul className="space-y-3">
                 {[
                   { name: "Home", path: "/" },
-                  { name: "About", path: "/about" },
-                  { name: "Services", path: "/services" },
-                  { name: "Pricing", path: "/pricing" },
-                  { name: "Contact", path: "/contact" },
+                  { name: "About Us", path: "/about" },
+                  { name: "Our Rooms", path: "/rooms" },
+                  { name: "Photo Gallery", path: "/gallery" },
+                  { name: "Contact Us", path: "/contact" },
                 ].map((item) => (
                   <li key={item.name}>
                     <Link
                       to={item.path}
-                      className="text-gray-300 hover:text-purple-400 text-lg block py-1"
+                      className="text-gray-700 hover:text-yellow-700 text-lg block py-1 transition-colors duration-200"
                     >
                       {item.name}
                     </Link>
@@ -125,50 +135,43 @@ Let's grow business together 🚀`;
               </ul>
             </div>
 
-            {/* Legal + Social */}
+            {/* Amenities + Social */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-yellow-400">Legal</h3>
-              <ul className="space-y-3 mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-yellow-700">Guest Amenities</h3>
+              <ul className="space-y-2 mb-6 text-gray-700">
                 {[
-                  { name: "Onboarding Agreement", path: "/onboarding-agreement" },
-                  { name: "Terms of Service", path: "/terms" },
-                  { name: "Privacy Policy", path: "/privacy" },
-                ].map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      to={item.path}
-                      className="text-gray-300 hover:text-purple-400 text-lg block py-1"
-                    >
-                      {item.name}
-                    </Link>
+                  "🛌 AC & Non-AC Rooms",
+                  "🚿 Hot Water 24x7",
+                  "📶 Free WiFi",
+                  "🅿️ Car Parking",
+                  "🍴 Pure Vegetarian Food",
+                  "🙏 Temple Proximity"
+                ].map((amenity, index) => (
+                  <li key={index} className="flex items-center space-x-2">
+                    <Star className="h-4 w-4 text-yellow-500" />
+                    <span className="text-md">{amenity}</span>
                   </li>
                 ))}
               </ul>
 
-              <h3 className="text-lg font-semibold mb-4 text-yellow-400">Follow Us</h3>
+              <h3 className="text-lg font-semibold mb-4 text-yellow-700">Connect With Us</h3>
               <div className="flex space-x-4 mb-6">
                 {[
                   {
                     icon: MessageCircle,
-                    label: "WhatsApp",
-                    color: "text-green-400 hover:text-green-300",
+                    label: "WhatsApp Booking",
+                    color: "text-green-600 hover:text-green-700",
                   },
                   {
                     icon: Instagram,
-                    href: "https://www.instagram.com/360eagleweb/",
-                    color: "text-gray-300 hover:text-pink-400",
+                    href: "https://www.instagram.com/radhikasadan_mathura/",
+                    color: "text-gray-700 hover:text-pink-600",
                     label: "Instagram",
                   },
                   {
-                    icon: Linkedin,
-                    href: "https://www.linkedin.com/company/360eagleweb/",
-                    color: "text-gray-300 hover:text-blue-400",
-                    label: "LinkedIn",
-                  },
-                  {
                     icon: Facebook,
-                    href: "https://www.facebook.com/360eagleweb/",
-                    color: "text-gray-300 hover:text-blue-500",
+                    href: "https://www.facebook.com/radhikasadanvrindavan/",
+                    color: "text-gray-700 hover:text-blue-600",
                     label: "Facebook",
                   },
                 ].map((social) => (
@@ -176,7 +179,7 @@ Let's grow business together 🚀`;
                     key={social.label}
                     href={social.href || "#"}
                     onClick={
-                      social.label === "WhatsApp"
+                      social.label === "WhatsApp Booking"
                         ? (e) => {
                             e.preventDefault();
                             setShowModal(true);
@@ -185,30 +188,47 @@ Let's grow business together 🚀`;
                     }
                     target={social.href ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className={`${social.color} transition-colors duration-200 hover:scale-110 transform`}
+                    className={`${social.color} transition-all duration-200 hover:scale-110 transform bg-white p-2 rounded-full shadow-md`}
+                    title={social.label}
                   >
-                    <social.icon className="h-7 w-7" />
+                    <social.icon className="h-6 w-6" />
                   </a>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-300 text-lg mb-2">
-              © {year} 360EagleWeb. All rights reserved.
+          {/* SEO Keywords Section */}
+          <div className="border-t border-yellow-200 mt-8 pt-8">
+            <div className="text-center mb-4">
+              <h4 className="text-lg font-semibold text-yellow-700 mb-2">
+                Radhika Sadan - Best Guest House in Mathura Vrindavan
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Keywords: Mathura guest house, Vrindavan accommodation, budget hotel Mathura, 
+                family stay Vrindavan, pilgrim accommodation, Banke Bihari temple stay, 
+                ISKCON guest house, spiritual retreat Mathura, affordable hotels in Vrindavan, 
+                Radhika Sadan reviews, Yamuna riverside stay, Braj dham accommodation
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t border-yellow-200 mt-4 pt-6 text-center">
+            <p className="text-gray-700 text-lg mb-2 flex items-center justify-center gap-2">
+              <Heart className="h-5 w-5 text-red-500" />
+              © {year} Radhika Sadan Guest House. All rights reserved.
             </p>
-            <p className="text-gray-400 text-md">
-              Made with ❤️ in India | Empowering Businesses Digitally
+            <p className="text-gray-600 text-md">
+              Made with devotion in the holy land of Mathura Vrindavan | Serving pilgrims since 2010
             </p>
-            <p className="text-gray-400 text-sm mt-2">
-              Website designed & developed by <strong>Vivek Singh</strong>
+            <p className="text-gray-500 text-sm mt-2">
+              Your trusted accommodation partner in Braj region | Jai Shri Radhe Krishna
             </p>
           </div>
         </div>
       </footer>
 
-      {/* ✅ WhatsApp Popup Modal */}
+      {/* ✅ WhatsApp Booking Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
@@ -218,14 +238,17 @@ Let's grow business together 🚀`;
             >
               <X className="h-5 w-5" />
             </button>
-            <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
-              Join as B2B
+            <h2 className="text-2xl font-bold mb-4 text-center text-yellow-700">
+              Book Your Stay
             </h2>
-            <form onSubmit={handleWhatsAppSubmit} className="space-y-3">
+            <p className="text-gray-600 text-center mb-4">
+              Get instant confirmation via WhatsApp
+            </p>
+            <form onSubmit={handleWhatsAppBooking} className="space-y-3">
               <input
                 type="text"
                 name="name"
-                placeholder="Full Name"
+                placeholder="Full Name *"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -234,43 +257,52 @@ Let's grow business together 🚀`;
               <input
                 type="tel"
                 name="mobile"
-                placeholder="Mobile Number"
+                placeholder="Mobile Number *"
                 value={formData.mobile}
                 onChange={handleChange}
                 required
                 className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               />
               <input
-                type="text"
-                name="address"
-                placeholder="Address"
-                value={formData.address}
+                type="number"
+                name="guests"
+                placeholder="Number of Guests"
+                value={formData.guests}
                 onChange={handleChange}
-                required
                 className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
               />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
-              />
+              <div className="grid grid-cols-2 gap-3">
+                <input
+                  type="date"
+                  name="checkin"
+                  placeholder="Check-in Date"
+                  value={formData.checkin}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
+                />
+                <input
+                  type="date"
+                  name="checkout"
+                  placeholder="Check-out Date"
+                  value={formData.checkout}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
+                />
+              </div>
               <textarea
                 name="message"
-                placeholder="Message (optional)"
+                placeholder="Special Requirements (optional)"
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:border-green-500"
+                rows={3}
               />
               <button
                 type="submit"
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg flex justify-center items-center gap-2"
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg flex justify-center items-center gap-2 transition-all duration-200"
               >
                 <MessageCircle className="h-5 w-5" />
-                Start Conversation
+                Book via WhatsApp
               </button>
             </form>
           </div>

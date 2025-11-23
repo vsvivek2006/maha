@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { Phone, MessageCircle, Star, MapPin, Users, Wifi, Car, Utensils, Heart, Shield, Check, ArrowRight } from "lucide-react";
 
 // Razorpay utility functions
-const loadRazorpay = (): Promise<boolean> => {
+const loadRazorpay = () => {
   return new Promise((resolve) => {
     if (window.Razorpay) {
       resolve(true);
-      return;
-    }
-
-    const existingScript = document.querySelector('script[src="https://checkout.razorpay.com/v1/checkout.js"]');
-    if (existingScript) {
-      existingScript.addEventListener('load', () => resolve(true));
-      existingScript.addEventListener('error', () => resolve(false));
       return;
     }
 
@@ -21,460 +15,255 @@ const loadRazorpay = (): Promise<boolean> => {
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
     
-    script.onload = () => {
-      resolve(true);
-    };
-    
-    script.onerror = () => {
-      resolve(false);
-    };
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
     
     document.body.appendChild(script);
   });
 };
 
-const formatAmount = (amount: number): number => {
+const formatAmount = (amount) => {
   return Math.round(amount * 100);
 };
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [showForm, setShowForm] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState(null);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     mobile: "",
-    website: "",
-    keywords: ""
+    checkin: "",
+    checkout: "",
+    guests: "",
+    message: ""
   });
 
-  // ✅ FIXED: Use Vite environment variables
-  const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
-  const WHATSAPP_NUMBER = "919310533973";
+  const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_YOUR_KEY_HERE";
 
-  // Hero Slides - Updated for ₹99 starting
+  // Beautiful Mathura Vrindavan themed hero images with SEO keywords
   const heroSlides = [
     {
-      title: "Premium Backlink Services",
-      subtitle: "Starting at Just ₹99",
-      originalPrice: "₹999",
-      description: "Buy High Quality DoFollow Backlinks with 70-90 DA, PA Wiki, Article Directories, Social Bookmarks & News Sites. Google Algorithm Safe Link Building for Higher Rankings.",
-      badge: "🚀 STARTING AT ₹99",
-      bgGradient: "from-blue-900 via-indigo-800 to-purple-700",
-      cta: "View Packages"
+      image: "https://images.unsplash.com/photo-1601918774946-25832a4be0d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      title: "Radhika Sadan Guest House Vrindavan",
+      subtitle: "Divine Stay Near Banke Bihari Temple",
+      description: "Best budget hotel in Vrindavan near Prem Mandir, ISKCON, and Parikrama Marg. AC/Non-AC rooms with modern amenities for pilgrims.",
+      badge: "🏩 Starting at ₹999/Night",
+      cta: "Book Your Spiritual Stay"
     },
     {
-      title: "Google Algorithm Safe Link Building",
-      subtitle: "Rank #1 on Google",
-      originalPrice: "₹2,999",
-      description: "Backlinks have always been the big ticket item to jump your site up the rankings. We guarantee that your backlinks will be loved by Google and your site will quickly Reach Page One.",
-      badge: "🛡️ Google Safe Backlinks",
-      bgGradient: "from-emerald-900 via-teal-800 to-cyan-700",
-      cta: "Get Ranking Now"
+      image: "https://images.unsplash.com/photo-1586105251261-72a756497a11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      title: "Comfort Near All Temples",
+      subtitle: "Walking Distance to Prem Mandir & ISKCON",
+      description: "Perfect location for international pilgrims. Stay close to Banke Bihari, Prem Mandir, ISKCON Vrindavan, and all major spiritual centers.",
+      badge: "🛕 Perfect Pilgrim Accommodation",
+      cta: "View Our Rooms"
     },
     {
-      title: "Higher Ranking Within 4 Weeks",
-      subtitle: "270% Revenue Supercharge",
-      originalPrice: "₹4,999",
-      description: "100% Of Our Customers' Websites Get Higher Search Page Rankings Within 4 Weeks; this has led to a > 270% supercharge in Revenue.",
-      badge: "📈 Proven Results",
-      bgGradient: "from-violet-900 via-purple-800 to-fuchsia-700",
-      cta: "Boost Rankings"
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      title: "Traditional Braj Hospitality",
+      subtitle: "Pure Vegetarian Food & Modern Comfort",
+      description: "Experience authentic Vrindavan culture with satvik meals, comfortable rooms, and warm hospitality. Ideal for foreign tourists and Indian pilgrims.",
+      badge: "🍴 Authentic Braj Cuisine",
+      cta: "Check Availability"
     }
   ];
 
-  // Backlink Packages - UPDATED WITH ₹999 AND ₹1299 PACKAGES
-  const backlinkPackages = [
+  // Rooms with beautiful images and SEO descriptions
+  const rooms = [
     {
-      id: "300_backlinks",
-      name: "EAGLE START",
-      price: 99,
-      displayPrice: "₹99",
-      originalPrice: "₹999",
-      backlinks: "300 Premium Backlinks",
-      keywords: "SEO For 2 Keywords & 1 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "30 Authority Profile Links",
-        "Delivery Within 7 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
-      ],
-      popular: false,
-      badge: "90% OFF",
-      color: "from-green-500 to-emerald-500",
-      icon: "🎯"
-    },
-    {
-      id: "750_backlinks",
-      name: "EAGLE PRO",
-      price: 199,
-      displayPrice: "₹199",
-      originalPrice: "₹1,999",
-      backlinks: "750 Premium Backlinks",
-      keywords: "SEO For 2 Keywords & 2 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "Authority Profile Links",
-        "Delivery Within 7 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
-      ],
-      popular: true,
-      badge: "90% OFF",
-      color: "from-purple-500 to-indigo-500",
-      icon: "⚡"
-    },
-    {
-      id: "1200_backlinks",
-      name: "EAGLE BUSINESS",
-      price: 299,
-      displayPrice: "₹299",
-      originalPrice: "₹2,999",
-      backlinks: "1200 Premium Backlinks",
-      keywords: "SEO For 3 Keywords & 2 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "Authority Profile Links",
-        "Delivery Within 7 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
-      ],
-      popular: false,
-      badge: "90% OFF",
-      color: "from-orange-500 to-red-500",
-      icon: "🏆"
-    },
-    {
-      id: "2000_backlinks",
-      name: "EAGLE ENTERPRISE",
-      price: 499,
-      displayPrice: "₹499",
-      originalPrice: "₹4,999",
-      backlinks: "2000+ Premium Backlinks",
-      keywords: "SEO For 6 Keywords & 2 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "Authority Profile Links",
-        "Delivery Within 10 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
-      ],
-      popular: false,
-      badge: "90% OFF",
-      color: "from-pink-500 to-rose-500",
-      icon: "💼"
-    },
-    {
-      id: "5000_backlinks",
-      name: "EAGLE PREMIUM",
+      id: "standard_non_ac",
+      name: "Standard Non-AC Room Vrindavan",
       price: 999,
       displayPrice: "₹999",
-      originalPrice: "₹9,999",
-      backlinks: "5,000+ Premium Backlinks",
-      keywords: "SEO For 10 Keywords & 5 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "Authority Profile Links",
-        "Delivery Within 10 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines"
+      originalPrice: "₹1299",
+      discount: "23% OFF",
+      images: [
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1586105251261-72a756497a11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
       ],
-      popular: false,
-      badge: "90% OFF",
-      color: "from-teal-500 to-cyan-500",
-      icon: "👑"
+      description: "Affordable non-AC room near Banke Bihari Temple Vrindavan. Perfect budget accommodation for pilgrims visiting Prem Mandir and ISKCON.",
+      features: ["Double Bed", "Attached Bathroom", "24/7 Hot Water", "Free WiFi", "Daily Housekeeping", "Temple View"],
+      capacity: "2 Adults",
+      size: "120 sq ft",
+      view: "Temple View",
+      popular: true,
+      badge: "Most Popular",
+      icon: "🛌",
+      seoKeywords: ["budget hotel vrindavan", "cheap rooms near banke bihari", "non ac room vrindavan"]
     },
     {
-      id: "10000_backlinks",
-      name: "EAGLE ULTIMATE",
-      price: 1299,
-      displayPrice: "₹1,299",
-      originalPrice: "₹12,999",
-      backlinks: "10,000+ Premium Backlinks",
-      keywords: "SEO For 15 Keywords & 8 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "Authority Profile Links",
-        "Delivery Within 15 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines",
-        "Premium Guest Posts",
-        "News Site Backlinks",
-        "E-commerce Backlinks"
+      id: "deluxe_ac",
+      name: "Deluxe AC Room Vrindavan",
+      price: 1499,
+      displayPrice: "₹1,499",
+      originalPrice: "₹1999",
+      discount: "25% OFF",
+      images: [
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1582582621959-48d27397dc69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
       ],
+      description: "Spacious AC room near Prem Mandir Vrindavan. Modern amenities with traditional decor, perfect for international tourists and families.",
+      features: ["King Size Bed", "Attached Bathroom", "Air Conditioning", "24/7 Hot Water", "Free WiFi", "TV", "Sitting Area"],
+      capacity: "2 Adults + 1 Child",
+      size: "180 sq ft",
+      view: "Garden View",
       popular: false,
-      badge: "90% OFF",
-      color: "from-red-500 to-pink-500",
-      icon: "🚀"
+      badge: "Best Value",
+      icon: "❄️",
+      seoKeywords: ["ac room vrindavan", "prem mandir nearby hotel", "family room vrindavan"]
     },
     {
-      id: "20000_backlinks",
-      name: "EAGLE CORPORATE",
+      id: "family_suite",
+      name: "Family Suite Vrindavan",
       price: 1999,
       displayPrice: "₹1,999",
-      originalPrice: "₹19,999",
-      backlinks: "20,000+ Premium Backlinks",
-      keywords: "SEO For 25 Keywords & 12 URL",
-      features: [
-        "Quality Mixed Backlinks From Articles Forum Profiles",
-        "Do-Follow Backlinks",
-        "Premium Wiki Backlinks",
-        "Press Releases",
-        "Web 2.0 Links",
-        "Social Bookmarking",
-        "Authority Profile Links",
-        "Delivery Within 20 Working Days",
-        "100% Google Safe",
-        "Super Fast Index Process",
-        "40 Days Ping Back Service",
-        "Submit To 1020+ Search Engines",
-        "Premium Guest Posts",
-        "News Site Backlinks",
-        "E-commerce Backlinks",
-        "Video Backlinks",
-        "Image Backlinks",
-        "Custom Strategy"
+      originalPrice: "₹2599",
+      discount: "23% OFF",
+      images: [
+        "https://images.unsplash.com/photo-1582582621959-48d27397dc69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
       ],
+      description: "Luxurious family suite near ISKCON Vrindavan. Spacious accommodation for group pilgrims and international visitors to Mathura Vrindavan.",
+      features: ["Double Bed + Single Bed", "Attached Bathroom", "Air Conditioning", "Living Area", "Free WiFi", "TV", "Mini Fridge"],
+      capacity: "3 Adults",
+      size: "250 sq ft",
+      view: "Temple View",
+      popular: true,
+      badge: "Family Favorite",
+      icon: "👨‍👩‍👧‍👦",
+      seoKeywords: ["family hotel vrindavan", "iskcon nearby accommodation", "group pilgrimage stay"]
+    },
+    {
+      id: "premium_ac",
+      name: "Premium AC Room Vrindavan",
+      price: 1799,
+      displayPrice: "₹1,799",
+      originalPrice: "₹2299",
+      discount: "22% OFF",
+      images: [
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        "https://images.unsplash.com/photo-1582582621959-48d27397dc69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+      ],
+      description: "Premium AC accommodation near Parikrama Marg Vrindavan. Elegant rooms with modern facilities for comfortable pilgrimage experience.",
+      features: ["King Size Bed", "Attached Bathroom", "Air Conditioning", "Work Desk", "Free WiFi", "TV", "Premium Toiletries"],
+      capacity: "2 Adults",
+      size: "200 sq ft",
+      view: "City View",
       popular: false,
-      badge: "90% OFF",
-      color: "from-purple-500 to-indigo-500",
-      icon: "🏢"
+      badge: "Luxury Choice",
+      icon: "⭐",
+      seoKeywords: ["premium hotel vrindavan", "parikrama marg accommodation", "luxury stay mathura vrindavan"]
     }
   ];
 
-  // Services Section
-  const services = [
-    {
-      icon: "🎯",
-      title: "Premium Backlink Building",
-      description: "High-quality dofollow backlinks from authoritative websites with 70-90 DA/PA",
-      features: ["Wiki Backlinks", "Article Directories", "Social Bookmarks", "News Sites"],
-      color: "from-blue-500 to-cyan-500",
-      delay: "0s"
+  // Amenities with icons and SEO descriptions
+  const amenities = [
+    { 
+      icon: "🅿️", 
+      title: "Free Parking", 
+      description: "Secure parking space for cars and two-wheelers - perfect for pilgrims driving to Vrindavan" 
     },
-    {
-      icon: "⚡",
-      title: "Fast Indexing Service",
-      description: "Super fast indexing with 40 days ping back service for quick results",
-      features: ["Quick Indexing", "Ping Service", "Search Engine Submission", "Fast Results"],
-      color: "from-green-500 to-emerald-500",
-      delay: "0.2s"
+    { 
+      icon: "🍴", 
+      title: "Pure Vegetarian Food", 
+      description: "Delicious satvik meals - authentic Braj cuisine for international and Indian guests" 
     },
-    {
-      icon: "🛡️",
-      title: "Google Safe Techniques",
-      description: "100% white-hat techniques that comply with Google's guidelines",
-      features: ["White-hat SEO", "Algorithm Safe", "Penalty Protection", "Safe Growth"],
-      color: "from-purple-500 to-indigo-500",
-      delay: "0.4s"
+    { 
+      icon: "📶", 
+      title: "Free WiFi", 
+      description: "High-speed internet throughout property - stay connected during your pilgrimage" 
     },
-    {
-      icon: "📊",
-      title: "Detailed Analytics & Reports",
-      description: "Comprehensive white label reports with performance tracking",
-      features: ["White Label Reports", "Performance Tracking", "Analytics", "Progress Reports"],
-      color: "from-orange-500 to-red-500",
-      delay: "0.6s"
+    { 
+      icon: "🚿", 
+      title: "24/7 Hot Water", 
+      description: "Continuous hot water supply - essential comfort after temple visits" 
+    },
+    { 
+      icon: "🛕", 
+      title: "Temple Proximity", 
+      description: "Walking distance to Banke Bihari, Prem Mandir, ISKCON - best location in Vrindavan" 
+    },
+    { 
+      icon: "🧹", 
+      title: "Daily Housekeeping", 
+      description: "Regular cleaning and maintenance - hygienic stay standards maintained" 
     }
   ];
 
-  // Process Steps
-  const processSteps = [
-    {
-      step: "01",
-      title: "Select Package",
-      description: "Choose the perfect backlink package for your website needs",
-      icon: "🦅",
-      color: "from-blue-500 to-purple-500"
+  // Updated nearby attractions with exact walking distances and SEO descriptions
+  const nearbyAttractions = [
+    { 
+      name: "Banke Bihari Temple", 
+      distance: "3 min walk", 
+      description: "Most sacred and famous temple in Vrindavan - divine darshan within walking distance",
+      image: "https://images.unsplash.com/photo-1587132135055-47c8d67cf3e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      seoKeywords: ["banke bihari temple nearby", "vrindavan darshan accommodation", "thakur ji darshan stay"]
     },
-    {
-      step: "02",
-      title: "Secure Payment",
-      description: "Safe & secure payment through Razorpay gateway",
-      icon: "💳",
-      color: "from-green-500 to-emerald-500"
+    { 
+      name: "Prem Mandir Vrindavan", 
+      distance: "5 min walk", 
+      description: "Beautiful marble temple with spectacular light shows - closest premium accommodation",
+      image: "https://images.unsplash.com/photo-1601918774946-25832a4be0d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      seoKeywords: ["prem mandir nearby hotel", "vrindavan marble temple stay", "radha krishna temple accommodation"]
     },
-    {
-      step: "03",
-      title: "Submit Details",
-      description: "Provide your website URLs and target keywords",
-      icon: "📝",
-      color: "from-purple-500 to-indigo-500"
+    { 
+      name: "ISKCON Temple (Sri Sri Krishna Balaram Mandir)", 
+      distance: "8 min walk", 
+      description: "International Society for Krishna Consciousness - spiritual center for global devotees",
+      image: "https://images.unsplash.com/photo-1548913344-66177da94287?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      seoKeywords: ["iskcon vrindavan nearby stay", "international pilgrims accommodation", "krishna balaram mandir hotel"]
     },
-    {
-      step: "04",
-      title: "Get Results",
-      description: "Receive comprehensive report and track rankings",
-      icon: "📊",
-      color: "from-orange-500 to-red-500"
+    { 
+      name: "Parikrama Marg Vrindavan", 
+      distance: "2 min walk", 
+      description: "Sacred walking path around Vrindavan - perfect for morning and evening spiritual walks",
+      image: "https://images.unsplash.com/photo-1587132135055-47c8d67cf3e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      seoKeywords: ["parikrama marg accommodation", "vrindavan circumambulation path", "spiritual walking stay"]
+    },
+    { 
+      name: "Gouri Gopal Vraddhashram", 
+      distance: "4 min walk", 
+      description: "Peaceful meditation and bhajan ashram - serene spiritual atmosphere nearby",
+      image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsggg.in%2F&psig=AOvVaw0dm6tbRsVoHBZthzFyw8jT&ust=1763956257218000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPiJ96Ovh5EDFQAAAAAdAAAAABAE",
+      seoKeywords: ["gouri gopal vraddhashram nearby", "meditation stay vrindavan", "bhajan ashram accommodation"]
+    },
+    { 
+      name: "premanand ji maharaj ashram", 
+      distance: "3 min walk", 
+      description: "Famous spiritual center and ashram - divine blessings and satsang nearby",
+      image: "https://images.unsplash.com/photo-1548913344-66177da94287?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      seoKeywords: ["premanand ji maharaj ashram", "spiritual center vrindavan", "satsang accommodation"]
     }
   ];
 
-  // Features
+  // Features highlights with SEO focus
   const features = [
     {
-      icon: "🦅",
-      title: "Eagle-Eye Precision",
-      description: "Targeted backlink strategy with 100% customer satisfaction"
+      icon: <Shield className="h-8 w-8" />,
+      title: "Safe & Secure",
+      description: "24/7 security and CCTV surveillance - safe accommodation for international tourists and families"
     },
     {
-      icon: "⚡",
-      title: "Lightning Fast Results",
-      description: "Higher rankings within 4 weeks with 270% revenue growth"
+      icon: <Check className="h-8 w-8" />,
+      title: "Hygienic Stay",
+      description: "Regular sanitization and strict cleanliness standards - premium hygiene for comfortable pilgrimage"
     },
     {
-      icon: "💰",
-      title: "Most Affordable Prices",
-      description: "Premium quality backlinks at the cheapest market prices"
+      icon: <Heart className="h-8 w-8" />,
+      title: "Spiritual Atmosphere",
+      description: "Perfect environment for meditation and bhajan - authentic Vrindavan spiritual experience"
     },
     {
-      icon: "🛡️",
-      title: "Google Algorithm Safe",
-      description: "100% white-hat techniques loved by Google algorithms"
-    },
-    {
-      icon: "🚀",
-      title: "Super Fast Indexing",
-      description: "Quick indexing with 40 days ping back service"
-    },
-    {
-      icon: "📋",
-      title: "Detailed Reports",
-      description: "Comprehensive white label reports within 7-10 days"
-    }
-  ];
-
-  // Stats Section
-  const stats = [
-    { number: "1500+", label: "Happy Clients", icon: "😊" },
-    { number: "1000+", label: "Successful Projects", icon: "🚀" },
-    { number: "270%", label: "Revenue Growth", icon: "📈" },
-    { number: "4 Weeks", label: "Average Results Time", icon: "⚡" }
-  ];
-
-  // Portfolio Projects
-  const portfolioProjects = [
-    {
-      title: "E-commerce Store SEO",
-      category: "300 Backlinks Campaign",
-      result: "Page 1 Google Ranking",
-      description: "Achieved first page ranking for competitive e-commerce keywords"
-    },
-    {
-      title: "Local Business Marketing",
-      category: "750 Backlinks Strategy",
-      result: "45% Traffic Increase",
-      description: "Boosted local visibility and customer acquisition"
-    },
-    {
-      title: "Blog Authority Building",
-      category: "1200 Backlinks Package",
-      result: "3x Organic Growth",
-      description: "Established domain authority and reader engagement"
-    },
-    {
-      title: "Corporate Website SEO",
-      category: "2000 Backlinks Enterprise",
-      result: "Industry Leader Position",
-      description: "Positioned as industry authority with comprehensive backlink profile"
-    }
-  ];
-
-  // Testimonials
-  const testimonials = [
-    {
-      name: "Rajesh Kumar",
-      company: "E-commerce Store Owner",
-      text: "360EagleWeb transformed my website's ranking. From page 5 to page 1 in just 4 weeks! The backlink quality is exceptional.",
-      rating: 5,
-      service: "750 Backlinks Package"
-    },
-    {
-      name: "Priya Sharma",
-      company: "Blogger & Content Creator",
-      text: "The affordable pricing and quality service convinced me. My organic traffic increased by 200% in 6 weeks. Highly recommended!",
-      rating: 5,
-      service: "300 Backlinks Package"
-    },
-    {
-      name: "Amit Patel",
-      company: "Local Business Owner",
-      text: "Professional service with regular updates. My business now appears on Google's first page for all major local keywords.",
-      rating: 5,
-      service: "300 Backlinks Package"
-    }
-  ];
-
-  // FAQ Data
-  const faqs = [
-    {
-      question: "What Is Your Refund Policy?",
-      answer: "We offer a satisfaction guarantee. If you're not happy with our service, contact us for a refund within 7 days."
-    },
-    {
-      question: "What Is Off-Page SEO?",
-      answer: "Off-page SEO refers to actions taken outside of your own website to impact your rankings within search engine results pages."
-    },
-    {
-      question: "How do I find out how many backlinks my website has?",
-      answer: "You can use tools like Google Search Console, Ahrefs, or SEMrush to analyze your current backlink profile."
-    },
-    {
-      question: "How Much Time Does It Take To See Effects On Ranking?",
-      answer: "Most clients see improvements within 2-4 weeks, with significant results within 8-12 weeks."
-    },
-    {
-      question: "What Is On-Page SEO?",
-      answer: "On-page SEO refers to optimizing elements on your website like content, HTML tags, and internal linking."
-    },
-    {
-      question: "Buy Backlinks Is Safe?",
-      answer: "Yes, when done correctly with high-quality, relevant backlinks from trusted sources like we provide."
+      icon: <Star className="h-8 w-8" />,
+      title: "Premium Service",
+      description: "Multilingual staff serving international pilgrims - dedicated service for global devotees"
     }
   ];
 
@@ -487,31 +276,26 @@ const Home = () => {
   };
 
   // Handle payment
-  const handlePayment = async (pkg) => {
-    setSelectedPackage(pkg);
+  const handlePayment = async (room) => {
+    setSelectedRoom(room);
     
     try {
       const isLoaded = await loadRazorpay();
       if (!isLoaded) {
-        alert('Payment gateway loading failed. Please check your internet connection and try again.');
-        return;
-      }
-
-      if (!RAZORPAY_KEY_ID) {
-        alert('Payment gateway is not properly configured. Please contact support.');
+        alert('Payment gateway loading failed. Please try again.');
         return;
       }
 
       const options = {
         key: RAZORPAY_KEY_ID,
-        amount: formatAmount(pkg.price),
+        amount: formatAmount(room.price),
         currency: 'INR',
-        name: '360EagleWeb',
-        description: `Purchase of ${pkg.name} Package - ${pkg.backlinks}`,
+        name: 'Radhika Sadan Guest House Vrindavan',
+        description: `Booking for ${room.name} near Banke Bihari Temple`,
         image: '/logo.png',
         handler: function (response) {
           setPaymentSuccess(true);
-          setShowForm(true);
+          setShowBookingForm(true);
         },
         prefill: {
           name: '',
@@ -519,12 +303,12 @@ const Home = () => {
           contact: ''
         },
         notes: {
-          package: pkg.name,
-          backlinks: pkg.backlinks,
-          company: '360EagleWeb'
+          room: room.name,
+          guesthouse: 'Radhika Sadan Vrindavan',
+          location: 'Near Banke Bihari Temple'
         },
         theme: {
-          color: '#4F46E5'
+          color: '#F97316'
         },
         modal: {
           ondismiss: function() {
@@ -542,7 +326,7 @@ const Home = () => {
       razorpayInstance.open();
       
     } catch (error) {
-      alert('Error initializing payment. Please try again or contact support.');
+      alert('Error initializing payment. Please try again or contact us directly.');
     }
   };
 
@@ -550,23 +334,32 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const message = `🦅 360EagleWeb - New Backlink Order\n\nPackage: ${selectedPackage.name}\nBacklinks: ${selectedPackage.backlinks}\nPrice: ${selectedPackage.displayPrice}\n\nCustomer Details:\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nWebsite: ${formData.website}\nKeywords: ${formData.keywords}\n\nOrder Time: ${new Date().toLocaleString()}`;
+    const message = `🏩 *Radhika Sadan Vrindavan - Booking Confirmation*\n\n*Room:* ${selectedRoom.name}\n*Amount Paid:* ${selectedRoom.displayPrice}\n\n*Guest Details:*\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nCheck-in: ${formData.checkin}\nCheck-out: ${formData.checkout}\nGuests: ${formData.guests}\nSpecial Request: ${formData.message || "None"}\n\n*Location:* Near Banke Bihari Temple, Vrindavan\nBooking Time: ${new Date().toLocaleString()}`;
     
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/917044755109?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     
-    setShowForm(false);
+    setShowBookingForm(false);
     setPaymentSuccess(false);
     setFormData({
       name: "",
       email: "",
       mobile: "",
-      website: "",
-      keywords: ""
+      checkin: "",
+      checkout: "",
+      guests: "",
+      message: ""
     });
-    setSelectedPackage(null);
+    setSelectedRoom(null);
 
-    alert('🎉 Order Completed Successfully! We have received your details. Our team will contact you shortly.');
+    alert('🎉 Booking Confirmed! We have received your details. Our team will contact you shortly.');
+  };
+
+  // Quick WhatsApp booking
+  const handleQuickBooking = (room) => {
+    const message = `Hello Radhika Sadan Vrindavan! I want to book ${room.name} for my pilgrimage. I'm interested in staying near Banke Bihari Temple/Prem Mandir. Please share availability and booking procedure.`;
+    const whatsappUrl = `https://wa.me/917044755109?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   // Auto slide change
@@ -578,21 +371,24 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       <Helmet>
-        <title>360EagleWeb - Premium Backlink Services | Buy High Quality DoFollow Backlinks</title>
+        <title>Radhika Sadan Vrindavan | Best Guest House Near Banke Bihari Temple & Prem Mandir</title>
         <meta 
           name="description" 
-          content="360EagleWeb - Buy High Quality DoFollow Backlinks with 70-90 DA, PA. Google Algorithm Safe Link Building Services. Higher Rankings in 4 Weeks. Starting at ₹99."
+          content="Radhika Sadan Guest House - Premium accommodation in Vrindavan near Banke Bihari Temple, Prem Mandir & ISKCON. AC/Non-AC rooms from ₹999. Walking distance to all major temples. Book online with secure payment."
         />
         <meta 
           name="keywords" 
-          content="buy backlinks, dofollow backlinks, seo backlinks, high da backlinks, google safe backlinks, premium backlinks, backlink services, 360eagleweb"
+          content="vrindavan guest house, banke bihari temple accommodation, prem mandir nearby hotel, iskcon vrindavan stay, mathura vrindavan hotel, budget accommodation vrindavan, pilgrimage stay, spiritual accommodation, radhika sadan vrindavan, parikrama marg hotel"
         />
-        <link rel="canonical" href="https://360eagleweb.com" />
+        <meta property="og:title" content="Radhika Sadan Vrindavan - Best Guest House Near All Temples" />
+        <meta property="og:description" content="Premium accommodation in Vrindavan walking distance to Banke Bihari Temple, Prem Mandir, ISKCON. AC/Non-AC rooms from ₹999." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://radhikasadan.com/" />
       </Helmet>
 
-      {/* === HERO SECTION - FIXED AND CENTERED === */}
+      {/* === HERO SECTION WITH BEAUTIFUL IMAGES === */}
       <section className="relative h-screen overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
@@ -601,55 +397,81 @@ const Home = () => {
               index === currentSlide 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 translate-x-full'
-            } bg-gradient-to-br ${slide.bgGradient}`}
+            }`}
           >
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${slide.image})` }}
+            >
+              <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+            </div>
+            
             <div className="relative h-full flex items-center justify-center text-white">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
-                {/* Badge - Centered */}
-                <div className={`inline-flex items-center bg-white text-blue-600 px-4 py-2 rounded-full text-sm md:text-base font-bold mb-6 md:mb-8 ${
+                {/* Badge */}
+                <div className={`inline-flex items-center bg-white text-orange-600 px-6 py-3 rounded-full text-lg font-bold mb-8 ${
                   index === currentSlide ? 'animate-bounce' : ''
                 }`}>
-                  🦅 {slide.badge}
+                  {slide.badge}
                 </div>
 
-                {/* Main Title - Centered and Responsive */}
-                <div className="mb-6 md:mb-8">
-                  <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold leading-tight ${
+                {/* Main Title */}
+                <div className="mb-8">
+                  <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 ${
                     index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
-                  }`}>
+                  }`} style={{ fontFamily: '"Playfair Display", serif', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                     {slide.title}
                   </h1>
                   
-                  {/* Subtitle - Centered */}
-                  <div className={`mt-4 md:mt-6 ${
+                  {/* Subtitle */}
+                  <div className={`mb-8 ${
                     index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
                   }`}>
-                    <span className="text-2xl md:text-4xl lg:text-5xl text-yellow-300 block mb-2">
+                    <span className="text-3xl md:text-5xl lg:text-6xl text-yellow-300 block mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                       {slide.subtitle}
-                    </span>
-                    <span className="text-xl md:text-2xl text-white/70 line-through block">
-                      {slide.originalPrice}
                     </span>
                   </div>
                 </div>
                 
-                {/* Description - Centered */}
-                <p className={`text-base md:text-xl mb-6 md:mb-8 max-w-4xl mx-auto text-white/90 leading-relaxed ${
+                {/* Description */}
+                <p className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white leading-relaxed ${
                   index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
-                }`}>
+                }`} style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
                   {slide.description}
                 </p>
                 
-                {/* CTA Button - Centered */}
-                <div className={`${
+                {/* CTA Buttons */}
+                <div className={`flex flex-col sm:flex-row gap-4 justify-center ${
                   index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
                 }`}>
                   <button
-                    onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl shadow-yellow-500/30 mx-auto"
+                    onClick={() => document.getElementById('rooms')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-lg text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl"
                   >
-                    <span>🦅 {slide.cta}</span>
+                    <span>🏩 {slide.cta}</span>
                   </button>
+                  <button
+                    onClick={() => handleQuickBooking(rooms[0])}
+                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center space-x-2 shadow-2xl"
+                  >
+                    <MessageCircle className="h-6 w-6" />
+                    <span>WhatsApp Booking</span>
+                  </button>
+                </div>
+
+                {/* Location Highlights */}
+                <div className={`mt-8 flex flex-wrap justify-center gap-4 ${
+                  index === currentSlide ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+                }`}>
+                  <span className="bg-green-600 bg-opacity-80 text-white px-4 py-2 rounded-full text-sm font-bold">
+                    🛕 3 min to Banke Bihari
+                  </span>
+                  <span className="bg-blue-600 bg-opacity-80 text-white px-4 py-2 rounded-full text-sm font-bold">
+                    💫 5 min to Prem Mandir
+                  </span>
+                  <span className="bg-purple-600 bg-opacity-80 text-white px-4 py-2 rounded-full text-sm font-bold">
+                    🌟 8 min to ISKCON
+                  </span>
                 </div>
               </div>
             </div>
@@ -657,12 +479,12 @@ const Home = () => {
         ))}
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide 
                   ? 'bg-yellow-400 scale-125 shadow-lg shadow-yellow-400/50' 
                   : 'bg-white/50 hover:bg-white/80'
@@ -672,312 +494,267 @@ const Home = () => {
         </div>
       </section>
 
-      {/* === PACKAGES SECTION - MOVED RIGHT AFTER HERO === */}
-      <section id="packages" className="py-12 md:py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      {/* === ROOMS SECTION === */}
+      <section id="rooms" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4 animate-fade-in-up">
-              🦅 EagleWeb Backlink Packages
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Best Rooms in Vrindavan Near Temples
             </h2>
-            <p className="text-base md:text-xl text-blue-700 animate-fade-in-up">
-              Premium backlink services starting at just ₹99 - Choose your flight plan to higher rankings
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comfortable accommodation walking distance to Banke Bihari Temple, Prem Mandir, ISKCON Vrindavan and all major spiritual centers
             </p>
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
-                🔥 90% OFF Limited Time
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                🛕 Closest to Banke Bihari
               </span>
-              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                ⚡ Fast 7-Day Delivery
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                💫 Near Prem Mandir
               </span>
-              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                🛡️ Google Safe
+              <span className="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                🌟 ISKCON Walking Distance
+              </span>
+              <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                🔥 10% Advance Discount
               </span>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {backlinkPackages.slice(0, 6).map((pkg, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            {rooms.slice(0, 2).map((room, index) => (
               <div 
                 key={index} 
-                className={`bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 ${
-                  pkg.popular ? 'border-purple-500 transform hover:-translate-y-3' : 'border-blue-200 hover:border-blue-400'
-                } overflow-hidden group animate-fade-in-up`}
-                style={{animationDelay: `${index * 0.1}s`}}
+                className={`bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 ${
+                  room.popular ? 'border-orange-500 transform hover:-translate-y-3' : 'border-orange-200 hover:border-orange-400'
+                } overflow-hidden group`}
               >
-                {pkg.popular && (
-                  <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 px-4 text-center font-bold text-sm md:text-base animate-pulse">
-                    ⭐ MOST POPULAR CHOICE
+                {room.popular && (
+                  <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 px-6 text-center font-bold text-lg">
+                    ⭐ {room.badge}
                   </div>
                 )}
                 
-                <div className="p-6 md:p-8">
-                  {/* Package Header */}
-                  <div className="text-center mb-6">
-                    <div className="text-4xl mb-3">{pkg.icon}</div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-blue-900 mb-2">{pkg.name}</h3>
-                    <p className="text-blue-600 font-semibold text-lg md:text-xl mb-2">{pkg.backlinks}</p>
-                    <p className="text-blue-700 text-sm md:text-base mb-4">{pkg.keywords}</p>
+                <div className="relative h-80 overflow-hidden">
+                  <img
+                    src={room.images[0]}
+                    alt={`${room.name} - Radhika Sadan Vrindavan`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute top-4 right-4 bg-black bg-opacity-60 text-white px-3 py-2 rounded-full text-sm font-bold">
+                    {room.discount}
+                  </div>
+                  <div className="absolute bottom-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    🛕 Temple Nearby
+                  </div>
+                </div>
+
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <div className="text-3xl mb-2">{room.icon}</div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{room.name}</h3>
+                      <p className="text-gray-600 text-lg leading-relaxed">{room.description}</p>
+                    </div>
+                    <div className="text-right">
+                      <div className="flex items-baseline gap-2 mb-1">
+                        <span className="text-3xl font-bold text-orange-600">{room.displayPrice}</span>
+                        <span className="text-lg text-gray-400 line-through">{room.originalPrice}</span>
+                      </div>
+                      <span className="text-sm text-gray-500">per night</span>
+                    </div>
                   </div>
                   
-                  {/* Pricing */}
-                  <div className="text-center mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
-                    <div className="flex items-baseline justify-center space-x-2 mb-2">
-                      <span className="text-3xl md:text-4xl font-bold text-blue-600">{pkg.displayPrice}</span>
-                      <span className="text-lg md:text-xl text-blue-400 line-through">{pkg.originalPrice}</span>
+                  {/* Room Details */}
+                  <div className="grid grid-cols-2 gap-4 mb-6 text-gray-600">
+                    <div className="flex items-center">
+                      <Users className="h-5 w-5 mr-3 text-orange-500" />
+                      <span className="font-semibold">{room.capacity}</span>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-sm font-bold bg-red-500 text-white">
-                      {pkg.badge}
-                    </span>
+                    <div className="flex items-center">
+                      <span className="text-lg mr-3">📐</span>
+                      <span className="font-semibold">{room.size}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-lg mr-3">🌄</span>
+                      <span className="font-semibold">{room.view}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-lg mr-3">🛕</span>
+                      <span className="font-semibold">Temple Walk</span>
+                    </div>
                   </div>
                   
                   {/* Features */}
-                  <div className="space-y-3 mb-6">
-                    {pkg.features.slice(0, 8).map((feature, idx) => (
-                      <div key={idx} className="flex items-start text-blue-700 text-sm md:text-base group-hover:translate-x-1 transition-transform">
-                        <span className="text-green-500 mr-3 mt-1 flex-shrink-0 text-lg">✓</span>
-                        <span className="leading-relaxed">{feature}</span>
-                      </div>
-                    ))}
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-gray-900 mb-3 text-lg">Room Features:</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {room.features.slice(0, 4).map((feature, idx) => (
+                        <div key={idx} className="flex items-center text-gray-700">
+                          <span className="text-green-500 mr-2 text-lg">✓</span>
+                          <span className="text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   
-                  {/* Order Now Button */}
-                  <button
-                    onClick={() => handlePayment(pkg)}
-                    className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-lg ${
-                      pkg.popular
-                        ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white'
-                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white'
-                    }`}
-                  >
-                    🦅 Order Now - {pkg.displayPrice}
-                  </button>
+                  {/* Action Buttons */}
+                  <div className="flex gap-4">
+                    <button
+                      onClick={() => handlePayment(room)}
+                      className={`flex-1 py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 ${
+                        room.popular
+                          ? 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white'
+                          : 'bg-gradient-to-r from-orange-400 to-red-400 hover:from-orange-500 hover:to-red-500 text-white'
+                      }`}
+                    >
+                      Pay Now - {room.displayPrice}
+                    </button>
+                    <button
+                      onClick={() => handleQuickBooking(room)}
+                      className="flex-1 bg-green-500 hover:bg-green-600 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle className="h-5 w-5" />
+                      WhatsApp
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* View All Packages Button */}
-          <div className="text-center mt-12">
+          {/* View More Rooms Button */}
+          <div className="text-center">
             <Link
-              to="/services"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 inline-flex items-center space-x-2 shadow-lg"
+              to="/rooms"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
             >
-              <span>🦅 View All Packages</span>
+              <span>View All Vrindavan Rooms</span>
+              <ArrowRight className="h-5 w-5" />
             </Link>
-          </div>
-
-          {/* Special Offer Banner */}
-          <div className="mt-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-6 text-center shadow-xl animate-pulse">
-            <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-2">
-              🎁 Special Launch Offer!
-            </h3>
-            <p className="text-blue-800 text-lg">
-              Get <span className="font-bold">90% OFF</span> on all packages + Free SEO Consultation worth ₹999
-            </p>
-            <p className="text-blue-700 text-sm mt-2">
-              Starting at just ₹99 for 300 Premium Backlinks
-            </p>
           </div>
         </div>
       </section>
 
-      {/* === SERVICES SECTION === */}
-      <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
+      {/* === AMENITIES SECTION === */}
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4 animate-fade-in-up">
-              Our Premium Services
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Guest House Amenities Vrindavan
             </h2>
-            <p className="text-base md:text-xl text-blue-700 animate-fade-in-up">
-              Eagle-eye precision in every backlink strategy
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need for comfortable pilgrimage in holy Vrindavan - perfect for international tourists and Indian devotees
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {services.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {amenities.map((amenity, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-blue-200 group animate-fade-in-up"
-                style={{animationDelay: service.delay}}
+                className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-orange-200 group"
               >
-                <div className={`bg-gradient-to-r ${service.color} text-white p-4 rounded-2xl w-16 h-16 mx-auto mb-4 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className="text-xl font-bold text-blue-900 mb-3 text-center">
-                  {service.title}
+                <div className="text-4xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">{amenity.icon}</div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                  {amenity.title}
                 </h3>
-                
-                <p className="text-blue-700 text-sm mb-4 text-center">
-                  {service.description}
+                <p className="text-gray-600 text-lg text-center leading-relaxed">
+                  {amenity.description}
                 </p>
-                
-                <div className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center text-blue-600 text-sm">
-                      <span className="text-green-500 mr-2">✓</span>
-                      {feature}
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === STATS SECTION === */}
-      <section className="py-12 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      {/* === LOCATION SECTION === */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {stats.map((stat, index) => (
-              <div 
-                key={index} 
-                className="text-center p-4 md:p-6 bg-white/10 rounded-lg backdrop-blur-sm transform transition-all duration-500 hover:scale-105 animate-fade-in-up"
-                style={{animationDelay: `${index * 0.1}s`}}
-              >
-                <div className="text-2xl md:text-4xl mb-2 animate-bounce">{stat.icon}</div>
-                <div className="text-xl md:text-3xl font-bold text-yellow-400 mb-1 md:mb-2 animate-pulse">
-                  {stat.number}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Prime Vrindavan Location - Walking Distance to All Temples
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Best location in Vrindavan - closest accommodation to Banke Bihari Temple, Prem Mandir, ISKCON and all spiritual centers
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {nearbyAttractions.map((attraction, index) => (
+              <div key={index} className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-orange-200">
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={attraction.image}
+                    alt={`${attraction.name} - Near Radhika Sadan Vrindavan`}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    {attraction.distance}
+                  </div>
                 </div>
-                <div className="text-white/80 text-xs md:text-sm">{stat.label}</div>
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl font-bold text-gray-900">{attraction.name}</h3>
+                  </div>
+                  <p className="text-gray-600 mb-4">{attraction.description}</p>
+                  <div className="flex items-center text-orange-600 font-semibold">
+                    <MapPin className="h-5 w-5 mr-2" />
+                    <span>Walking distance from Radhika Sadan</span>
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Location Summary */}
+          <div className="mt-12 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-3xl p-8 border border-orange-200">
+            <h3 className="text-3xl font-bold text-center text-gray-900 mb-6">
+              🛕 Best Located Guest House in Vrindavan
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+              <div className="bg-white p-4 rounded-2xl border border-orange-200">
+                <div className="text-2xl mb-2">🚶‍♂️</div>
+                <div className="font-bold text-gray-900">3 min walk</div>
+                <div className="text-sm text-gray-600">to Banke Bihari Temple</div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-orange-200">
+                <div className="text-2xl mb-2">🚶‍♀️</div>
+                <div className="font-bold text-gray-900">5 min walk</div>
+                <div className="text-sm text-gray-600">to Prem Mandir</div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-orange-200">
+                <div className="text-2xl mb-2">🚶‍♂️</div>
+                <div className="font-bold text-gray-900">8 min walk</div>
+                <div className="text-sm text-gray-600">to ISKCON Temple</div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl border border-orange-200">
+                <div className="text-2xl mb-2">🛣️</div>
+                <div className="font-bold text-gray-900">2 min walk</div>
+                <div className="text-sm text-gray-600">to Parikrama Marg</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* === FEATURES SECTION === */}
-      <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">Why Choose 360EagleWeb?</h2>
-            <p className="text-base md:text-xl text-blue-700">Eagle-eye precision in every backlink strategy</p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose Radhika Sadan Vrindavan?</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Experience divine hospitality and traditional comfort in the holy land of Vrindavan - perfect for international pilgrims and Indian devotees</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <div 
                 key={index} 
-                className="text-center group p-4 md:p-6 bg-white rounded-xl hover:bg-blue-50 hover:shadow-2xl transition-all duration-300 border border-blue-200 animate-fade-in-up"
-                style={{animationDelay: `${index * 0.1}s`}}
+                className="text-center group p-8 bg-white rounded-3xl hover:bg-orange-50 hover:shadow-2xl transition-all duration-300 border border-orange-200"
               >
-                <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 md:p-4 rounded-full w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 flex items-center justify-center text-xl md:text-2xl group-hover:scale-110 group-hover:rotate-12 transition-transform">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-4 rounded-2xl w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
                   {feature.icon}
                 </div>
-                <h3 className="text-lg md:text-xl font-semibold text-blue-900 mb-2">{feature.title}</h3>
-                <p className="text-blue-700 text-sm md:text-base">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === PROCESS SECTION === */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-blue-100 to-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">How EagleWeb Works</h2>
-            <p className="text-base md:text-xl text-blue-700">Simple 4-step process to soar your rankings</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {processSteps.map((step, index) => (
-              <div 
-                key={index} 
-                className="text-center group animate-fade-in-up"
-                style={{animationDelay: `${index * 0.2}s`}}
-              >
-                <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border-2 border-blue-200 hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-2">
-                  <div className={`bg-gradient-to-r ${step.color} text-white p-3 md:p-4 rounded-full w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 flex items-center justify-center text-xl md:text-2xl group-hover:scale-110 group-hover:rotate-12 transition-transform`}>
-                    {step.icon}
-                  </div>
-                  <div className="text-xl md:text-2xl font-bold text-blue-600 mb-2 animate-pulse">{step.step}</div>
-                  <h3 className="text-lg md:text-xl font-bold text-blue-900 mb-2">{step.title}</h3>
-                  <p className="text-blue-700 text-sm md:text-base">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === PORTFOLIO SECTION === */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-blue-100 to-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">Our Success Stories</h2>
-            <p className="text-base md:text-xl text-blue-700">Real results for real businesses</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {portfolioProjects.map((project, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 md:p-6 animate-fade-in-up"
-                style={{animationDelay: `${index * 0.1}s`}}
-              >
-                <h3 className="text-lg md:text-xl font-semibold text-blue-900 mb-2">{project.title}</h3>
-                <p className="text-purple-600 font-medium text-sm md:text-base mb-2">{project.category}</p>
-                <p className="text-green-600 text-sm md:text-base font-semibold mb-2">{project.result}</p>
-                <p className="text-blue-700 text-xs md:text-sm">{project.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === TESTIMONIALS SECTION === */}
-      <section className="py-12 md:py-20 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">What Our Clients Say</h2>
-            <p className="text-base md:text-xl text-blue-700">Don't just take our word for it</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-blue-200 hover:border-purple-300 transition-all duration-300 animate-fade-in-up"
-                style={{animationDelay: `${index * 0.1}s`}}
-              >
-                <div className="flex items-center mb-3 md:mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-lg">⭐</span>
-                  ))}
-                </div>
-                <p className="text-blue-700 text-sm md:text-base mb-3 md:mb-4 italic">"{testimonial.text}"</p>
-                <div>
-                  <p className="font-semibold text-blue-900 text-base md:text-lg">{testimonial.name}</p>
-                  <p className="text-purple-600 text-sm md:text-base">{testimonial.company}</p>
-                  <p className="text-blue-500 text-xs md:text-sm mt-1">{testimonial.service}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* === FAQ SECTION === */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-blue-100 to-purple-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 md:mb-4">Frequently Asked Questions</h2>
-            <p className="text-base md:text-xl text-blue-700">Everything you need to know about our eagle-eye backlink services</p>
-          </div>
-          
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-200 animate-fade-in-up"
-                style={{animationDelay: `${index * 0.1}s`}}
-              >
-                <div className="p-4 md:p-6">
-                  <h3 className="text-lg md:text-xl font-semibold text-blue-900 mb-2">🦅 {faq.question}</h3>
-                  <p className="text-blue-700 text-sm md:text-base">{faq.answer}</p>
-                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -985,179 +762,195 @@ const Home = () => {
       </section>
 
       {/* === FINAL CTA === */}
-      <section className="py-12 md:py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 animate-pulse">Ready to Soar Your Rankings?</h2>
-          <p className="text-base md:text-xl mb-6 md:mb-8 text-blue-100">Get professional backlink services starting at just <span className="text-yellow-300 font-semibold">₹99</span> with <span className="text-yellow-300 font-semibold">90% OFF</span>!</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+            Ready for Divine Vrindavan Experience?
+          </h2>
+          <p className="text-xl md:text-2xl mb-8 text-orange-100 leading-relaxed">
+            Book your stay at Radhika Sadan - Best location in Vrindavan near Banke Bihari Temple, Prem Mandir & ISKCON
+          </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 animate-bounce"
+              onClick={() => handlePayment(rooms[0])}
+              className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
             >
-              <span>🦅 View All Packages</span>
+              <span>🏩 Book Now from ₹999</span>
             </button>
             <button
-              onClick={() => handlePayment(backlinkPackages[0])}
-              className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
+              onClick={() => handleQuickBooking(rooms[0])}
+              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
             >
-              <span>🚀 Start from ₹99</span>
+              <MessageCircle className="h-6 w-6" />
+              <span>WhatsApp Booking</span>
             </button>
+            <a
+              href="tel:+917044755109"
+              className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+            >
+              <Phone className="h-6 w-6" />
+              <span>Call Now</span>
+            </a>
           </div>
           
-          <p className="text-blue-200 mt-4 md:mt-6 text-xs md:text-sm">
-            ✅ Free Consultation ✅ 24/7 Support ✅ Money-Back Guarantee
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-orange-200">
+            <div className="flex items-center justify-center gap-2">
+              <span>🛕</span>
+              <span className="text-sm">Banke Bihari 3min</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span>💫</span>
+              <span className="text-sm">Prem Mandir 5min</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span>🌟</span>
+              <span className="text-sm">ISKCON 8min</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span>🛣️</span>
+              <span className="text-sm">Parikrama 2min</span>
+            </div>
+          </div>
+          
+          <p className="text-orange-200 mt-8 text-xl flex items-center justify-center gap-3">
+            <Heart className="h-6 w-6" />
+            <span>Jai Shri Radhe Krishna - Welcome to Vrindavan Dham!</span>
           </p>
         </div>
       </section>
 
-      {/* === MOBILE BOTTOM NAVIGATION BAR === */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
-        <div className="flex justify-around items-center py-3">
-          {/* Home */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex flex-col items-center space-y-1 text-blue-600"
-          >
-            <span className="text-lg">🏠</span>
-            <span className="text-xs font-medium">Home</span>
-          </button>
-
-          {/* Search */}
-          <button
-            onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
-            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
-          >
-            <span className="text-lg">🔍</span>
-            <span className="text-xs font-medium">Search</span>
-          </button>
-
-          {/* Add to Cart - ₹99 Package */}
-          <button
-            onClick={() => handlePayment(backlinkPackages[0])}
-            className="flex flex-col items-center space-y-1 text-green-600 hover:text-green-700 relative"
-          >
-            <span className="text-lg">🛒</span>
-            <span className="text-xs font-medium">Add to Cart</span>
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-              ₹99
-            </span>
-          </button>
-
-          {/* Pricing */}
-          <Link
-            to="/pricing"
-            className="flex flex-col items-center space-y-1 text-gray-600 hover:text-blue-600"
-          >
-            <span className="text-lg">💰</span>
-            <span className="text-xs font-medium">Pricing</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* Payment Form Modal */}
-      {showForm && (
+      {/* Booking Form Modal */}
+      {showBookingForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 md:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto border-2 border-blue-400 animate-fade-in-up">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl md:text-2xl font-bold text-blue-900">🦅 Complete Your Order</h3>
+          <div className="bg-white rounded-3xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto border-2 border-orange-400">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-900">🏩 Complete Your Vrindavan Booking</h3>
               <button
                 onClick={() => {
-                  setShowForm(false);
+                  setShowBookingForm(false);
                   setPaymentSuccess(false);
                 }}
-                className="text-blue-500 hover:text-blue-700"
+                className="text-gray-500 hover:text-gray-700 text-xl"
               >
                 ✕
               </button>
             </div>
             
             {paymentSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                ✅ Payment Successful! Please submit your details below.
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-6 text-lg">
+                ✅ Payment Successful! Please submit your booking details.
               </div>
             )}
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-blue-700 mb-1">Full Name *</label>
+                <label className="block text-lg font-medium text-gray-700 mb-2">Full Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg"
                   placeholder="Enter your full name"
                 />
               </div>
               
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-lg font-medium text-gray-700 mb-2">Email *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-lg font-medium text-gray-700 mb-2">Mobile *</label>
+                  <input
+                    type="tel"
+                    name="mobile"
+                    value={formData.mobile}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg"
+                    placeholder="+91 XXXXX XXXXX"
+                  />
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-lg font-medium text-gray-700 mb-2">Check-in *</label>
+                  <input
+                    type="date"
+                    name="checkin"
+                    value={formData.checkin}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-lg font-medium text-gray-700 mb-2">Check-out *</label>
+                  <input
+                    type="date"
+                    name="checkout"
+                    value={formData.checkout}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg"
+                  />
+                </div>
+              </div>
+              
               <div>
-                <label className="block text-sm font-medium text-blue-700 mb-1">Email Address *</label>
+                <label className="block text-lg font-medium text-gray-700 mb-2">Number of Guests *</label>
                 <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  type="number"
+                  name="guests"
+                  value={formData.guests}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter your email"
+                  min="1"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg"
+                  placeholder="2"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-blue-700 mb-1">Mobile Number *</label>
-                <input
-                  type="tel"
-                  name="mobile"
-                  value={formData.mobile}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter your mobile number"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-blue-700 mb-1">Website Domain *</label>
-                <input
-                  type="url"
-                  name="website"
-                  value={formData.website}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="https://yourwebsite.com"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-blue-700 mb-1">Keywords *</label>
+                <label className="block text-lg font-medium text-gray-700 mb-2">Special Requirements</label>
                 <textarea
-                  name="keywords"
-                  value={formData.keywords}
+                  name="message"
+                  value={formData.message}
                   onChange={handleInputChange}
-                  required
-                  rows="3"
-                  className="w-full px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter your target keywords (comma separated)"
+                  rows="4"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-lg resize-none"
+                  placeholder="Any special requirements, food preferences, temple visit plans, etc."
                 />
               </div>
               
-              {selectedPackage && (
-                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                  <p className="text-sm font-medium text-blue-700">Selected Package:</p>
-                  <p className="text-lg font-bold text-blue-600">{selectedPackage.name}</p>
-                  <p className="text-sm text-blue-600">{selectedPackage.backlinks}</p>
-                  <p className="text-sm text-blue-500">Price: {selectedPackage.displayPrice}</p>
+              {selectedRoom && (
+                <div className="bg-orange-50 p-4 rounded-xl border border-orange-200">
+                  <p className="text-lg font-medium text-gray-700">Selected Room:</p>
+                  <p className="text-xl font-bold text-orange-600">{selectedRoom.name}</p>
+                  <p className="text-lg text-orange-600">Amount Paid: {selectedRoom.displayPrice}</p>
+                  <p className="text-sm text-gray-600 mt-2">📍 Location: Near Banke Bihari Temple, Vrindavan</p>
                 </div>
               )}
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+                className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-4 px-6 rounded-xl font-bold text-xl transition-all duration-300 hover:scale-105"
               >
-                🦅 Complete Order & Submit Details
+                🏩 Complete Vrindavan Booking
               </button>
             </form>
           </div>

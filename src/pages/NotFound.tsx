@@ -1,146 +1,225 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Home, ArrowLeft, HelpCircle, Phone, MessageCircle } from "lucide-react";
+import { Home, ArrowLeft, MapPin, Phone, MessageCircle, Heart } from "lucide-react";
 import { Helmet } from "react-helmet";
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       {/* ✅ SEO Component */}
       <Helmet>
-        <title>404 - Page Not Found | EagleWeb</title>
+        <title>404 - Page Not Found | Radhika Sadan Guest House Vrindavan</title>
         <meta
           name="description"
-          content="Oops! The page you're looking for doesn't exist. Explore EagleWeb backlink packages or go back to the homepage."
+          content="Oops! The page you're looking for doesn't exist. Explore Radhika Sadan rooms or go back to homepage for Vrindavan accommodation near Prikarma Marg."
         />
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://eagleweb.com/404" />
-
-        {/* Open Graph */}
-        <meta property="og:title" content="404 - Page Not Found | EagleWeb" />
-        <meta property="og:description" content="Oops! The page you're looking for doesn't exist. Explore our backlink packages or go back to homepage." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://eagleweb.com/404" />
-        <meta property="og:image" content="https://eagleweb.com/og-image.jpg" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="404 - Page Not Found | EagleWeb" />
-        <meta name="twitter:description" content="The page you are looking for is missing. Go back or explore EagleWeb backlink packages." />
-        <meta name="twitter:image" content="https://eagleweb.com/og-image.jpg" />
-
-        {/* JSON-LD */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "404 - Page Not Found",
-            "url": "https://eagleweb.com/404",
-            "description": "Oops! The page you're looking for doesn't exist. Explore EagleWeb backlink packages or homepage."
-          })}
-        </script>
+        <link rel="canonical" href="https://radhikasadan.com/404" />
       </Helmet>
 
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-extrabold tracking-tight">404</h1>
-          <p className="mt-3 text-xl text-blue-100">Oops! The page you're looking for doesn't exist.</p>
-          <p className="text-blue-200 text-sm mt-1">It may have been moved, renamed, or removed.</p>
+      {/* Hero Section with Vrindavan Image */}
+      <section className="relative py-20 bg-gradient-to-br from-orange-500 to-red-500 text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1601918774946-25832a4be0d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-9xl font-bold mb-4 opacity-90">404</div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+            Page Not Found
+          </h1>
+          <p className="text-xl md:text-2xl mb-4 text-orange-100">
+            The page you're looking for doesn't exist in Vrindavan!
+          </p>
+          <p className="text-orange-200 text-lg">
+            It may have been moved, renamed, or removed.
+          </p>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="py-14 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Quick actions */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+      {/* Main Content */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Quick Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gray-900 text-white hover:bg-black transition-colors"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-300 font-semibold text-lg"
             >
               <ArrowLeft className="h-5 w-5" />
               Go Back
             </button>
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-800 text-white hover:from-blue-700 hover:to-blue-900 transition-colors"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600 transition-all duration-300 font-semibold text-lg"
             >
               <Home className="h-5 w-5" />
               Go to Homepage
             </Link>
-            <Link
-              to="/faq"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-blue-200 text-blue-700 hover:bg-blue-50 transition-colors"
-            >
-              <HelpCircle className="h-5 w-5" />
-            
-            </Link>
           </div>
 
-          {/* Optional: search hint */}
-          <div className="mt-8 max-w-2xl mx-auto">
-            <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-sm">
-              <Search className="h-5 w-5 text-gray-400" />
-              <span className="text-gray-500 text-sm">
-                Tip: Use the main navigation to find Backlink Packages, Portfolio, Pricing, or Contact.
-              </span>
+          {/* Location Info Card */}
+          <div className="bg-orange-50 rounded-3xl p-8 border-2 border-orange-200 mb-12">
+            <div className="text-center mb-6">
+              <div className="text-4xl mb-4">📍</div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                You're Still in Vrindavan!
+              </h2>
+              <p className="text-gray-600 text-lg">
+                While this page might be missing, our guest house is right here near Prikarma Marg
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center p-4">
+                <div className="text-2xl mb-2">🚶</div>
+                <div className="font-bold text-gray-900">2 min walk</div>
+                <div className="text-gray-600 text-sm">to Prikarma Marg</div>
+              </div>
+              <div className="text-center p-4">
+                <div className="text-2xl mb-2">🛕</div>
+                <div className="font-bold text-gray-900">8 min walk</div>
+                <div className="text-gray-600 text-sm">to Banke Bihari Temple</div>
+              </div>
+              <div className="text-center p-4">
+                <div className="text-2xl mb-2">🏩</div>
+                <div className="font-bold text-gray-900">Rooms Available</div>
+                <div className="text-gray-600 text-sm">Starting at ₹999</div>
+              </div>
             </div>
           </div>
 
-          {/* Suggested links */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link
-              to="/services"
-              className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-all"
-            >
-              <h3 className="font-semibold text-gray-900">Backlink Packages</h3>
-              <p className="text-sm text-gray-600 mt-1">Choose your flight plan to higher rankings</p>
-            </Link>
-            <Link
-              to="/portfolio"
-              className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-all"
-            >
-              <h3 className="font-semibold text-gray-900">See Our Work</h3>
-              <p className="text-sm text-gray-600 mt-1">Recent projects & case studies</p>
-            </Link>
-            <Link
-              to="/pricing"
-              className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-all"
-            >
-              <h3 className="font-semibold text-gray-900">View Pricing</h3>
-              <p className="text-sm text-gray-600 mt-1">Premium backlink packages for SEO</p>
-            </Link>
-            <Link
-              to="/contact"
-              className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-md transition-all"
-            >
-              <h3 className="font-semibold text-gray-900">Contact Us</h3>
-              <p className="text-sm text-gray-600 mt-1">We'll help you find the right page</p>
-            </Link>
+          {/* Suggested Pages Grid */}
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Explore Radhika Sadan
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Here are some pages you might be looking for
+            </p>
           </div>
 
-          {/* Help strip */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="tel:+919310533973"
-              className="inline-flex items-center gap-2 text-gray-700 hover:text-blue-700"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <Link
+              to="/rooms"
+              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
             >
-              <Phone className="h-5 w-5" />
-              +91 93105 33973
-            </a>
-            <span className="hidden sm:inline text-gray-300">•</span>
-            <a
-              href="https://wa.me/919310533973?text=Hello%20EagleWeb,%20I%20need%20help%20finding%20a%20page."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-green-600 hover:text-green-700"
+              <div className="text-3xl mb-3">🛌</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Our Rooms</h3>
+              <p className="text-gray-600 text-sm">
+                View comfortable AC & Non-AC rooms with photos and amenities
+              </p>
+              <div className="mt-3 text-orange-600 font-semibold">
+                Starting at ₹999 →
+              </div>
+            </Link>
+
+            <Link
+              to="/gallery"
+              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
             >
-              <MessageCircle className="h-5 w-5" />
-              WhatsApp Support
-            </a>
+              <div className="text-3xl mb-3">📸</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Photo Gallery</h3>
+              <p className="text-gray-600 text-sm">
+                See photos of our rooms, location, and nearby temples
+              </p>
+              <div className="mt-3 text-orange-600 font-semibold">
+                View Photos →
+              </div>
+            </Link>
+
+            <Link
+              to="/about"
+              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
+            >
+              <div className="text-3xl mb-3">🙏</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">About Us</h3>
+              <p className="text-gray-600 text-sm">
+                Learn about our story and 15+ years of serving pilgrims
+              </p>
+              <div className="mt-3 text-orange-600 font-semibold">
+                Our Story →
+              </div>
+            </Link>
+
+            <Link
+              to="/contact"
+              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
+            >
+              <div className="text-3xl mb-3">📞</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Contact Us</h3>
+              <p className="text-gray-600 text-sm">
+                Get in touch for bookings and inquiries
+              </p>
+              <div className="mt-3 text-orange-600 font-semibold">
+                Get Directions →
+              </div>
+            </Link>
+
+            <div className="block group bg-gradient-to-br from-orange-100 to-yellow-100 rounded-2xl border-2 border-orange-300 p-6 shadow-lg">
+              <div className="text-3xl mb-3">🎯</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Prime Location</h3>
+              <p className="text-gray-600 text-sm">
+                Near Prikarma Marg, Paramhans Ji Maharaj & Gauranga Ashram
+              </p>
+              <div className="mt-3 text-green-600 font-semibold">
+                Walking distance to all temples
+              </div>
+            </div>
+
+            <div className="block group bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl border-2 border-green-200 p-6 shadow-lg">
+              <div className="text-3xl mb-3">💫</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Special Offer</h3>
+              <p className="text-gray-600 text-sm">
+                10% OFF on advance payment for room booking
+              </p>
+              <div className="mt-3 text-green-600 font-semibold">
+                Book Now & Save →
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Help Section */}
+          <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-8 text-white text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Need Immediate Help?
+            </h2>
+            <p className="text-orange-100 text-lg mb-6">
+              Contact us directly for room bookings or directions in Vrindavan
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="https://wa.me/917044755109"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+              >
+                <MessageCircle className="h-6 w-6" />
+                WhatsApp Now
+              </a>
+              <a
+                href="tel:+917044755109"
+                className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+              >
+                <Phone className="h-6 w-6" />
+                Call: +91 70447 55109
+              </a>
+            </div>
+          </div>
+
+          {/* Spiritual Message */}
+          <div className="text-center mt-8">
+            <p className="text-gray-600 flex items-center justify-center gap-2 text-lg">
+              <Heart className="h-5 w-5 text-red-500" />
+              <span>Jai Shri Radhe Krishna - May your spiritual journey in Vrindavan be blessed</span>
+            </p>
           </div>
         </div>
       </section>
