@@ -36,7 +36,7 @@ const Contact = () => {
 
 Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Marg and Paramhans Ji Maharaj. Please share available rooms and rates.`;
 
-    const whatsappUrl = `https://wa.me/917044755109?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/919286759109?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -52,8 +52,8 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
     {
       icon: <Phone className="h-6 w-6" />,
       title: 'Phone / WhatsApp',
-      content: '+91 70447 55109',
-      link: 'tel:+917044755109'
+      content: '+91 92867 59109',
+      link: 'tel:+919286759109'
     },
     {
       icon: <Mail className="h-6 w-6" />,
@@ -180,7 +180,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               "postalCode": "281121",
               "addressCountry": "IN"
             },
-            "telephone": "+917044755109",
+            "telephone": "+919286759109",
             "email": "bookings@radhikasadan.com",
             "amenityFeature": [
               "AirConditioning",
@@ -213,7 +213,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="https://wa.me/917044755109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
+                href="https://wa.me/919286759109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center space-x-2 shadow-lg"
@@ -222,11 +222,11 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                 <span>WhatsApp Booking</span>
               </a>
               <a
-                href="tel:+917044755109"
+                href="tel:+919286759109"
                 className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center space-x-2 shadow-lg"
               >
                 <Phone className="h-5 w-5" />
-                <span>Call: +91 70447 55109</span>
+                <span>Call: +91 92867 59109</span>
               </a>
             </div>
           </div>
@@ -539,7 +539,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                 <h3 className="font-semibold text-gray-900 mb-4">Follow Our Spiritual Journey</h3>
                 <div className="flex space-x-4">
                   <a
-                    href="https://wa.me/917044755109"
+                    href="https://wa.me/919286759109"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg transition-all hover:scale-110"
@@ -579,7 +579,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/917044755109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
+              href="https://wa.me/919286759109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
@@ -588,11 +588,11 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               <span>Book via WhatsApp</span>
             </a>
             <a
-              href="tel:+917044755109"
+              href="tel:+919286759109"
               className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
             >
               <Phone className="h-5 w-5" />
-              <span>Call: +91 70447 55109</span>
+              <span>Call: +91 92867 59109</span>
             </a>
           </div>
           <p className="text-orange-200 mt-8 text-lg flex items-center justify-center space-x-2">
