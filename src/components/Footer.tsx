@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
       return;
     }
 
-    const whatsappNumber = "917044755109";
+    const whatsappNumber = "919286759109";
     const text = `🏩 *Radhika Sadan - Room Booking Inquiry*
 
 *Name:* ${name}
@@ -55,6 +55,14 @@ I would like to book a room at Radhika Sadan Guest House in Mathura. Please shar
     window.open(whatsappLink, "_blank");
     setShowModal(false);
   };
+
+  // Legal pages links
+  const legalLinks = [
+    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Terms & Conditions", path: "/terms" },
+    { name: "Shipping Policy", path: "/shipping" },
+    { name: "Cancellation & Refund", path: "/cancellation-refund" },
+  ];
 
   return (
     <>
@@ -90,8 +98,8 @@ I would like to book a room at Radhika Sadan Guest House in Mathura. Please shar
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-green-600" />
-                  <a href="tel:+917044755109" className="hover:text-green-700 text-lg font-semibold">
-                    +91 70447 55109
+                  <a href="tel:+919286759109" className="hover:text-green-700 text-lg font-semibold">
+                    +91 92867 59109
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -213,17 +221,35 @@ I would like to book a room at Radhika Sadan Guest House in Mathura. Please shar
             </div>
           </div>
 
-          <div className="border-t border-yellow-200 mt-4 pt-6 text-center">
-            <p className="text-gray-700 text-lg mb-2 flex items-center justify-center gap-2">
-              <Heart className="h-5 w-5 text-red-500" />
-              © {year} Radhika Sadan Guest House. All rights reserved.
-            </p>
-            <p className="text-gray-600 text-md">
-              Made with devotion in the holy land of Mathura Vrindavan | Serving pilgrims since 2010
-            </p>
-            <p className="text-gray-500 text-sm mt-2">
-              Your trusted accommodation partner in Braj region | Jai Shri Radhe Krishna
-            </p>
+          {/* Legal Links Section */}
+          <div className="border-t border-yellow-200 mt-6 pt-6">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-gray-700 text-lg mb-4 md:mb-0 flex items-center justify-center gap-2">
+                <Heart className="h-5 w-5 text-red-500" />
+                © {year} Radhika Sadan Guest House. All rights reserved.
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                {legalLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className="text-gray-600 hover:text-yellow-700 text-sm transition-colors duration-200 font-medium"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
+            <div className="text-center mt-4">
+              <p className="text-gray-600 text-md">
+                Made with devotion in the holy land of Mathura Vrindavan | Serving pilgrims since 2010
+              </p>
+              <p className="text-gray-500 text-sm mt-2">
+                Your trusted accommodation partner in Braj region | Jai Shri Radhe Krishna
+              </p>
+            </div>
           </div>
         </div>
       </footer>
