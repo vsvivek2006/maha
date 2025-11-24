@@ -13,7 +13,7 @@ const WhatsAppFloat = () => {
       alert('Please fill all fields');
       return;
     }
-    const url = `https://wa.me/917044755109?text=Hello%20DiziGrow,%0AName:%20${encodeURIComponent(
+    const url = `https://wa.me/917044755109?text=Hello%20RadhikaSadan,%0AName:%20${encodeURIComponent(
       name
     )}%0ABusiness:%20${encodeURIComponent(
       business
