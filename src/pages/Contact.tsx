@@ -50,25 +50,25 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
 
   const contactInfo = [
     {
-      icon: <Phone className="h-6 w-6" />,
+      icon: <Phone className="h-5 w-5 md:h-6 md:w-6" />,
       title: 'Phone / WhatsApp',
       content: '+91 92867 59109',
       link: 'tel:+919286759109'
     },
     {
-      icon: <Mail className="h-6 w-6" />,
+      icon: <Mail className="h-5 w-5 md:h-6 md:w-6" />,
       title: 'Email',
       content: 'bookings@radhikasadan.com',
       link: 'mailto:bookings@radhikasadan.com'
     },
     {
-      icon: <MapPin className="h-6 w-6" />,
+      icon: <MapPin className="h-5 w-5 md:h-6 md:w-6" />,
       title: 'Prime Location',
-      content: 'Near Prikarma Marg,premanand ji maharaj ashram, Gouri Gopal Vraddhashram, Vrindavan',
+      content: 'Near Prikarma Marg, premanand ji maharaj ashram, Gouri Gopal Vraddhashram, Vrindavan',
       link: '#'
     },
     {
-      icon: <Clock className="h-6 w-6" />,
+      icon: <Clock className="h-5 w-5 md:h-6 md:w-6" />,
       title: 'Check-in / Check-out',
       content: '24/7 - Flexible timings',
       link: '#'
@@ -142,7 +142,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
   ];
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       {/* ✅ SEO Component */}
       <Helmet>
         <title>Radhika Sadan | Book Guest House Near Prikarma Marg, Paramhans Ji Maharaj, Gauranga Ashram Vrindavan</title>
@@ -196,36 +196,36 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         </script>
       </Helmet>
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 text-white py-20 relative overflow-hidden">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 text-white py-12 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <div className="inline-flex items-center bg-white text-orange-600 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-pulse">
-              🏩 Best Location in Vrindavan - Near Prikarma Marg & Paramhans Ji Maharaj
+            <div className="inline-flex items-center bg-white text-orange-600 px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-lg font-bold mb-6 md:mb-8 animate-pulse">
+              🏩 Best Location in Vrindavan - Near Prikarma Marg
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
               Stay in <span className="text-yellow-300">Heart of Vrindavan</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-yellow-100">
+            <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto text-yellow-100 px-2">
               Radhika Sadan - Your perfect pilgrimage stay near Prikarma Marg, Paramhans Ji Maharaj, and Gauranga Ashram
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-2">
               <a
                 href="https://wa.me/919286759109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center space-x-2 shadow-lg"
+                className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
               >
-                <MessageCircle className="h-5 w-5" />
+                <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
                 <span>WhatsApp Booking</span>
               </a>
               <a
                 href="tel:+919286759109"
-                className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center space-x-2 shadow-lg"
+                className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
               >
-                <Phone className="h-5 w-5" />
+                <Phone className="h-4 w-4 md:h-5 md:w-5" />
                 <span>Call: +91 92867 59109</span>
               </a>
             </div>
@@ -233,30 +233,30 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         </div>
       </section>
 
-      {/* Location Highlights */}
-      <section className="py-16 bg-white">
+      {/* Location Highlights - Mobile Optimized */}
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
               Perfect Location for Spiritual Journey
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg md:text-xl text-gray-600 px-2">
               Situated in the most convenient area of Vrindavan - walking distance to all sacred places
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {nearbyAttractions.map((attraction, index) => (
-              <div key={index} className="bg-orange-50 p-6 rounded-xl border border-orange-100 hover:shadow-lg transition-all duration-300">
+              <div key={index} className="bg-orange-50 p-4 md:p-6 rounded-xl border border-orange-100 hover:shadow-lg transition-all duration-300">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-gray-900 text-lg">{attraction.name}</h3>
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium">
+                  <h3 className="font-semibold text-gray-900 text-base md:text-lg">{attraction.name}</h3>
+                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium ml-2">
                     {attraction.distance}
                   </span>
                 </div>
-                <p className="text-gray-600 text-sm">{attraction.description}</p>
-                <div className="flex items-center mt-3 text-orange-600 text-sm">
-                  <Navigation className="h-4 w-4 mr-1" />
+                <p className="text-gray-600 text-xs md:text-sm">{attraction.description}</p>
+                <div className="flex items-center mt-2 text-orange-600 text-xs md:text-sm">
+                  <Navigation className="h-3 w-3 md:h-4 md:w-4 mr-1" />
                   <span>Walking distance from Radhika Sadan</span>
                 </div>
               </div>
@@ -265,44 +265,44 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         </div>
       </section>
 
-      {/* Amenities Section */}
-      <section className="py-16 bg-gradient-to-b from-orange-50 to-yellow-50">
+      {/* Amenities Section - Mobile Optimized */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
               Comfortable Stay with Modern Amenities
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg md:text-xl text-gray-600 px-2">
               Everything you need for a peaceful and comfortable pilgrimage
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {amenities.map((amenity, index) => (
-              <div key={index} className="text-center p-6 bg-white rounded-xl hover:shadow-lg transition-all duration-300">
-                <div className="text-3xl mb-4">{amenity.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{amenity.title}</h3>
-                <p className="text-gray-600 text-sm">{amenity.description}</p>
+              <div key={index} className="text-center p-4 md:p-6 bg-white rounded-xl hover:shadow-lg transition-all duration-300">
+                <div className="text-2xl md:text-3xl mb-3 md:mb-4">{amenity.icon}</div>
+                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2">{amenity.title}</h3>
+                <p className="text-gray-600 text-xs md:text-sm">{amenity.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-16 bg-white">
+      {/* Contact Form & Info - Mobile Optimized */}
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Booking Form */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
                 Book Your Stay Near Prikarma Marg
               </h2>
-              <p className="text-gray-600 mb-8 text-lg">
+              <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
                 Fill this form to book your room at Radhika Sadan - the best located guest house near Prikarma Marg, Paramhans Ji Maharaj, and Gauranga Ashram.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6 bg-orange-50 p-8 rounded-xl shadow-lg">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-orange-50 p-4 md:p-6 lg:p-8 rounded-xl shadow-lg">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name *
@@ -314,12 +314,12 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                     value={formData.fullName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                     placeholder="Your full name"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                       Email *
@@ -331,7 +331,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -347,13 +347,13 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                       placeholder="+91 XXXXX XXXXX"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
                       Number of Guests
@@ -365,11 +365,11 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                         name="guests"
                         value={formData.guests}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        className="w-full px-3 py-2 md:px-4 md:py-3 pl-10 md:pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                         placeholder="2"
                         min="1"
                       />
-                      <Users className="h-5 w-5 text-gray-400 absolute left-4 top-3" />
+                      <Users className="h-4 w-4 md:h-5 md:w-5 text-gray-400 absolute left-3 md:left-4 top-2.5 md:top-3" />
                     </div>
                   </div>
 
@@ -382,7 +382,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                       name="roomType"
                       value={formData.roomType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                     >
                       <option value="">Select room type</option>
                       {roomTypes.map((roomType, index) => (
@@ -394,7 +394,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label htmlFor="checkin" className="block text-sm font-medium text-gray-700 mb-1">
                       Check-in Date
@@ -406,9 +406,9 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                         name="checkin"
                         value={formData.checkin}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        className="w-full px-3 py-2 md:px-4 md:py-3 pl-10 md:pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                       />
-                      <Calendar className="h-5 w-5 text-gray-400 absolute left-4 top-3" />
+                      <Calendar className="h-4 w-4 md:h-5 md:w-5 text-gray-400 absolute left-3 md:left-4 top-2.5 md:top-3" />
                     </div>
                   </div>
 
@@ -423,9 +423,9 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                         name="checkout"
                         value={formData.checkout}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        className="w-full px-3 py-2 md:px-4 md:py-3 pl-10 md:pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
                       />
-                      <Calendar className="h-5 w-5 text-gray-400 absolute left-4 top-3" />
+                      <Calendar className="h-4 w-4 md:h-5 md:w-5 text-gray-400 absolute left-3 md:left-4 top-2.5 md:top-3" />
                     </div>
                   </div>
                 </div>
@@ -439,21 +439,21 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    rows={3}
+                    className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base resize-none"
                     placeholder="Any special requirements, parikrama plans, food preferences, meditation needs..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
                 >
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4 md:h-5 md:w-5" />
                   <span>Check Availability & Book Now</span>
                 </button>
 
-                <p className="text-sm text-gray-500 text-center">
+                <p className="text-xs md:text-sm text-gray-500 text-center">
                   Perfect location near Prikarma Marg & Paramhans Ji Maharaj - Instant WhatsApp confirmation
                 </p>
               </form>
@@ -461,30 +461,30 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
 
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
                 Contact Radhika Sadan
               </h2>
-              <p className="text-gray-600 mb-8 text-lg">
+              <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
                 Get the best pilgrimage experience in Vrindavan with our prime location and comfortable stay
               </p>
 
-              <div className="space-y-6 mb-8">
+              <div className="space-y-4 md:space-y-6 mb-6 md:mb-8">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-orange-100">
-                    <div className="bg-orange-100 text-orange-600 p-3 rounded-lg">
+                  <div key={index} className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-orange-100">
+                    <div className="bg-orange-100 text-orange-600 p-2 md:p-3 rounded-lg flex-shrink-0">
                       {info.icon}
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{info.title}</h3>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{info.title}</h3>
                       {info.link !== '#' ? (
                         <a
                           href={info.link}
-                          className="text-gray-600 hover:text-orange-600 transition-colors text-lg"
+                          className="text-gray-600 hover:text-orange-600 transition-colors text-sm md:text-base break-words"
                         >
                           {info.content}
                         </a>
                       ) : (
-                        <p className="text-gray-600 text-lg">{info.content}</p>
+                        <p className="text-gray-600 text-sm md:text-base break-words">{info.content}</p>
                       )}
                     </div>
                   </div>
@@ -492,12 +492,12 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               </div>
 
               {/* Special Location Banner */}
-              <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-xl mb-8 shadow-lg">
-                <h3 className="font-bold text-gray-900 text-lg mb-2 flex items-center">
-                  <Navigation className="h-5 w-5 mr-2" />
+              <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-4 md:p-6 rounded-xl mb-6 md:mb-8 shadow-lg">
+                <h3 className="font-bold text-gray-900 text-base md:text-lg mb-2 flex items-center">
+                  <Navigation className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   Prime Vrindavan Location
                 </h3>
-                <p className="text-gray-900 text-sm">
+                <p className="text-gray-900 text-xs md:text-sm leading-relaxed">
                   🎯 <strong>Prikarma Marg:</strong> 2 minutes walking distance
                   <br />
                   ⚡ <strong>premanand ji maharaj ashram:</strong> 3 minutes walking distance
@@ -509,25 +509,25 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               </div>
 
               {/* Spiritual Experience */}
-              <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-xl mb-8 border border-purple-200">
-                <h3 className="font-semibold text-purple-800 mb-3 flex items-center">
-                  <Star className="h-5 w-5 mr-2" />
+              <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-4 md:p-6 rounded-xl mb-6 md:mb-8 border border-purple-200">
+                <h3 className="font-semibold text-purple-800 mb-2 md:mb-3 flex items-center text-sm md:text-base">
+                  <Star className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   Perfect for Spiritual Activities
                 </h3>
-                <div className="space-y-2 text-purple-700 text-sm">
-                  <div className="flex items-center space-x-2">
+                <div className="space-y-1 md:space-y-2 text-purple-700 text-xs md:text-sm">
+                  <div className="flex items-start space-x-2">
                     <span>•</span>
                     <span>Early morning parikrama on Prikarma Marg</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-start space-x-2">
                     <span>•</span>
                     <span>Darshan at premanand ji maharaj ashram</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-start space-x-2">
                     <span>•</span>
                     <span>Meditation at Gouri Gopal Vraddhashram</span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-start space-x-2">
                     <span>•</span>
                     <span>Banke Bihari Temple prayers</span>
                   </div>
@@ -535,31 +535,31 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               </div>
 
               {/* Social Media Links */}
-              <div className="bg-white p-6 rounded-xl shadow-sm border border-orange-100">
-                <h3 className="font-semibold text-gray-900 mb-4">Follow Our Spiritual Journey</h3>
-                <div className="flex space-x-4">
+              <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-orange-100">
+                <h3 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">Follow Our Spiritual Journey</h3>
+                <div className="flex space-x-3 md:space-x-4">
                   <a
                     href="https://wa.me/919286759109"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg transition-all hover:scale-110"
+                    className="bg-green-500 hover:bg-green-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
                     title="WhatsApp Booking"
                   >
-                    <MessageCircle className="h-6 w-6" />
+                    <MessageCircle className="h-4 w-4 md:h-6 md:w-6" />
                   </a>
                   <a
                     href="https://www.instagram.com/radhikasadan_vrindavan/"
-                    className="bg-pink-500 hover:bg-pink-600 text-white p-3 rounded-lg transition-all hover:scale-110"
+                    className="bg-pink-500 hover:bg-pink-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
                     title="Instagram"
                   >
-                    <Instagram className="h-6 w-6" />
+                    <Instagram className="h-4 w-4 md:h-6 md:w-6" />
                   </a>
                   <a
                     href="https://www.facebook.com/radhikasadanprikarmamarg/"
-                    className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition-all hover:scale-110"
+                    className="bg-blue-500 hover:bg-blue-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
                     title="Facebook"
                   >
-                    <Facebook className="h-6 w-6" />
+                    <Facebook className="h-4 w-4 md:h-6 md:w-6" />
                   </a>
                 </div>
               </div>
@@ -568,35 +568,35 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+      {/* Final CTA - Mobile Optimized */}
+      <section className="py-12 md:py-16 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
             Ready for Divine Experience?
           </h2>
-          <p className="text-xl mb-8 text-orange-100">
-            Book your stay at Radhika Sadan - Best location near Prikarma Marg,premanand ji maharaj ashram & Gouri Gopal Vraddhashram
+          <p className="text-lg md:text-xl mb-6 md:mb-8 text-orange-100 px-2">
+            Book your stay at Radhika Sadan - Best location near Prikarma Marg, premanand ji maharaj ashram & Gouri Gopal Vraddhashram
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <a
               href="https://wa.me/919286759109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
+              className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
             >
-              <MessageCircle className="h-5 w-5" />
+              <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
               <span>Book via WhatsApp</span>
             </a>
             <a
               href="tel:+919286759109"
-              className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
+              className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
             >
-              <Phone className="h-5 w-5" />
+              <Phone className="h-4 w-4 md:h-5 md:w-5" />
               <span>Call: +91 92867 59109</span>
             </a>
           </div>
-          <p className="text-orange-200 mt-8 text-lg flex items-center justify-center space-x-2">
-            <Heart className="h-5 w-5" />
+          <p className="text-orange-200 mt-6 md:mt-8 text-base md:text-lg flex items-center justify-center space-x-2">
+            <Heart className="h-4 w-4 md:h-5 md:w-5" />
             <span>Jai Shri Radhe Krishna - Welcome to the Holy Land of Vrindavan!</span>
           </p>
         </div>

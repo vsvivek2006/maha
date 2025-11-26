@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, MessageCircle, ArrowUp } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, MessageCircle, ArrowUp, Home } from "lucide-react";
 
 type NavItem = { name: string; href: string };
 const primaryNav: NavItem[] = [
@@ -54,13 +54,13 @@ const Header: React.FC = () => {
   // WhatsApp direct message
   const handleWhatsApp = () => {
     const message = "Hello! I'm interested in booking a room at your guest house. Could you please share more details?";
-    const url = `https://wa.me/917044755109?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/919286759109?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
 
   // Direct call function
   const handleCall = () => {
-    window.open("tel:+917044755109");
+    window.open("tel:+919286759109");
   };
 
   return (
@@ -69,40 +69,34 @@ const Header: React.FC = () => {
       <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main">
           <div className="flex justify-between items-center h-20">
-            {/* Brand */}
+            {/* Brand - Only Logo */}
             <div className="flex items-center">
               <Link
                 to="/"
-                className="flex items-center space-x-4 hover:scale-105 transition-transform duration-200"
-                aria-label="Guest House Home"
+                className="flex items-center hover:scale-105 transition-transform duration-200"
+                aria-label="Radhika Sadan Home"
               >
                 <div className="flex-shrink-0">
-                  <img
-                    src="/logo.svg"
-                    alt="Guest House Logo"
-                    className="h-16 w-16 object-contain"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                </div>
-                <div className="flex flex-col justify-center">
-                  <span
-                    className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent"
-                    style={{
-                      fontFamily: '"Playfair Display", serif',
-                      fontWeight: 700,
-                      letterSpacing: "-0.025em",
-                    }}
-                  >
-                    Mathura Guest House
-                  </span>
-                  <span
-                    className="text-xs text-gray-500 -mt-1"
-                    style={{ fontFamily: '"Playfair Display", serif' }}
-                  >
-                    Near Banke Bihari Temple
-                  </span>
+                  {/* Large logo only - no text */}
+                  <div className="h-20 w-20 rounded-full flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/logo.png"
+                      alt="Radhika Sadan Guest House Logo"
+                      className="h-18 w-18 object-contain"
+                      onError={(e) => {
+                        // Fallback if logo doesn't exist
+                        e.currentTarget.style.display = "none";
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `
+                            <div class="h-18 w-18 rounded-full border-2 border-yellow-500 flex items-center justify-center bg-yellow-50">
+                              <Home class="h-10 w-10 text-yellow-600" />
+                            </div>
+                          `;
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               </Link>
             </div>
@@ -173,7 +167,7 @@ const Header: React.FC = () => {
                     className="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors duration-200 text-center flex items-center justify-center gap-2"
                   >
                     <Phone className="h-4 w-4" />
-                    Call Now: +91 70447 55109
+                    Call Now: +91 92867 59109
                   </button>
                   <button
                     onClick={() => { handleWhatsApp(); setIsOpen(false); }}

@@ -27,6 +27,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  // Razorpay credentials - ideally these should come from environment variables
+  const RAZORPAY_CONFIG = {
+    key_id: 'rzp_live_Rjg2D4BxOBtrmR',
+    key_secret: 'vC3OzIrkuEPPNYWuhUV5FUiO' // Note: This is for reference only, don't use in frontend
+  };
+
   const handlePayment = async () => {
     try {
       // Razorpay load karo
@@ -37,12 +43,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       }
 
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+        key: RAZORPAY_CONFIG.key_id, // Use the key from config
         amount: formatAmount(amount),
         currency: currency,
         name: 'Radhikasadan',
-        description: `Booking for ${roomType}`,
-        image: 'https://radhikasadan.com/logo.png', // Add your logo here
+        description: `Booking for ${roomType} - ${planName}`,
+        image: 'https://radhikasadan.com/logo.png',
         handler: function (response: any) {
           // Payment successful - success page redirect karo
           console.log('Payment Success:', response);
@@ -67,14 +73,14 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
           room_type: roomType,
           check_in: checkInDate,
           check_out: checkOutDate,
-          property: 'Radhikasadan'
+          property: 'Radhikasadan',
+          plan_name: planName
         },
         theme: {
-          color: '#10B981' // Green theme for hotel/booking
+          color: '#10B981'
         },
         modal: {
           ondismiss: function() {
-            // User ne modal band kiya
             console.log('Payment cancelled by user');
             navigate('/booking/failed', { 
               state: { reason: 'Booking cancelled by user' }
@@ -85,7 +91,6 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
 
       const rzp = new window.Razorpay(options);
       rzp.on('payment.failed', function (response: any) {
-        // Payment failed - failure page redirect karo
         console.error('Payment Failed:', response.error);
         navigate('/booking/failed', { 
           state: { 

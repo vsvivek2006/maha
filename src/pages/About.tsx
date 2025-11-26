@@ -1,31 +1,31 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { Phone, MessageCircle, MapPin, Star, Users, Heart, Shield, Clock, Award } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Star, Users, Heart, Shield, Clock, Award, Settings } from "lucide-react";
 
 const About = () => {
-  // Team members
+  // Team members with local images and correct positions
   const teamMembers = [
     {
-      name: "Shri Krishna Das Ji",
-      role: "Founder & Manager",
-      experience: "15+ years in hospitality",
-      description: "Spiritual guide and hospitality expert dedicated to serving pilgrims in Vrindavan",
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      name: "Amit Ji",
+      role: "Founder & Managing Director",
+      experience: "15+ years in spiritual hospitality",
+      description: "Visionary founder dedicated to providing authentic Braj experience to pilgrims. Oversees all operations with spiritual guidance and ensures every guest feels the divine atmosphere of Vrindavan.",
+      image: "/amit.png"
     },
     {
-      name: "Radha Rani Sharma",
-      role: "Head of Housekeeping",
-      experience: "12+ years experience",
-      description: "Ensures pristine cleanliness and comfortable stay for all our guests",
-      image: "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      name: "Vivek Kumar",
+      role: "General Manager & Operations Head",
+      experience: "12+ years in hotel management",
+      description: "Leads overall operations, guest relations, and strategic planning. Ensures premium service standards and smooth functioning of all guest house activities with professional expertise.",
+      image: "/vivek1.png"
     },
     {
-      name: "Gopal Singh",
-      role: "Guest Relations Manager",
-      experience: "10+ years in service",
-      description: "Your personal guide for temple visits and spiritual activities in Vrindavan",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      name: "Vivek Singh",
+      role: "Technical Manager",
+      experience: "10+ years in technical services",
+      description: "Manages all technical operations, maintenance, and facility management. Ensures all equipment and systems are functioning optimally for guest comfort and safety.",
+      image: "/vivek.png"
     }
   ];
 
@@ -55,12 +55,12 @@ const About = () => {
 
   // Milestones
   const milestones = [
-    { year: "2010", event: "Radhika Sadan Established", description: "Started with 5 rooms near Prikarma Marg" },
-    { year: "2013", event: "First Renovation", description: "Upgraded facilities with modern amenities" },
-    { year: "2016", event: "Family Suite Addition", description: "Added spacious family accommodations" },
-    { year: "2019", event: "Digital Presence", description: "Launched online booking and website" },
-    { year: "2022", event: "Premium Rooms", description: "Introduced AC rooms with premium features" },
-    { year: "2024", event: "5000+ Guests Served", description: "Milestone of serving thousands of pilgrims" }
+    { year: "2010", event: "Radhika Sadan Established", description: "Founded by Amit Ji with vision to serve pilgrims" },
+    { year: "2013", event: "First Renovation", description: "Upgraded facilities with modern amenities under Vivek Kumar's leadership" },
+    { year: "2016", event: "Team Expansion", description: "Vivek Singh joined as Technical Manager" },
+    { year: "2019", event: "Digital Transformation", description: "Launched online booking and digital presence" },
+    { year: "2022", event: "Premium Rooms Launch", description: "Introduced AC rooms with premium features" },
+    { year: "2024", event: "5000+ Guests Served", description: "Milestone of serving thousands of satisfied pilgrims" }
   ];
 
   // Guest statistics
@@ -71,23 +71,42 @@ const About = () => {
     { number: "2-8 min", label: "Temple Access", description: "Walking distance to all major temples" }
   ];
 
+  // Management highlights
+  const managementHighlights = [
+    {
+      name: "Amit Ji - Founder",
+      achievement: "Established Radhika Sadan with vision to serve pilgrims with authentic Braj hospitality",
+      contribution: "Provides spiritual guidance and strategic direction"
+    },
+    {
+      name: "Vivek Kumar - General Manager",
+      achievement: "Transformed operations with modern hospitality standards",
+      contribution: "Manages guest relations and business development"
+    },
+    {
+      name: "Vivek Singh - Technical Manager",
+      achievement: "Maintained 100% technical facility uptime",
+      contribution: "Ensures all technical systems and maintenance"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       <Helmet>
         <title>About Radhika Sadan - Premium Guest House in Vrindavan | Our Story</title>
         <meta 
           name="description" 
-          content="Learn about Radhika Sadan Guest House in Vrindavan - Our 15+ years of serving pilgrims near Prikarma Marg, Paramhans Ji Maharaj. Authentic Braj hospitality with modern comfort."
+          content="Learn about Radhika Sadan Guest House in Vrindavan - Founded by Amit Ji, managed by Vivek Kumar & Vivek Singh. 15+ years serving pilgrims near Prikarma Marg."
         />
         <meta 
           name="keywords" 
-          content="about Radhika Sadan, Vrindavan guest house history, Prikarma Marg accommodation, Mathura Vrindavan stay, spiritual guest house, Braj hospitality, pilgrim accommodation Vrindavan, Radhika Sadan team, guest house about us"
+          content="about Radhika Sadan, Amit Ji founder, Vivek Kumar manager, Vivek Singh technical, Vrindavan guest house team, spiritual hospitality Vrindavan"
         />
         <link rel="canonical" href="https://radhikasadan.com/about" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="About Radhika Sadan - Authentic Guest House in Vrindavan" />
-        <meta property="og:description" content="Discover our story of serving pilgrims for 15+ years near Prikarma Marg, Vrindavan. Experience genuine Braj hospitality with modern comfort." />
+        <meta property="og:title" content="About Radhika Sadan - Led by Amit Ji, Vivek Kumar & Vivek Singh" />
+        <meta property="og:description" content="Meet our dedicated team: Founder Amit Ji, General Manager Vivek Kumar, and Technical Manager Vivek Singh - Serving pilgrims since 2010." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://radhikasadan.com/about" />
         
@@ -97,7 +116,7 @@ const About = () => {
             "@context": "https://schema.org",
             "@type": "Hotel",
             "name": "Radhika Sadan Guest House",
-            "description": "Premium Guest House in Vrindavan near Prikarma Marg, serving pilgrims with authentic Braj hospitality since 2010",
+            "description": "Premium Guest House in Vrindavan founded by Amit Ji, managed by experienced hospitality professionals",
             "url": "https://radhikasadan.com",
             "address": {
               "@type": "PostalAddress",
@@ -107,89 +126,105 @@ const About = () => {
               "postalCode": "281121",
               "addressCountry": "IN"
             },
-            "telephone": "+917044755109",
+            "telephone": "+919286759109",
             "email": "bookings@radhikasadan.com",
-            "founder": "Shri Krishna Das Ji",
+            "founder": "Amit Ji",
+            "employee": [
+              {
+                "@type": "Person",
+                "name": "Vivek Kumar",
+                "jobTitle": "General Manager"
+              },
+              {
+                "@type": "Person",
+                "name": "Vivek Singh",
+                "jobTitle": "Technical Manager"
+              }
+            ],
             "foundingDate": "2010",
             "numberOfRooms": "15",
-            "areaServed": "Vrindavan Mathura",
-            "knowsAbout": ["Pilgrim Accommodation", "Spiritual Tourism", "Braj Culture", "Vrindavan Temples"]
+            "areaServed": "Vrindavan Mathura"
           })}
         </script>
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-500 to-red-500 text-white">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="relative py-12 md:py-20 bg-gradient-to-br from-orange-500 to-red-500 text-white">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
             About Radhika Sadan
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-orange-100 max-w-4xl mx-auto">
-            Serving Pilgrims with Authentic Braj Hospitality Since 2010 - Your Spiritual Home in Vrindavan
+          <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-orange-100 max-w-4xl mx-auto px-2">
+            Led by Amit Ji, Vivek Kumar & Vivek Singh - Serving Pilgrims with Authentic Braj Hospitality Since 2010
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <span className="bg-white text-orange-600 px-4 py-2 rounded-full font-bold">🏩 15+ Years of Service</span>
-            <span className="bg-green-500 text-white px-4 py-2 rounded-full font-bold">🙏 5000+ Happy Pilgrims</span>
-            <span className="bg-blue-500 text-white px-4 py-2 rounded-full font-bold">📍 Near Prikarma Marg</span>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 px-2">
+            <span className="bg-white text-orange-600 px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base">🏩 Founder: Amit Ji</span>
+            <span className="bg-green-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base">👔 GM: Vivek Kumar</span>
+            <span className="bg-blue-500 text-white px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base">🔧 Tech: Vivek Singh</span>
           </div>
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section className="py-20 bg-white">
+      {/* Our Story Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Our Humble Beginning
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+                Our Leadership Journey
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                <strong>Radhika Sadan</strong> was established in <strong>2010</strong> with a simple yet profound vision - to provide 
-                comfortable and affordable accommodation to pilgrims visiting the holy land of <strong>Vrindavan</strong>. What started 
-                as a small guest house with just 5 rooms near <strong>Prikarma Marg</strong> has now grown into a trusted name 
-                in spiritual hospitality.
+              <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
+                <strong>Radhika Sadan</strong> was founded in <strong>2010</strong> by <strong>Amit Ji</strong> with a vision to create 
+                a spiritual home for pilgrims in Vrindavan. Under his guidance, we have grown from a small guest house to 
+                a trusted name in spiritual hospitality.
               </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Located in the heart of <strong>Vrindavan</strong>, just minutes away from <strong>premanand ji maharaj ashram </strong> 
-                and <strong>Gouri Gopal Vraddhashram </strong>, we have been blessed to serve thousands of pilgrims from across India and 
-                around the world. Our mission has always been to make every guest feel the divine energy of Braj while 
-                enjoying modern comforts.
+              <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
+                <strong>Vivek Kumar</strong> joined as General Manager bringing <strong>12+ years</strong> of hospitality expertise, 
+                transforming our operations with modern standards while preserving traditional values. 
+                <strong>Vivek Singh</strong>, with his <strong>10+ years</strong> technical experience, ensures all facilities 
+                and equipment are maintained to the highest standards.
               </p>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                We believe that visiting <strong>Vrindavan</strong> is not just a journey, but a spiritual transformation. 
-                That's why we go beyond just providing rooms - we create experiences that touch the soul and create 
-                memories for lifetime.
+              <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
+                Together, this dedicated leadership team has served <strong>5000+ pilgrims</strong> with the perfect blend of 
+                spiritual ambiance and modern comfort, making Radhika Sadan the preferred choice in Vrindavan.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <Link
                   to="/rooms"
-                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 text-center"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 text-center"
                 >
                   View Our Rooms
                 </Link>
                 <a
-                  href="tel:+917044755109"
-                  className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                  href="tel:+919286759109"
+                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
                 >
-                  <Phone className="h-5 w-5" />
-                  Call Us
+                  <Phone className="h-4 w-4 md:h-5 md:w-5" />
+                  Call Our Team
                 </a>
               </div>
             </div>
             
-            <div className="relative">
+            <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
               <img
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                alt="Radhika Sadan Guest House Building in Vrindavan"
-                className="rounded-3xl shadow-2xl w-full h-96 object-cover"
+                src="/guest.png"
+                alt="Radhika Sadan Guest House Management Team"
+                className="rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl w-full h-64 md:h-96 object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  const fallback = document.createElement('div');
+                  fallback.className = 'h-64 md:h-96 w-full bg-gradient-to-br from-orange-100 to-yellow-100 flex items-center justify-center rounded-2xl md:rounded-3xl';
+                  fallback.innerHTML = '<div class="text-4xl md:text-6xl">🏩</div>';
+                  e.target.parentNode.appendChild(fallback);
+                }}
               />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-orange-200">
+              <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-orange-200">
                 <div className="text-center">
-                  <div className="text-3xl text-orange-500 mb-2">🏩</div>
-                  <div className="text-2xl font-bold text-gray-900">15+ Years</div>
-                  <div className="text-gray-600">of Service</div>
+                  <div className="text-2xl md:text-3xl text-orange-500 mb-1 md:mb-2">⭐</div>
+                  <div className="text-lg md:text-2xl font-bold text-gray-900">Expert Team</div>
+                  <div className="text-xs md:text-sm text-gray-600">35+ Years Combined Experience</div>
                 </div>
               </div>
             </div>
@@ -197,233 +232,198 @@ const About = () => {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
+      {/* Management Highlights - Mobile Optimized */}
+      <section className="py-12 md:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Leadership Excellence</h2>
+            <p className="text-base md:text-lg text-gray-600">Our dedicated management team ensures premium hospitality experience</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {managementHighlights.map((leader, index) => (
+              <div key={index} className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-orange-200">
+                <h3 className="text-lg md:text-xl font-bold text-orange-600 mb-2 md:mb-3">{leader.name}</h3>
+                <p className="text-gray-700 mb-2 md:mb-3 font-semibold text-sm md:text-base">{leader.achievement}</p>
+                <p className="text-gray-600 text-xs md:text-sm">{leader.contribution}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
               Our Journey in Numbers
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Years of dedicated service to pilgrims visiting the holy land of Vrindavan
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+              Years of dedicated service under expert leadership
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="bg-white rounded-3xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-                <div className="text-4xl font-bold text-orange-600 mb-2">{stat.number}</div>
-                <div className="text-xl font-semibold text-gray-900 mb-2">{stat.label}</div>
-                <div className="text-gray-600">{stat.description}</div>
+              <div key={index} className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-orange-600 mb-1 md:mb-2">{stat.number}</div>
+                <div className="text-lg md:text-xl font-semibold text-gray-900 mb-1 md:mb-2">{stat.label}</div>
+                <div className="text-gray-600 text-sm md:text-base">{stat.description}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Our Values Section */}
-      <section className="py-20 bg-white">
+      {/* Our Team Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Our Core Values
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Meet Our Leadership Team
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The principles that guide our service and define the Radhika Sadan experience
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+              Experienced professionals dedicated to making your Vrindavan stay spiritually enriching and comfortable
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="text-center group p-6 bg-orange-50 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-300 border-2 border-orange-200 hover:border-orange-300">
-                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Team Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Meet Our Team
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Dedicated professionals committed to making your Vrindavan stay memorable and spiritually enriching
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-200">
-                <div className="h-64 overflow-hidden">
+              <div key={index} className="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-xl md:hover:shadow-2xl transition-all duration-300 border border-orange-200 group">
+                <div className="relative h-48 md:h-64 overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      const fallback = document.createElement('div');
+                      fallback.className = 'h-full w-full bg-gradient-to-br from-orange-100 to-yellow-100 flex items-center justify-center';
+                      fallback.innerHTML = `<div class="text-3xl md:text-4xl">${index === 0 ? '👑' : index === 1 ? '💼' : '🔧'}</div>`;
+                      e.target.parentNode.appendChild(fallback);
+                    }}
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <p className="text-orange-600 font-semibold mb-2">{member.role}</p>
-                  <p className="text-gray-500 text-sm mb-3">{member.experience}</p>
-                  <p className="text-gray-600">{member.description}</p>
+                <div className="p-4 md:p-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 md:mb-2">{member.name}</h3>
+                  <p className="text-orange-600 font-semibold mb-1 md:mb-2 text-base md:text-lg">{member.role}</p>
+                  <p className="text-gray-500 text-xs md:text-sm mb-2 md:mb-3 bg-orange-50 px-2 md:px-3 py-1 rounded-full inline-block">{member.experience}</p>
+                  <p className="text-gray-600 leading-relaxed text-sm md:text-base">{member.description}</p>
+                  
+                  {/* Special badge for founder */}
+                  {index === 0 && (
+                    <div className="mt-3 md:mt-4 inline-flex items-center bg-yellow-100 text-yellow-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-semibold">
+                      <Award className="h-3 w-3 md:h-4 md:w-4 mr-1" />
+                      Founder & Visionary
+                    </div>
+                  )}
                 </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Team Summary - Mobile Optimized */}
+          <div className="mt-8 md:mt-12 bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 border border-orange-200">
+            <h3 className="text-xl md:text-2xl font-bold text-center text-gray-900 mb-4 md:mb-6">Our Collective Strength</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
+              <div>
+                <div className="text-2xl md:text-3xl text-orange-500 mb-1 md:mb-2">👑</div>
+                <div className="font-bold text-gray-900 text-base md:text-lg">Amit Ji</div>
+                <div className="text-gray-600 text-sm md:text-base">Spiritual Vision & Guidance</div>
+                <div className="text-xs md:text-sm text-orange-500 mt-1">15+ Years Experience</div>
+              </div>
+              <div>
+                <div className="text-2xl md:text-3xl text-green-500 mb-1 md:mb-2">💼</div>
+                <div className="font-bold text-gray-900 text-base md:text-lg">Vivek Kumar</div>
+                <div className="text-gray-600 text-sm md:text-base">Operations & Management</div>
+                <div className="text-xs md:text-sm text-green-500 mt-1">12+ Years Experience</div>
+              </div>
+              <div>
+                <div className="text-2xl md:text-3xl text-blue-500 mb-1 md:mb-2">🔧</div>
+                <div className="font-bold text-gray-900 text-base md:text-lg">Vivek Singh</div>
+                <div className="text-gray-600 text-sm md:text-base">Technical Operations</div>
+                <div className="text-xs md:text-sm text-blue-500 mt-1">10+ Years Experience</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
+              Our Core Values
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+              The principles that guide our leadership and define the Radhika Sadan experience
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+            {values.map((value, index) => (
+              <div key={index} className="text-center group p-4 md:p-6 bg-orange-50 rounded-2xl md:rounded-3xl hover:bg-white hover:shadow-xl md:hover:shadow-2xl transition-all duration-300 border-2 border-orange-200 hover:border-orange-300">
+                <div className="text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 lg:mb-4">{value.title}</h3>
+                <p className="text-gray-600 text-sm md:text-base lg:text-lg leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Milestones Timeline */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Our Journey
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From humble beginnings to becoming a trusted name in Vrindavan hospitality
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-orange-200 h-full"></div>
-            
-            <div className="space-y-12">
-              {milestones.map((milestone, index) => (
-                <div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  {/* Content */}
-                  <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-orange-200 hover:shadow-xl transition-all duration-300">
-                      <div className="text-2xl font-bold text-orange-600 mb-2">{milestone.year}</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.event}</h3>
-                      <p className="text-gray-600">{milestone.description}</p>
-                    </div>
-                  </div>
-                  
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-orange-500 rounded-full border-4 border-white shadow-lg"></div>
-                  
-                  {/* Empty space for alignment */}
-                  <div className="w-1/2"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-50 to-yellow-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Why Choose Radhika Sadan?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              What makes us the preferred choice for pilgrims visiting Vrindavan
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-              <div className="text-4xl text-orange-500 mb-4">📍</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Prime Vrindavan Location</h3>
-              <p className="text-gray-600 text-lg">
-                Situated in the heart of Vrindavan, just 2-8 minutes walking distance from all major temples including 
-                Banke Bihari, ISKCON, and Prem Mandir. Perfect location for spiritual activities.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-              <div className="text-4xl text-orange-500 mb-4">🙏</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Spiritual Guidance</h3>
-              <p className="text-gray-600 text-lg">
-                Our team provides guidance for temple visits, parikrama routes, and spiritual activities. 
-                Experience Vrindavan like a local with our personalized assistance.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-              <div className="text-4xl text-orange-500 mb-4">🏩</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Modern Comfort</h3>
-              <p className="text-gray-600 text-lg">
-                Enjoy the perfect blend of traditional hospitality and modern amenities. All rooms equipped with 
-                comfortable beds, attached bathrooms, hot water, and free WiFi.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-              <div className="text-4xl text-orange-500 mb-4">🍴</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Pure Vegetarian Food</h3>
-              <p className="text-gray-600 text-lg">
-                Experience authentic Braj cuisine with our pure vegetarian meal options. Hygienic, delicious, 
-                and prepared with traditional recipes passed down through generations.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-              <div className="text-4xl text-orange-500 mb-4">🛡️</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Safe & Secure</h3>
-              <p className="text-gray-600 text-lg">
-                24/7 security, CCTV surveillance, and safe environment for families, solo travelers, and 
-                elderly pilgrims. Your safety is our top priority.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-200">
-              <div className="text-4xl text-orange-500 mb-4">💰</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Value for Money</h3>
-              <p className="text-gray-600 text-lg">
-                Affordable pricing without compromising on quality and service. Special discounts for 
-                long stays, group bookings, and advance payments.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-orange-500 to-red-500 text-white">
+      {/* CTA Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Experience Radhika Sadan Hospitality
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
+            Experience Expert Hospitality
           </h2>
-          <p className="text-xl md:text-2xl mb-8 text-orange-100 leading-relaxed">
-            Join thousands of satisfied pilgrims who have made Radhika Sadan their spiritual home in Vrindavan
+          <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-orange-100 leading-relaxed px-2">
+            Under the leadership of Amit Ji, Vivek Kumar & Vivek Singh - Join thousands of satisfied pilgrims
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
             <Link
               to="/rooms"
-              className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+              className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
               <span>View Rooms & Book Now</span>
             </Link>
             <a
-              href="https://wa.me/917044755109"
-              className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+              href="https://wa.me/919286759109"
+              className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
-              <MessageCircle className="h-6 w-6" />
-              <span>WhatsApp Inquiry</span>
+              <MessageCircle className="h-4 w-4 md:h-6 md:w-6" />
+              <span>WhatsApp Our Team</span>
             </a>
             <a
-              href="tel:+917044755109"
-              className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-8 py-4 rounded-xl text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+              href="tel:+919286759109"
+              className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
-              <Phone className="h-6 w-6" />
-              <span>Call: +91 70447 55109</span>
+              <Phone className="h-4 w-4 md:h-6 md:w-6" />
+              <span>Call: +91 92867 59109</span>
             </a>
           </div>
           
-          <p className="text-orange-200 mt-8 text-xl flex items-center justify-center gap-3">
-            <Heart className="h-6 w-6" />
+          <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-orange-200 text-sm md:text-base">
+            <div className="flex items-center justify-center gap-2">
+              <span>👑</span>
+              <span>Amit Ji - Founder</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span>💼</span>
+              <span>Vivek Kumar - GM</span>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span>🔧</span>
+              <span>Vivek Singh - Tech</span>
+            </div>
+          </div>
+          
+          <p className="text-orange-200 mt-6 md:mt-8 text-lg md:text-xl flex items-center justify-center gap-2 md:gap-3">
+            <Heart className="h-4 w-4 md:h-6 md:w-6" />
             <span>Jai Shri Radhe Krishna - Welcome to Your Spiritual Home in Vrindavan!</span>
           </p>
         </div>

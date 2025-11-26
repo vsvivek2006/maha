@@ -9,7 +9,8 @@ import {
   Facebook,
   X,
   Star,
-  Heart
+  Heart,
+  Home
 } from "lucide-react";
 
 const Footer: React.FC = () => {
@@ -73,12 +74,29 @@ I would like to book a room at Radhika Sadan Guest House in Mathura. Please shar
             {/* Brand + Contact Info */}
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-4 mb-4">
-                <div className="flex-shrink-0 bg-white p-2 rounded-full shadow-lg">
-                  <img
-                    src="/logo.svg"
-                    alt="Radhika Sadan Guest House Mathura Vrindavan"
-                    className="h-16 w-16 object-contain"
-                  />
+                <div className="flex-shrink-0">
+                  {/* Clean logo without background */}
+                  <div className="h-20 w-20 rounded-full flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/logo.png"
+                      alt="Radhika Sadan Guest House Mathura Vrindavan"
+                      className="h-18 w-18 object-contain"
+                      onError={(e) => {
+                        // Fallback if logo doesn't exist
+                        e.currentTarget.style.display = 'none';
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `
+                            <div class="h-18 w-18 rounded-full border-2 border-yellow-500 flex items-center justify-center bg-yellow-50">
+                              <svg class="h-10 w-10 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                              </svg>
+                            </div>
+                          `;
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-yellow-700" style={{ fontFamily: '"Playfair Display", serif' }}>
