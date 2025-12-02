@@ -93,20 +93,20 @@ const About = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       <Helmet>
-        <title>About Radhika Sadan - Premium Guest House in Vrindavan | Our Story</title>
+        <title>About Radhika Sadan Vrindavan | Best Guest House Near Banke Bihari Temple & Prem Mandir</title>
         <meta 
           name="description" 
-          content="Learn about Radhika Sadan Guest House in Vrindavan - Founded by Amit Ji, managed by Vivek Kumar & Vivek Singh. 15+ years serving pilgrims near Prikarma Marg."
+          content="Radhika Sadan Vrindavan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON. Led by Amit Ji, Vivek Kumar & Vivek Singh. AC/Non-AC rooms, pure veg food, 24/7 service."
         />
         <meta 
           name="keywords" 
-          content="about Radhika Sadan, Amit Ji founder, Vivek Kumar manager, Vivek Singh technical, Vrindavan guest house team, spiritual hospitality Vrindavan"
+          content="best guest house in Vrindavan, guest house near Banke Bihari Temple, accommodation near Prem Mandir Vrindavan, stay near ISKCON Vrindavan, budget guest house Mathura Vrindavan, Radhika Sadan reviews, Amit Ji founder, Vivek Kumar manager, spiritual accommodation Vrindavan, temple stay Mathura"
         />
         <link rel="canonical" href="https://radhikasadan.com/about" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="About Radhika Sadan - Led by Amit Ji, Vivek Kumar & Vivek Singh" />
-        <meta property="og:description" content="Meet our dedicated team: Founder Amit Ji, General Manager Vivek Kumar, and Technical Manager Vivek Singh - Serving pilgrims since 2010." />
+        <meta property="og:title" content="Radhika Sadan Vrindavan - Best Guest House Near All Temples" />
+        <meta property="og:description" content="Premium guest house in Vrindavan walking distance to Banke Bihari Temple, Prem Mandir & ISKCON. Led by experienced team of Amit Ji, Vivek Kumar & Vivek Singh." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://radhikasadan.com/about" />
         
@@ -116,7 +116,7 @@ const About = () => {
             "@context": "https://schema.org",
             "@type": "Hotel",
             "name": "Radhika Sadan Guest House",
-            "description": "Premium Guest House in Vrindavan founded by Amit Ji, managed by experienced hospitality professionals",
+            "description": "Best guest house in Vrindavan near Banke Bihari Temple, Prem Mandir & ISKCON. AC/Non-AC rooms with modern amenities.",
             "url": "https://radhikasadan.com",
             "address": {
               "@type": "PostalAddress",
@@ -126,8 +126,8 @@ const About = () => {
               "postalCode": "281121",
               "addressCountry": "IN"
             },
-            "telephone": "+919286759109",
-            "email": "bookings@radhikasadan.com",
+            "telephone": "+919286755109",
+            "email": "book@radhikasadan.com",
             "founder": "Amit Ji",
             "employee": [
               {
@@ -153,10 +153,10 @@ const About = () => {
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-            About Radhika Sadan
+            Radhika Sadan Vrindavan
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-orange-100 max-w-4xl mx-auto px-2">
-            Led by Amit Ji, Vivek Kumar & Vivek Singh - Serving Pilgrims with Authentic Braj Hospitality Since 2010
+            Best Guest House Near Banke Bihari Temple, Prem Mandir & ISKCON
           </p>
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 px-2">
             <span className="bg-white text-orange-600 px-3 py-1 md:px-4 md:py-2 rounded-full font-bold text-sm md:text-base">🏩 Founder: Amit Ji</span>
@@ -172,22 +172,22 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Our Leadership Journey
+                Best Guest House in Vrindavan
               </h2>
               <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
-                <strong>Radhika Sadan</strong> was founded in <strong>2010</strong> by <strong>Amit Ji</strong> with a vision to create 
-                a spiritual home for pilgrims in Vrindavan. Under his guidance, we have grown from a small guest house to 
-                a trusted name in spiritual hospitality.
+                <strong>Radhika Sadan</strong> is the <strong>best guest house in Vrindavan</strong>, located just 
+                <strong>3 minutes walk from Banke Bihari Temple</strong> and <strong>5 minutes from Prem Mandir</strong>. 
+                Founded in <strong>2010</strong> by <strong>Amit Ji</strong>, we've become the preferred choice for pilgrims 
+                seeking comfortable accommodation near all major temples.
               </p>
               <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6 leading-relaxed">
-                <strong>Vivek Kumar</strong> joined as General Manager bringing <strong>12+ years</strong> of hospitality expertise, 
-                transforming our operations with modern standards while preserving traditional values. 
-                <strong>Vivek Singh</strong>, with his <strong>10+ years</strong> technical experience, ensures all facilities 
-                and equipment are maintained to the highest standards.
+                Under the expert management of <strong>Vivek Kumar</strong> with <strong>12+ years</strong> hospitality experience 
+                and technical excellence by <strong>Vivek Singh</strong> with <strong>10+ years</strong> expertise, 
+                we offer modern amenities in a spiritual atmosphere.
               </p>
               <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Together, this dedicated leadership team has served <strong>5000+ pilgrims</strong> with the perfect blend of 
-                spiritual ambiance and modern comfort, making Radhika Sadan the preferred choice in Vrindavan.
+                We've served <strong>5000+ pilgrims</strong> with AC/Non-AC rooms, pure vegetarian food, and 
+                24/7 service - making us the <strong>best budget guest house in Vrindavan</strong> for spiritual seekers.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
@@ -198,11 +198,11 @@ const About = () => {
                   View Our Rooms
                 </Link>
                 <a
-                  href="tel:+919286759109"
+                  href="tel:+919286755109"
                   className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
                 >
                   <Phone className="h-4 w-4 md:h-5 md:w-5" />
-                  Call Our Team
+                  Call: +91 92867 55109
                 </a>
               </div>
             </div>
@@ -210,7 +210,7 @@ const About = () => {
             <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
               <img
                 src="/guest.png"
-                alt="Radhika Sadan Guest House Management Team"
+                alt="Radhika Sadan Guest House - Best Guest House in Vrindavan near Banke Bihari Temple"
                 className="rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl w-full h-64 md:h-96 object-cover"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -223,8 +223,8 @@ const About = () => {
               <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg border border-orange-200">
                 <div className="text-center">
                   <div className="text-2xl md:text-3xl text-orange-500 mb-1 md:mb-2">⭐</div>
-                  <div className="text-lg md:text-2xl font-bold text-gray-900">Expert Team</div>
-                  <div className="text-xs md:text-sm text-gray-600">35+ Years Combined Experience</div>
+                  <div className="text-lg md:text-2xl font-bold text-gray-900">Best Guest House</div>
+                  <div className="text-xs md:text-sm text-gray-600">In Vrindavan</div>
                 </div>
               </div>
             </div>
@@ -236,8 +236,8 @@ const About = () => {
       <section className="py-12 md:py-16 bg-gradient-to-br from-orange-50 to-yellow-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Leadership Excellence</h2>
-            <p className="text-base md:text-lg text-gray-600">Our dedicated management team ensures premium hospitality experience</p>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">Why We're The Best Guest House</h2>
+            <p className="text-base md:text-lg text-gray-600">Superior service under expert leadership near all temples</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
@@ -257,10 +257,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Our Journey in Numbers
+              Best Location in Vrindavan
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              Years of dedicated service under expert leadership
+              Why pilgrims choose us as their preferred guest house
             </p>
           </div>
 
@@ -281,10 +281,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Meet Our Leadership Team
+              Best Guest House Management
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              Experienced professionals dedicated to making your Vrindavan stay spiritually enriching and comfortable
+              Experienced team ensuring your comfortable stay in Vrindavan
             </p>
           </div>
 
@@ -325,23 +325,23 @@ const About = () => {
 
           {/* Team Summary - Mobile Optimized */}
           <div className="mt-8 md:mt-12 bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 border border-orange-200">
-            <h3 className="text-xl md:text-2xl font-bold text-center text-gray-900 mb-4 md:mb-6">Our Collective Strength</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-center text-gray-900 mb-4 md:mb-6">Why We're The Best Guest House</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
               <div>
                 <div className="text-2xl md:text-3xl text-orange-500 mb-1 md:mb-2">👑</div>
-                <div className="font-bold text-gray-900 text-base md:text-lg">Amit Ji</div>
+                <div className="font-bold text-gray-900 text-base md:text-lg">Amit Ji - Founder</div>
                 <div className="text-gray-600 text-sm md:text-base">Spiritual Vision & Guidance</div>
                 <div className="text-xs md:text-sm text-orange-500 mt-1">15+ Years Experience</div>
               </div>
               <div>
                 <div className="text-2xl md:text-3xl text-green-500 mb-1 md:mb-2">💼</div>
-                <div className="font-bold text-gray-900 text-base md:text-lg">Vivek Kumar</div>
+                <div className="font-bold text-gray-900 text-base md:text-lg">Vivek Kumar - GM</div>
                 <div className="text-gray-600 text-sm md:text-base">Operations & Management</div>
                 <div className="text-xs md:text-sm text-green-500 mt-1">12+ Years Experience</div>
               </div>
               <div>
                 <div className="text-2xl md:text-3xl text-blue-500 mb-1 md:mb-2">🔧</div>
-                <div className="font-bold text-gray-900 text-base md:text-lg">Vivek Singh</div>
+                <div className="font-bold text-gray-900 text-base md:text-lg">Vivek Singh - Tech</div>
                 <div className="text-gray-600 text-sm md:text-base">Technical Operations</div>
                 <div className="text-xs md:text-sm text-blue-500 mt-1">10+ Years Experience</div>
               </div>
@@ -355,10 +355,10 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Our Core Values
+              Why Choose Radhika Sadan?
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
-              The principles that guide our leadership and define the Radhika Sadan experience
+              The best guest house in Vrindavan near all temples
             </p>
           </div>
 
@@ -378,10 +378,10 @@ const About = () => {
       <section className="py-12 md:py-20 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Experience Expert Hospitality
+            Book Best Guest House in Vrindavan
           </h2>
           <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-orange-100 leading-relaxed px-2">
-            Under the leadership of Amit Ji, Vivek Kumar & Vivek Singh - Join thousands of satisfied pilgrims
+            Best location near Banke Bihari Temple, Prem Mandir & ISKCON - AC/Non-AC rooms from ₹999
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
@@ -392,18 +392,18 @@ const About = () => {
               <span>View Rooms & Book Now</span>
             </Link>
             <a
-              href="https://wa.me/919286759109"
+              href="https://wa.me/919286755109"
               className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
               <MessageCircle className="h-4 w-4 md:h-6 md:w-6" />
-              <span>WhatsApp Our Team</span>
+              <span>WhatsApp Booking</span>
             </a>
             <a
-              href="tel:+919286759109"
+              href="tel:+919286755109"
               className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
               <Phone className="h-4 w-4 md:h-6 md:w-6" />
-              <span>Call: +91 92867 59109</span>
+              <span>Call: +91 92867 55109</span>
             </a>
           </div>
           
@@ -419,6 +419,25 @@ const About = () => {
             <div className="flex items-center justify-center gap-2">
               <span>🔧</span>
               <span>Vivek Singh - Tech</span>
+            </div>
+          </div>
+          
+          <div className="mt-4 md:mt-6 grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 text-orange-200 text-xs md:text-sm">
+            <div className="flex items-center justify-center gap-1">
+              <span>🏩</span>
+              <span>Best Guest House</span>
+            </div>
+            <div className="flex items-center justify-center gap-1">
+              <span>🛕</span>
+              <span>Near Banke Bihari</span>
+            </div>
+            <div className="flex items-center justify-center gap-1">
+              <span>💫</span>
+              <span>Near Prem Mandir</span>
+            </div>
+            <div className="flex items-center justify-center gap-1">
+              <span>🌟</span>
+              <span>Near ISKCON</span>
             </div>
           </div>
           
