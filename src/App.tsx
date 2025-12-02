@@ -20,13 +20,13 @@ function App() {
       {/* Global SEO + GA4 */}
       <Helmet>
         {/* GA4 Tracking */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M92TJDJ055"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8M1GWQ7TJ"></script>
         <script>
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-M92TJDJ055');
+            gtag('config', 'G-M8M1GWQ7TJ');
           `}
         </script>
         
@@ -85,7 +85,7 @@ function App() {
                       Return to Home
                     </a>
                     <a 
-                      href="https://wa.me/919286759109?text=Hi! I just made a payment and want to confirm my booking details."
+                      href="https://wa.me/919286755109?text=Hi! I just made a payment and want to confirm my booking details."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
@@ -123,7 +123,7 @@ function App() {
                       🔄 Try Again
                     </button>
                     <a 
-                      href="https://wa.me/919286759109?text=Hi! I'm having trouble completing my payment. Can you help?"
+                      href="https://wa.me/919286755109?text=Hi! I'm having trouble completing my payment. Can you help?"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
@@ -131,10 +131,10 @@ function App() {
                       💬 WhatsApp Support
                     </a>
                     <a 
-                      href="tel:+919286759109"
+                      href="tel:+919286755109"
                       className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
                     >
-                      📞 Call +91 92867 59109
+                      📞 Call +91 92867 55109
                     </a>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ function App() {
                       Home Page
                     </a>
                     <a 
-                      href="https://wa.me/919286759109?text=Hi! I just completed my booking and want to get the check-in details."
+                      href="https://wa.me/919286755109?text=Hi! I just completed my booking and want to get the check-in details."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors block"
