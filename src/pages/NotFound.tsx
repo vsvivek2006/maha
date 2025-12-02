@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Home, ArrowLeft, MapPin, Phone, MessageCircle, Heart } from "lucide-react";
+import { Home, ArrowLeft, MapPin, Phone, MessageCircle, Heart, Star } from "lucide-react";
 import { Helmet } from "react-helmet";
 
 const NotFound: React.FC = () => {
@@ -10,10 +10,14 @@ const NotFound: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       {/* ✅ SEO Component */}
       <Helmet>
-        <title>404 - Page Not Found | Radhika Sadan Guest House Vrindavan</title>
+        <title>404 - Page Not Found | Radhika Sadan Vrindavan - Best Guest House</title>
         <meta
           name="description"
-          content="Oops! The page you're looking for doesn't exist. Explore Radhika Sadan rooms or go back to homepage for Vrindavan accommodation near Prikarma Marg."
+          content="Page not found. Book best guest house in Vrindavan near Banke Bihari Temple & Prem Mandir. AC/Non-AC rooms from ₹999. 24/7 booking support."
+        />
+        <meta
+          name="keywords"
+          content="404 page not found, Radhika Sadan Vrindavan, best guest house Vrindavan, Banke Bihari temple stay, Prem Mandir accommodation, ISKCON Vrindavan hotel, budget guest house Mathura, Radhika Sadan booking"
         />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://radhikasadan.com/404" />
@@ -24,7 +28,7 @@ const NotFound: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1601918774946-25832a4be0d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')"
+            backgroundImage: "url('/mathura.png')"
           }}
         ></div>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -38,7 +42,7 @@ const NotFound: React.FC = () => {
             The page you're looking for doesn't exist in Vrindavan!
           </p>
           <p className="text-orange-200 text-lg">
-            It may have been moved, renamed, or removed.
+            But don't worry, our best guest house is right here for you.
           </p>
         </div>
       </section>
@@ -69,28 +73,33 @@ const NotFound: React.FC = () => {
             <div className="text-center mb-6">
               <div className="text-4xl mb-4">📍</div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                You're Still in Vrindavan!
+                Best Guest House in Vrindavan
               </h2>
               <p className="text-gray-600 text-lg">
-                While this page might be missing, our guest house is right here near Prikarma Marg
+                While this page might be missing, our guest house is right here near Banke Bihari Temple
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center p-4">
-                <div className="text-2xl mb-2">🚶</div>
-                <div className="font-bold text-gray-900">2 min walk</div>
-                <div className="text-gray-600 text-sm">to Prikarma Marg</div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="text-center p-4">
                 <div className="text-2xl mb-2">🛕</div>
-                <div className="font-bold text-gray-900">8 min walk</div>
+                <div className="font-bold text-gray-900">3 min walk</div>
                 <div className="text-gray-600 text-sm">to Banke Bihari Temple</div>
               </div>
               <div className="text-center p-4">
+                <div className="text-2xl mb-2">💫</div>
+                <div className="font-bold text-gray-900">5 min walk</div>
+                <div className="text-gray-600 text-sm">to Prem Mandir</div>
+              </div>
+              <div className="text-center p-4">
+                <div className="text-2xl mb-2">🌟</div>
+                <div className="font-bold text-gray-900">8 min walk</div>
+                <div className="text-gray-600 text-sm">to ISKCON Temple</div>
+              </div>
+              <div className="text-center p-4">
                 <div className="text-2xl mb-2">🏩</div>
-                <div className="font-bold text-gray-900">Rooms Available</div>
-                <div className="text-gray-600 text-sm">Starting at ₹999</div>
+                <div className="font-bold text-gray-900">Best Rooms</div>
+                <div className="text-gray-600 text-sm">From ₹999</div>
               </div>
             </div>
           </div>
@@ -98,7 +107,7 @@ const NotFound: React.FC = () => {
           {/* Suggested Pages Grid */}
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Explore Radhika Sadan
+              Explore Best Guest House in Vrindavan
             </h2>
             <p className="text-gray-600 text-lg">
               Here are some pages you might be looking for
@@ -113,7 +122,7 @@ const NotFound: React.FC = () => {
               <div className="text-3xl mb-3">🛌</div>
               <h3 className="font-bold text-gray-900 text-lg mb-2">Our Rooms</h3>
               <p className="text-gray-600 text-sm">
-                View comfortable AC & Non-AC rooms with photos and amenities
+                View comfortable AC & Non-AC rooms near Banke Bihari Temple
               </p>
               <div className="mt-3 text-orange-600 font-semibold">
                 Starting at ₹999 →
@@ -141,7 +150,7 @@ const NotFound: React.FC = () => {
               <div className="text-3xl mb-3">🙏</div>
               <h3 className="font-bold text-gray-900 text-lg mb-2">About Us</h3>
               <p className="text-gray-600 text-sm">
-                Learn about our story and 15+ years of serving pilgrims
+                Learn about our best guest house in Vrindavan
               </p>
               <div className="mt-3 text-orange-600 font-semibold">
                 Our Story →
@@ -163,18 +172,18 @@ const NotFound: React.FC = () => {
             </Link>
 
             <div className="block group bg-gradient-to-br from-orange-100 to-yellow-100 rounded-2xl border-2 border-orange-300 p-6 shadow-lg">
-              <div className="text-3xl mb-3">🎯</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Prime Location</h3>
+              <div className="text-3xl mb-3">⭐</div>
+              <h3 className="font-bold text-gray-900 text-lg mb-2">Why We're Best</h3>
               <p className="text-gray-600 text-sm">
-                Near Prikarma Marg, Paramhans Ji Maharaj & Gauranga Ashram
+                Best location near all major temples in Vrindavan
               </p>
               <div className="mt-3 text-green-600 font-semibold">
-                Walking distance to all temples
+                Walking distance to temples
               </div>
             </div>
 
             <div className="block group bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl border-2 border-green-200 p-6 shadow-lg">
-              <div className="text-3xl mb-3">💫</div>
+              <div className="text-3xl mb-3">🎉</div>
               <h3 className="font-bold text-gray-900 text-lg mb-2">Special Offer</h3>
               <p className="text-gray-600 text-sm">
                 10% OFF on advance payment for room booking
@@ -188,15 +197,15 @@ const NotFound: React.FC = () => {
           {/* Contact Help Section */}
           <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-8 text-white text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Need Immediate Help?
+              Need Immediate Booking Help?
             </h2>
             <p className="text-orange-100 text-lg mb-6">
-              Contact us directly for room bookings or directions in Vrindavan
+              Contact best guest house in Vrindavan for room bookings or directions
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="https://wa.me/917044755109"
+                href="https://wa.me/919286755109"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
@@ -205,12 +214,27 @@ const NotFound: React.FC = () => {
                 WhatsApp Now
               </a>
               <a
-                href="tel:+917044755109"
+                href="tel:+919286755109"
                 className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
               >
                 <Phone className="h-6 w-6" />
-                Call: +91 70447 55109
+                Call: +91 92867 55109
               </a>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-orange-200 text-sm">
+              <div className="flex items-center justify-center gap-2">
+                <span>🏩</span>
+                <span>Best Guest House</span>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <span>🛕</span>
+                <span>Near Banke Bihari</span>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <span>💫</span>
+                <span>Near Prem Mandir</span>
+              </div>
             </div>
           </div>
 
@@ -218,7 +242,7 @@ const NotFound: React.FC = () => {
           <div className="text-center mt-8">
             <p className="text-gray-600 flex items-center justify-center gap-2 text-lg">
               <Heart className="h-5 w-5 text-red-500" />
-              <span>Jai Shri Radhe Krishna - May your spiritual journey in Vrindavan be blessed</span>
+              <span>Jai Shri Radhe Krishna - Welcome to Best Guest House in Vrindavan!</span>
             </p>
           </div>
         </div>
