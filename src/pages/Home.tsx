@@ -308,7 +308,7 @@ const Home = () => {
     
     const message = `🏩 *Radhika Sadan Vrindavan - Booking Confirmation*\n\n*Room:* ${selectedRoom.name}\n*Amount Paid:* ₹${selectedRoom.advanceDiscount}\n*Regular Price:* ${selectedRoom.displayPrice}\n\n*Guest Details:*\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nCheck-in: ${formData.checkin}\nCheck-out: ${formData.checkout}\nGuests: ${formData.guests}\nSpecial Request: ${formData.message || "None"}\n\n*Location:* Near Banke Bihari Temple, Vrindavan\nBooking Time: ${new Date().toLocaleString()}`;
     
-    const whatsappUrl = `https://wa.me/919286759109?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/919286755109?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     
     setShowBookingForm(false);
@@ -330,7 +330,7 @@ const Home = () => {
   // Quick WhatsApp booking
   const handleQuickBooking = (room) => {
     const message = `Hello Radhika Sadan Vrindavan! I want to book ${room.name} for my pilgrimage. I'm interested in staying near Banke Bihari Temple/Prem Mandir. Please share availability and booking procedure.`;
-    const whatsappUrl = `https://wa.me/919286759109?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/919286755109?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -738,7 +738,7 @@ const Home = () => {
               <span>WhatsApp Booking</span>
             </button>
             <a
-              href="tel:+919286759109"
+              href="tel:+919286755109"
               className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3 shadow-2xl"
             >
               <Phone className="h-4 w-4 md:h-6 md:w-6" />
