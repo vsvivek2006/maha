@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
       return;
     }
 
-    const whatsappNumber = "919286759109";
+    const whatsappNumber = "919286755109"; // Updated WhatsApp number
     const text = `🏩 *Radhika Sadan - Room Booking Inquiry*
 
 *Name:* ${name}
@@ -116,17 +116,17 @@ I would like to book a room at Radhika Sadan Guest House in Mathura. Please shar
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-green-600" />
-                  <a href="tel:+919286759109" className="hover:text-green-700 text-lg font-semibold">
-                    +91 92867 59109
+                  <a href="tel:+919286755109" className="hover:text-green-700 text-lg font-semibold">
+                    +91 92867 55109
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-orange-600" />
                   <a
-                    href="mailto:bookings@radhikasadan.com"
+                    href="mailto:book@radhikasadan.com"
                     className="hover:text-orange-700 text-lg"
                   >
-                    bookings@radhikasadan.com
+                    book@radhikasadan.com
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
