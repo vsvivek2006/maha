@@ -23,7 +23,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const whatsappMessage = `🏩 *Radhika Sadan - Room Booking Inquiry*
+    const whatsappMessage = `🏩 *Radhika Sadan Vrindavan - Room Booking Inquiry*
 
 *Name:* ${formData.fullName}
 *Email:* ${formData.email}
@@ -34,9 +34,9 @@ const Contact = () => {
 *Room Type:* ${formData.roomType}
 *Special Request:* ${formData.message}
 
-Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Marg and Paramhans Ji Maharaj. Please share available rooms and rates.`;
+Hello! I would like to book a room at Radhika Sadan Guest House near Banke Bihari Temple and Prem Mandir. Please share available rooms and rates.`;
 
-    const whatsappUrl = `https://wa.me/919286759109?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/919286755109?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -52,19 +52,19 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
     {
       icon: <Phone className="h-5 w-5 md:h-6 md:w-6" />,
       title: 'Phone / WhatsApp',
-      content: '+91 92867 59109',
-      link: 'tel:+919286759109'
+      content: '+91 92867 55109',
+      link: 'tel:+919286755109'
     },
     {
       icon: <Mail className="h-5 w-5 md:h-6 md:w-6" />,
       title: 'Email',
-      content: 'bookings@radhikasadan.com',
-      link: 'mailto:bookings@radhikasadan.com'
+      content: 'book@radhikasadan.com',
+      link: 'mailto:book@radhikasadan.com'
     },
     {
       icon: <MapPin className="h-5 w-5 md:h-6 md:w-6" />,
-      title: 'Prime Location',
-      content: 'Near Prikarma Marg, premanand ji maharaj ashram, Gouri Gopal Vraddhashram, Vrindavan',
+      title: 'Best Location in Vrindavan',
+      content: 'Near Banke Bihari Temple, Prem Mandir & ISKCON, Vrindavan',
       link: '#'
     },
     {
@@ -77,12 +77,27 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
 
   const nearbyAttractions = [
     {
-      name: 'Prikarma Marg',
+      name: 'Banke Bihari Temple',
+      distance: '3 minutes walk',
+      description: 'Most sacred and famous temple in Vrindavan'
+    },
+    {
+      name: 'Prem Mandir',
+      distance: '5 minutes walk',
+      description: 'Beautiful marble temple with spectacular light shows'
+    },
+    {
+      name: 'ISKCON Temple',
+      distance: '8 minutes walk',
+      description: 'International Society for Krishna Consciousness'
+    },
+    {
+      name: 'Parikrama Marg',
       distance: '2 minutes walk',
       description: 'Main parikrama path for spiritual walking'
     },
     {
-      name: 'premanand ji maharaj ashram',
+      name: 'Premanand Ji Maharaj Ashram',
       distance: '3 minutes walk',
       description: 'Famous spiritual center and temple'
     },
@@ -90,21 +105,6 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
       name: 'Gouri Gopal Vraddhashram',
       distance: '5 minutes walk',
       description: 'Peaceful ashram for meditation'
-    },
-    {
-      name: 'Banke Bihari Temple',
-      distance: '8 minutes walk',
-      description: 'Most famous temple in Vrindavan'
-    },
-    {
-      name: 'ISKCON Temple',
-      distance: '10 minutes',
-      description: 'International Society for Krishna Consciousness'
-    },
-    {
-      name: 'Prem Mandir',
-      distance: '12 minutes',
-      description: 'Beautiful marble temple with light shows'
     }
   ];
 
@@ -132,7 +132,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
     {
       icon: '🍴',
       title: 'Pure Vegetarian Food',
-      description: 'Hygienic & delicious meals'
+      description: 'Hygienic & delicious satvik meals'
     },
     {
       icon: '🙏',
@@ -145,21 +145,21 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
       {/* ✅ SEO Component */}
       <Helmet>
-        <title>Radhika Sadan | Book Guest House Near Prikarma Marg, Paramhans Ji Maharaj, Gauranga Ashram Vrindavan</title>
+        <title>Radhika Sadan Vrindavan | Contact Best Guest House Near Banke Bihari Temple & Prem Mandir</title>
         <meta
           name="description"
-          content="Radhika Sadan Guest House - Premium accommodation near Prikarma Marg, Paramhans Ji Maharaj & Gauranga Ashram in Vrindavan. Book AC/Non-AC rooms with best rates. Walking distance to all major temples."
+          content="Contact Radhika Sadan Vrindavan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON. Book AC/Non-AC rooms from ₹999. Walking distance to all major temples."
         />
         <meta
           name="keywords"
-          content="Radhika Sadan, Prikarma Marg Vrindavan, Paramhans Ji Maharaj guest house, Gauranga Ashram stay, Banke Bihari temple accommodation, Mathura Vrindavan hotel, budget stay near parikrama marg, family guest house Vrindavan, spiritual retreat Mathura, pilgrim accommodation near gauranga ashram"
+          content="Radhika Sadan contact, guest house near Banke Bihari Temple, accommodation near Prem Mandir Vrindavan, stay near ISKCON Vrindavan, best guest house Vrindavan, budget hotel Mathura, pilgrim accommodation, Radhika Sadan booking, spiritual stay Mathura Vrindavan"
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://radhikasadan.com/contact" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Radhika Sadan - Premium Guest House Near Prikarma Marg & Paramhans Ji Maharaj, Vrindavan" />
-        <meta property="og:description" content="Book your stay at Radhika Sadan Guest House near Prikarma Marg, Paramhans Ji Maharaj & Gauranga Ashram. Best location in Vrindavan with all modern amenities." />
+        <meta property="og:title" content="Radhika Sadan Vrindavan - Best Guest House Near Banke Bihari Temple & Prem Mandir" />
+        <meta property="og:description" content="Book your stay at Radhika Sadan - Best guest house in Vrindavan walking distance to Banke Bihari Temple, Prem Mandir & ISKCON. AC/Non-AC rooms from ₹999." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://radhikasadan.com/contact" />
         <meta property="og:image" content="https://radhikasadan.com/og-image.jpg" />
@@ -171,17 +171,17 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
             "@type": "Hotel",
             "name": "Radhika Sadan Guest House",
             "url": "https://radhikasadan.com",
-            "description": "Premium Guest House near Prikarma Marg, Paramhans Ji Maharaj and Gauranga Ashram in Vrindavan",
+            "description": "Best guest house in Vrindavan near Banke Bihari Temple, Prem Mandir and ISKCON",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Near Prikarma Marg, Paramhans Ji Maharaj",
+              "streetAddress": "Near Banke Bihari Temple, Prem Mandir Road",
               "addressLocality": "Vrindavan",
               "addressRegion": "Uttar Pradesh",
               "postalCode": "281121",
               "addressCountry": "IN"
             },
-            "telephone": "+919286759109",
-            "email": "bookings@radhikasadan.com",
+            "telephone": "+919286755109",
+            "email": "book@radhikasadan.com",
             "amenityFeature": [
               "AirConditioning",
               "FreeWifi",
@@ -202,18 +202,18 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="inline-flex items-center bg-white text-orange-600 px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-lg font-bold mb-6 md:mb-8 animate-pulse">
-              🏩 Best Location in Vrindavan - Near Prikarma Marg
+              🏩 Best Guest House in Vrindavan - Near Banke Bihari Temple
             </div>
             
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
               Stay in <span className="text-yellow-300">Heart of Vrindavan</span>
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto text-yellow-100 px-2">
-              Radhika Sadan - Your perfect pilgrimage stay near Prikarma Marg, Paramhans Ji Maharaj, and Gauranga Ashram
+              Radhika Sadan Vrindavan - Your perfect pilgrimage stay near Banke Bihari Temple, Prem Mandir & ISKCON
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-2">
               <a
-                href="https://wa.me/919286759109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
+                href="https://wa.me/919286755109?text=Hello Radhika Sadan, I want to book a room near Banke Bihari Temple and Prem Mandir in Vrindavan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
@@ -222,11 +222,11 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                 <span>WhatsApp Booking</span>
               </a>
               <a
-                href="tel:+919286759109"
+                href="tel:+919286755109"
                 className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
               >
                 <Phone className="h-4 w-4 md:h-5 md:w-5" />
-                <span>Call: +91 92867 59109</span>
+                <span>Call: +91 92867 55109</span>
               </a>
             </div>
           </div>
@@ -238,10 +238,10 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Perfect Location for Spiritual Journey
+              Best Location in Vrindavan
             </h2>
             <p className="text-lg md:text-xl text-gray-600 px-2">
-              Situated in the most convenient area of Vrindavan - walking distance to all sacred places
+              Walking distance to all major temples - Best guest house location in Vrindavan
             </p>
           </div>
 
@@ -270,10 +270,10 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Comfortable Stay with Modern Amenities
+              Best Guest House Amenities
             </h2>
             <p className="text-lg md:text-xl text-gray-600 px-2">
-              Everything you need for a peaceful and comfortable pilgrimage
+              Everything you need for comfortable pilgrimage in Vrindavan
             </p>
           </div>
 
@@ -296,10 +296,10 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
             {/* Booking Form */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Book Your Stay Near Prikarma Marg
+                Book Best Guest House in Vrindavan
               </h2>
               <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
-                Fill this form to book your room at Radhika Sadan - the best located guest house near Prikarma Marg, Paramhans Ji Maharaj, and Gauranga Ashram.
+                Fill this form to book your room at Radhika Sadan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-orange-50 p-4 md:p-6 lg:p-8 rounded-xl shadow-lg">
@@ -441,7 +441,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                     onChange={handleChange}
                     rows={3}
                     className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base resize-none"
-                    placeholder="Any special requirements, parikrama plans, food preferences, meditation needs..."
+                    placeholder="Any special requirements, temple visit plans, food preferences, meditation needs..."
                   />
                 </div>
 
@@ -454,7 +454,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                 </button>
 
                 <p className="text-xs md:text-sm text-gray-500 text-center">
-                  Perfect location near Prikarma Marg & Paramhans Ji Maharaj - Instant WhatsApp confirmation
+                  Best guest house location near Banke Bihari Temple & Prem Mandir - Instant WhatsApp confirmation
                 </p>
               </form>
             </div>
@@ -462,10 +462,10 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
             {/* Contact Information */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Contact Radhika Sadan
+                Contact Best Guest House
               </h2>
               <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
-                Get the best pilgrimage experience in Vrindavan with our prime location and comfortable stay
+                Get the best pilgrimage experience in Vrindavan with our prime location near all temples
               </p>
 
               <div className="space-y-4 md:space-y-6 mb-6 md:mb-8">
@@ -495,16 +495,16 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-4 md:p-6 rounded-xl mb-6 md:mb-8 shadow-lg">
                 <h3 className="font-bold text-gray-900 text-base md:text-lg mb-2 flex items-center">
                   <Navigation className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                  Prime Vrindavan Location
+                  Best Guest House Location
                 </h3>
                 <p className="text-gray-900 text-xs md:text-sm leading-relaxed">
-                  🎯 <strong>Prikarma Marg:</strong> 2 minutes walking distance
+                  🎯 <strong>Banke Bihari Temple:</strong> 3 minutes walking distance
                   <br />
-                  ⚡ <strong>premanand ji maharaj ashram:</strong> 3 minutes walking distance
+                  ⚡ <strong>Prem Mandir:</strong> 5 minutes walking distance
                   <br />
-                  🙏 <strong>Gouri Gopal Vraddhashram:</strong> 5 minutes walking distance
+                  🙏 <strong>ISKCON Temple:</strong> 8 minutes walking distance
                   <br />
-                  🏛️ <strong>Banke Bihari Temple:</strong> 8 minutes walking distance
+                  🏛️ <strong>Parikrama Marg:</strong> 2 minutes walking distance
                 </p>
               </div>
 
@@ -517,19 +517,19 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                 <div className="space-y-1 md:space-y-2 text-purple-700 text-xs md:text-sm">
                   <div className="flex items-start space-x-2">
                     <span>•</span>
-                    <span>Early morning parikrama on Prikarma Marg</span>
+                    <span>Early morning darshan at Banke Bihari Temple</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <span>•</span>
-                    <span>Darshan at premanand ji maharaj ashram</span>
+                    <span>Evening aarti at Prem Mandir</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <span>•</span>
-                    <span>Meditation at Gouri Gopal Vraddhashram</span>
+                    <span>Meditation at ISKCON temple</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <span>•</span>
-                    <span>Banke Bihari Temple prayers</span>
+                    <span>Parikrama on Parikrama Marg</span>
                   </div>
                 </div>
               </div>
@@ -539,7 +539,7 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                 <h3 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">Follow Our Spiritual Journey</h3>
                 <div className="flex space-x-3 md:space-x-4">
                   <a
-                    href="https://wa.me/919286759109"
+                    href="https://wa.me/919286755109"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-green-500 hover:bg-green-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
@@ -548,14 +548,18 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
                     <MessageCircle className="h-4 w-4 md:h-6 md:w-6" />
                   </a>
                   <a
-                    href="https://www.instagram.com/radhikasadan_vrindavan/"
+                    href="https://www.instagram.com/radhikasadan_mathura/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-pink-500 hover:bg-pink-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
                     title="Instagram"
                   >
                     <Instagram className="h-4 w-4 md:h-6 md:w-6" />
                   </a>
                   <a
-                    href="https://www.facebook.com/radhikasadanprikarmamarg/"
+                    href="https://www.facebook.com/radhikasadanvrindavan/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-blue-500 hover:bg-blue-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
                     title="Facebook"
                   >
@@ -572,14 +576,14 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
       <section className="py-12 md:py-16 bg-gradient-to-r from-orange-500 to-red-500 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Ready for Divine Experience?
+            Book Best Guest House in Vrindavan
           </h2>
           <p className="text-lg md:text-xl mb-6 md:mb-8 text-orange-100 px-2">
-            Book your stay at Radhika Sadan - Best location near Prikarma Marg, premanand ji maharaj ashram & Gouri Gopal Vraddhashram
+            Radhika Sadan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <a
-              href="https://wa.me/919286759109?text=Hello Radhika Sadan, I want to book a room near Prikarma Marg and Paramhans Ji Maharaj in Vrindavan"
+              href="https://wa.me/919286755109?text=Hello Radhika Sadan, I want to book a room near Banke Bihari Temple and Prem Mandir in Vrindavan"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
@@ -588,11 +592,11 @@ Hello! I would like to book a room at Radhika Sadan Guest House near Prikarma Ma
               <span>Book via WhatsApp</span>
             </a>
             <a
-              href="tel:+919286759109"
+              href="tel:+919286755109"
               className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
             >
               <Phone className="h-4 w-4 md:h-5 md:w-5" />
-              <span>Call: +91 92867 59109</span>
+              <span>Call: +91 92867 55109</span>
             </a>
           </div>
           <p className="text-orange-200 mt-6 md:mt-8 text-base md:text-lg flex items-center justify-center space-x-2">
