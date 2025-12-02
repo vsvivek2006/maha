@@ -54,13 +54,13 @@ const Header: React.FC = () => {
   // WhatsApp direct message
   const handleWhatsApp = () => {
     const message = "Hello! I'm interested in booking a room at your guest house. Could you please share more details?";
-    const url = `https://wa.me/919286759109?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/919286755109?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
 
   // Direct call function
   const handleCall = () => {
-    window.open("tel:+919286759109");
+    window.open("tel:+919286755109");
   };
 
   return (
@@ -167,7 +167,7 @@ const Header: React.FC = () => {
                     className="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors duration-200 text-center flex items-center justify-center gap-2"
                   >
                     <Phone className="h-4 w-4" />
-                    Call Now: +91 92867 59109
+                    Call Now: +91 92867 55109
                   </button>
                   <button
                     onClick={() => { handleWhatsApp(); setIsOpen(false); }}
