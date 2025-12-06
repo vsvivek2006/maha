@@ -28,7 +28,7 @@ const formatAmount = (amount) => {
 const Rooms = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -37,11 +37,14 @@ const Rooms = () => {
     mobile: "",
     checkin: "",
     checkout: "",
-    guests: "",
+    guests: "1",
+    adults: "1",
+    children: "0",
     message: ""
   });
 
   const RAZORPAY_KEY_ID = "rzp_live_Rjg2D4BxOBtrmR";
+  const PHONE_NUMBER = "+919286755109";
 
   // All rooms data with correct local images from public folder
   const rooms = [
@@ -223,12 +226,12 @@ const Rooms = () => {
 
   const handleWhatsAppBooking = (room) => {
     const message = `🏩 *Radhika Sadan - Room Booking Inquiry*\n\n*Room Type:* ${room.name}\n*Price:* ${room.displayPrice}/night\n*Original Price:* ${room.originalPrice}\n*Discount:* ${room.discount}\n*Advance Booking:* ₹${room.advanceDiscount} (10% Extra OFF)\n\nHello! I would like to book the ${room.name} at Radhika Sadan. Please share availability and booking procedure.`;
-    const whatsappUrl = `https://wa.me/919286759109?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/${PHONE_NUMBER.slice(1)}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
   const handleCallBooking = () => {
-    window.open('tel:+919286759109');
+    window.open(`tel:${PHONE_NUMBER}`);
   };
 
   const nextImage = () => {
@@ -243,8 +246,14 @@ const Rooms = () => {
     );
   };
 
-  // Handle payment
-  const handlePayment = async (room) => {
+  // Show payment form before payment
+  const handlePaymentStart = (room) => {
+    setSelectedRoom(room);
+    setShowPaymentForm(true);
+  };
+
+  // Handle payment after form submission
+  const handlePayment = async () => {
     try {
       const isLoaded = await loadRazorpay();
       if (!isLoaded) {
@@ -254,25 +263,30 @@ const Rooms = () => {
 
       const options = {
         key: RAZORPAY_KEY_ID,
-        amount: formatAmount(room.advanceDiscount),
+        amount: formatAmount(selectedRoom.advanceDiscount),
         currency: 'INR',
         name: 'Radhika Sadan Guest House Vrindavan',
-        description: `Advance Booking for ${room.name}`,
+        description: `Advance Booking for ${selectedRoom.name}`,
         image: '/logo.png',
         handler: function (response) {
           setPaymentSuccess(true);
-          setShowBookingForm(true);
-          alert('✅ Payment Successful! Please complete your booking details.');
+          sendWhatsAppConfirmation();
+          alert('✅ Payment Successful! Your booking details have been sent to WhatsApp.');
+          setShowPaymentForm(false);
+          setSelectedRoom(null);
         },
         prefill: {
-          name: '',
-          email: '',
-          contact: ''
+          name: formData.name,
+          email: formData.email,
+          contact: formData.mobile
         },
         notes: {
-          room: room.name,
+          room: selectedRoom.name,
           guesthouse: 'Radhika Sadan Vrindavan',
-          location: 'Near Banke Bihari Temple'
+          location: 'Near Banke Bihari Temple',
+          checkin: formData.checkin,
+          checkout: formData.checkout,
+          guests: `${formData.adults} Adults, ${formData.children} Children`
         },
         theme: {
           color: '#F97316'
@@ -297,29 +311,35 @@ const Rooms = () => {
     }
   };
 
+  // Send WhatsApp confirmation
+  const sendWhatsAppConfirmation = () => {
+    const totalGuests = parseInt(formData.adults) + parseInt(formData.children);
+    
+    const message = `🏩 *Radhika Sadan Vrindavan - Booking Confirmation*\n\n*Room Details:*\n• Room Type: ${selectedRoom.name}\n• Regular Price: ${selectedRoom.displayPrice}/night\n• Advance Paid: ₹${selectedRoom.advanceDiscount} (10% Extra OFF)\n\n*Guest Details:*\n• Name: ${formData.name}\n• Email: ${formData.email}\n• Mobile: ${formData.mobile}\n• Check-in: ${formData.checkin}\n• Check-out: ${formData.checkout}\n• Total Guests: ${totalGuests}\n• Adults: ${formData.adults}\n• Children: ${formData.children}\n• Special Request: ${formData.message || "None"}\n\n*Property Details:*\n• Location: Near Banke Bihari Temple, Vrindavan\n• Contact: ${PHONE_NUMBER}\n• Booking Time: ${new Date().toLocaleString()}\n\nThank you for choosing Radhika Sadan! We look forward to serving you. Radhe Radhe! 🕉️`;
+    
+    const whatsappUrl = `https://wa.me/${PHONE_NUMBER.slice(1)}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
     
-    const message = `🏩 *Radhika Sadan Vrindavan - Booking Confirmation*\n\n*Room:* ${selectedRoom.name}\n*Amount Paid:* ₹${selectedRoom.advanceDiscount}\n*Regular Price:* ${selectedRoom.displayPrice}\n\n*Guest Details:*\nName: ${formData.name}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nCheck-in: ${formData.checkin}\nCheck-out: ${formData.checkout}\nGuests: ${formData.guests}\nSpecial Request: ${formData.message || "None"}\n\n*Location:* Near Banke Bihari Temple, Vrindavan\nBooking Time: ${new Date().toLocaleString()}`;
+    // Validate form
+    if (!formData.name || !formData.email || !formData.mobile || !formData.checkin || !formData.checkout) {
+      alert('Please fill all required fields (Name, Email, Mobile, Check-in, Check-out)');
+      return;
+    }
     
-    const whatsappUrl = `https://wa.me/919286759109?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    // Calculate total guests
+    const totalGuests = parseInt(formData.adults) + parseInt(formData.children);
+    if (totalGuests > parseInt(selectedRoom.capacity)) {
+      alert(`This room accommodates maximum ${selectedRoom.capacity}. Please select a different room or adjust guest count.`);
+      return;
+    }
     
-    setShowBookingForm(false);
-    setPaymentSuccess(false);
-    setFormData({
-      name: "",
-      email: "",
-      mobile: "",
-      checkin: "",
-      checkout: "",
-      guests: "",
-      message: ""
-    });
-    setSelectedRoom(null);
-
-    alert('🎉 Booking Confirmed! We have received your details. Our team will contact you shortly.');
+    // Proceed to payment
+    handlePayment();
   };
 
   const handleInputChange = (e) => {
@@ -475,7 +495,7 @@ const Rooms = () => {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                     <button
-                      onClick={() => handlePayment(room)}
+                      onClick={() => handlePaymentStart(room)}
                       className={`flex-1 py-3 md:py-4 px-4 md:px-6 rounded-xl font-bold text-base md:text-lg transition-all duration-300 hover:scale-105 ${
                         room.popular
                           ? 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white'
@@ -629,11 +649,11 @@ const Rooms = () => {
               <span>WhatsApp Inquiry</span>
             </button>
             <a
-              href="tel:+919286759109"
+              href={`tel:${PHONE_NUMBER}`}
               className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-6 py-3 md:px-8 md:py-4 rounded-xl text-lg md:text-xl font-bold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
             >
               <Phone className="h-5 w-5 md:h-6 md:w-6" />
-              <span>Call: +91 92867 59109</span>
+              <span>Call: {PHONE_NUMBER}</span>
             </a>
           </div>
           
@@ -645,7 +665,7 @@ const Rooms = () => {
       </section>
 
       {/* Room Detail Modal - Mobile Optimized */}
-      {selectedRoom && (
+      {selectedRoom && !showPaymentForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 md:p-4">
           <div className="bg-white rounded-xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="relative">
@@ -776,7 +796,7 @@ const Rooms = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                   <button
-                    onClick={() => handlePayment(selectedRoom)}
+                    onClick={() => handlePaymentStart(selectedRoom)}
                     className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl font-bold text-base md:text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 md:gap-3"
                   >
                     <span>💳 Pay Advance - ₹{selectedRoom.advanceDiscount}</span>
@@ -801,16 +821,15 @@ const Rooms = () => {
         </div>
       )}
 
-      {/* Booking Form Modal - Mobile Optimized */}
-      {showBookingForm && (
+      {/* Payment Form Modal (Appears before payment) - Mobile Optimized */}
+      {showPaymentForm && selectedRoom && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 md:p-4">
-          <div className="bg-white rounded-xl md:rounded-3xl p-4 md:p-6 lg:p-8 max-w-md w-full max-h-[90vh] overflow-y-auto border-2 border-orange-400">
+          <div className="bg-white rounded-xl md:rounded-3xl p-4 md:p-6 lg:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto border-2 border-orange-400">
             <div className="flex justify-between items-center mb-4 md:mb-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900">🏩 Complete Your Booking</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">📝 Guest Details for Booking</h3>
               <button
                 onClick={() => {
-                  setShowBookingForm(false);
-                  setPaymentSuccess(false);
+                  setShowPaymentForm(false);
                 }}
                 className="text-gray-500 hover:text-gray-700 text-lg md:text-xl"
               >
@@ -818,13 +837,14 @@ const Rooms = () => {
               </button>
             </div>
             
-            {paymentSuccess && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-3 py-2 md:px-4 md:py-3 rounded-xl mb-4 md:mb-6 text-base md:text-lg">
-                ✅ Payment Successful! Please submit your booking details.
-              </div>
-            )}
+            <div className="bg-orange-50 p-3 md:p-4 rounded-xl border border-orange-200 mb-4 md:mb-6">
+              <p className="text-base md:text-lg font-medium text-orange-700 mb-2">Selected Room:</p>
+              <p className="text-xl md:text-2xl font-bold text-orange-600">{selectedRoom.name}</p>
+              <p className="text-base md:text-lg text-orange-600">Advance Amount: ₹{selectedRoom.advanceDiscount}</p>
+              <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">📍 Location: Near Banke Bihari Temple, Vrindavan</p>
+            </div>
             
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-4 md:space-y-6">
               <div>
                 <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Full Name *</label>
                 <input
@@ -853,7 +873,7 @@ const Rooms = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Mobile *</label>
+                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Mobile Number *</label>
                   <input
                     type="tel"
                     name="mobile"
@@ -861,49 +881,70 @@ const Rooms = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base md:text-lg"
-                    placeholder="+91 XXXXX XXXXX"
+                    placeholder="+91 92867 55109"
                   />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Check-in *</label>
+                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Check-in Date *</label>
                   <input
                     type="date"
                     name="checkin"
                     value={formData.checkin}
                     onChange={handleInputChange}
                     required
+                    min={new Date().toISOString().split('T')[0]}
                     className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base md:text-lg"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Check-out *</label>
+                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Check-out Date *</label>
                   <input
                     type="date"
                     name="checkout"
                     value={formData.checkout}
                     onChange={handleInputChange}
                     required
+                    min={formData.checkin || new Date().toISOString().split('T')[0]}
                     className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base md:text-lg"
                   />
                 </div>
               </div>
               
-              <div>
-                <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Number of Guests *</label>
-                <input
-                  type="number"
-                  name="guests"
-                  value={formData.guests}
-                  onChange={handleInputChange}
-                  required
-                  min="1"
-                  className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base md:text-lg"
-                  placeholder="2"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                <div>
+                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Number of Adults *</label>
+                  <select
+                    name="adults"
+                    value={formData.adults}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base md:text-lg"
+                  >
+                    <option value="1">1 Adult</option>
+                    <option value="2">2 Adults</option>
+                    <option value="3">3 Adults</option>
+                    <option value="4">4 Adults</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-base md:text-lg font-medium text-gray-700 mb-1 md:mb-2">Number of Children</label>
+                  <select
+                    name="children"
+                    value={formData.children}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base md:text-lg"
+                  >
+                    <option value="0">0 Children</option>
+                    <option value="1">1 Child</option>
+                    <option value="2">2 Children</option>
+                    <option value="3">3 Children</option>
+                  </select>
+                </div>
               </div>
               
               <div>
@@ -918,20 +959,29 @@ const Rooms = () => {
                 />
               </div>
               
-              {selectedRoom && (
-                <div className="bg-orange-50 p-3 md:p-4 rounded-xl border border-orange-200">
-                  <p className="text-base md:text-lg font-medium text-gray-700">Selected Room:</p>
-                  <p className="text-lg md:text-xl font-bold text-orange-600">{selectedRoom.name}</p>
-                  <p className="text-base md:text-lg text-orange-600">Amount Paid: ₹{selectedRoom.advanceDiscount}</p>
-                  <p className="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">📍 Location: Near Banke Bihari Temple, Vrindavan</p>
-                </div>
-              )}
+              <div className="bg-green-50 p-3 md:p-4 rounded-xl border border-green-200">
+                <h4 className="font-bold text-green-800 text-base md:text-lg mb-2">📋 Booking Process:</h4>
+                <ol className="text-sm md:text-base text-green-700 list-decimal pl-4 md:pl-6 space-y-1">
+                  <li>Fill your details (this form)</li>
+                  <li>Proceed to secure Razorpay payment</li>
+                  <li>After successful payment, booking confirmation will be sent to WhatsApp</li>
+                  <li>Our team will contact you for further details</li>
+                </ol>
+              </div>
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl font-bold text-lg md:text-xl transition-all duration-300 hover:scale-105"
+                className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl font-bold text-lg md:text-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3"
               >
-                🏩 Complete Booking
+                💳 Proceed to Payment - ₹{selectedRoom.advanceDiscount}
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => setShowPaymentForm(false)}
+                className="w-full bg-gray-500 hover:bg-gray-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl font-bold text-base md:text-lg transition-all duration-300"
+              >
+                Cancel
               </button>
             </form>
           </div>
