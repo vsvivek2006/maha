@@ -7,14 +7,14 @@ const About = () => {
   // Team members with local images and correct positions
   const teamMembers = [
     {
-      name: "Amit Ji",
+      name: "lalan Ji",
       role: "Founder & Managing Director",
       experience: "15+ years in spiritual hospitality",
       description: "Visionary founder dedicated to providing authentic Braj experience to pilgrims. Oversees all operations with spiritual guidance and ensures every guest feels the divine atmosphere of Vrindavan.",
       image: "/amit.png"
     },
     {
-      name: "Vivek Kumar",
+      name: "krishan Kumar",
       role: "General Manager & Operations Head",
       experience: "12+ years in hotel management",
       description: "Leads overall operations, guest relations, and strategic planning. Ensures premium service standards and smooth functioning of all guest house activities with professional expertise.",
