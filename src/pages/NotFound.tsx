@@ -1,249 +1,139 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Home, ArrowLeft, MapPin, Phone, MessageCircle, Heart, Star } from "lucide-react";
+import { Home, ArrowLeft, ShieldCheck, Zap, MessageCircle, Trophy, Target } from "lucide-react";
 import { Helmet } from "react-helmet";
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
+    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#FFD700] selection:text-black">
       {/* ✅ SEO Component */}
       <Helmet>
-        <title>404 - Page Not Found | Radhika Sadan Vrindavan - Best Guest House</title>
+        <title>404 - Page Not Found | Mahadev Book Official</title>
         <meta
           name="description"
-          content="Page not found. Book best guest house in Vrindavan near Banke Bihari Temple & Prem Mandir. AC/Non-AC rooms from ₹999. 24/7 booking support."
-        />
-        <meta
-          name="keywords"
-          content="404 page not found, Radhika Sadan Vrindavan, best guest house Vrindavan, Banke Bihari temple stay, Prem Mandir accommodation, ISKCON Vrindavan hotel, budget guest house Mathura, Radhika Sadan booking"
+          content="The page you are looking for is out of play. Return to Mahadev Book for the best sports insights and secure betting IDs."
         />
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://radhikasadan.com/404" />
       </Helmet>
 
-      {/* Hero Section with Vrindavan Image */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-500 to-red-500 text-white">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{
-            backgroundImage: "url('/mathura.png')"
-          }}
-        ></div>
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      {/* Hero Section with Dark Theme */}
+      <section className="relative py-24 border-b border-zinc-900 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFD700]/10 via-transparent to-transparent"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="text-9xl font-bold mb-4 opacity-90">404</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Page Not Found
+        <div className="relative max-w-7xl mx-auto px-4 text-center">
+          <div className="text-[12rem] md:text-[15rem] font-black leading-none tracking-tighter text-zinc-900 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 select-none">
+            404
+          </div>
+          
+          <div className="mb-6 inline-block bg-zinc-900 p-4 rounded-full border border-zinc-800">
+            <Target className="h-12 w-12 text-[#FFD700] animate-pulse" />
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-black italic uppercase leading-none mb-6">
+            Looks like you're <br />
+            <span className="text-[#FFD700]">Out of Play!</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-4 text-orange-100">
-            The page you're looking for doesn't exist in Vrindavan!
+          
+          <p className="text-zinc-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium">
+            The page you are looking for doesn't exist or has been moved. 
+            Don't worry, the real game is still on!
           </p>
-          <p className="text-orange-200 text-lg">
-            But don't worry, our best guest house is right here for you.
-          </p>
-        </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Quick Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-300 font-semibold text-lg"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-zinc-900 text-white hover:bg-zinc-800 border border-zinc-800 transition-all font-bold text-lg"
             >
               <ArrowLeft className="h-5 w-5" />
               Go Back
             </button>
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600 transition-all duration-300 font-semibold text-lg"
+              className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-xl bg-[#FFD700] text-black hover:bg-yellow-500 transition-all font-black text-lg shadow-[0_0_30px_rgba(255,215,0,0.2)]"
             >
               <Home className="h-5 w-5" />
-              Go to Homepage
+              Return to Base
             </Link>
           </div>
+        </div>
+      </section>
 
-          {/* Location Info Card */}
-          <div className="bg-orange-50 rounded-3xl p-8 border-2 border-orange-200 mb-12">
-            <div className="text-center mb-6">
-              <div className="text-4xl mb-4">📍</div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                Best Guest House in Vrindavan
-              </h2>
-              <p className="text-gray-600 text-lg">
-                While this page might be missing, our guest house is right here near Banke Bihari Temple
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="text-center p-4">
-                <div className="text-2xl mb-2">🛕</div>
-                <div className="font-bold text-gray-900">3 min walk</div>
-                <div className="text-gray-600 text-sm">to Banke Bihari Temple</div>
-              </div>
-              <div className="text-center p-4">
-                <div className="text-2xl mb-2">💫</div>
-                <div className="font-bold text-gray-900">5 min walk</div>
-                <div className="text-gray-600 text-sm">to Prem Mandir</div>
-              </div>
-              <div className="text-center p-4">
-                <div className="text-2xl mb-2">🌟</div>
-                <div className="font-bold text-gray-900">8 min walk</div>
-                <div className="text-gray-600 text-sm">to ISKCON Temple</div>
-              </div>
-              <div className="text-center p-4">
-                <div className="text-2xl mb-2">🏩</div>
-                <div className="font-bold text-gray-900">Best Rooms</div>
-                <div className="text-gray-600 text-sm">From ₹999</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Suggested Pages Grid */}
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Explore Best Guest House in Vrindavan
+      {/* Suggested Sections Grid */}
+      <section className="py-20 px-4 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black uppercase italic italic mb-4">
+              Get Back <span className="text-[#FFD700]">In The Game</span>
             </h2>
-            <p className="text-gray-600 text-lg">
-              Here are some pages you might be looking for
-            </p>
+            <p className="text-zinc-500">Explore our most popular sections instead:</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              to="/rooms"
-              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
+              to="/betting-app"
+              className="group bg-zinc-900/50 p-8 rounded-3xl border border-zinc-800 hover:border-[#FFD700]/50 transition-all"
             >
-              <div className="text-3xl mb-3">🛌</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Our Rooms</h3>
-              <p className="text-gray-600 text-sm">
-                View comfortable AC & Non-AC rooms near Banke Bihari Temple
-              </p>
-              <div className="mt-3 text-orange-600 font-semibold">
-                Starting at ₹999 →
-              </div>
+              <Zap className="h-10 w-10 text-[#FFD700] mb-4" />
+              <h3 className="text-xl font-bold mb-2">Betting App</h3>
+              <p className="text-zinc-500 text-sm mb-4">Download India's most trusted app for live sports insights.</p>
+              <span className="text-[#FFD700] font-bold inline-flex items-center gap-2">
+                Download Now <ArrowLeft className="h-4 w-4 rotate-180" />
+              </span>
             </Link>
 
             <Link
-              to="/gallery"
-              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
+              to="/book-id"
+              className="group bg-zinc-900/50 p-8 rounded-3xl border border-zinc-800 hover:border-[#FFD700]/50 transition-all"
             >
-              <div className="text-3xl mb-3">📸</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Photo Gallery</h3>
-              <p className="text-gray-600 text-sm">
-                See photos of our rooms, location, and nearby temples
-              </p>
-              <div className="mt-3 text-orange-600 font-semibold">
-                View Photos →
-              </div>
+              <ShieldCheck className="h-10 w-10 text-[#FFD700] mb-4" />
+              <h3 className="text-xl font-bold mb-2">Verified ID</h3>
+              <p className="text-zinc-500 text-sm mb-4">Get your 100% secure and official Mahadev Book ID instantly.</p>
+              <span className="text-[#FFD700] font-bold inline-flex items-center gap-2">
+                Get ID <ArrowLeft className="h-4 w-4 rotate-180" />
+              </span>
             </Link>
 
             <Link
-              to="/about"
-              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
+              to="/faq"
+              className="group bg-zinc-900/50 p-8 rounded-3xl border border-zinc-800 hover:border-[#FFD700]/50 transition-all"
             >
-              <div className="text-3xl mb-3">🙏</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">About Us</h3>
-              <p className="text-gray-600 text-sm">
-                Learn about our best guest house in Vrindavan
-              </p>
-              <div className="mt-3 text-orange-600 font-semibold">
-                Our Story →
-              </div>
+              <Trophy className="h-10 w-10 text-[#FFD700] mb-4" />
+              <h3 className="text-xl font-bold mb-2">Support & FAQ</h3>
+              <p className="text-zinc-500 text-sm mb-4">Have questions? We have the answers to get you started.</p>
+              <span className="text-[#FFD700] font-bold inline-flex items-center gap-2">
+                Read More <ArrowLeft className="h-4 w-4 rotate-180" />
+              </span>
             </Link>
-
-            <Link
-              to="/contact"
-              className="block group bg-white rounded-2xl border-2 border-orange-200 p-6 shadow-lg hover:shadow-xl hover:border-orange-400 transition-all duration-300"
-            >
-              <div className="text-3xl mb-3">📞</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Contact Us</h3>
-              <p className="text-gray-600 text-sm">
-                Get in touch for bookings and inquiries
-              </p>
-              <div className="mt-3 text-orange-600 font-semibold">
-                Get Directions →
-              </div>
-            </Link>
-
-            <div className="block group bg-gradient-to-br from-orange-100 to-yellow-100 rounded-2xl border-2 border-orange-300 p-6 shadow-lg">
-              <div className="text-3xl mb-3">⭐</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Why We're Best</h3>
-              <p className="text-gray-600 text-sm">
-                Best location near all major temples in Vrindavan
-              </p>
-              <div className="mt-3 text-green-600 font-semibold">
-                Walking distance to temples
-              </div>
-            </div>
-
-            <div className="block group bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl border-2 border-green-200 p-6 shadow-lg">
-              <div className="text-3xl mb-3">🎉</div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">Special Offer</h3>
-              <p className="text-gray-600 text-sm">
-                10% OFF on advance payment for room booking
-              </p>
-              <div className="mt-3 text-green-600 font-semibold">
-                Book Now & Save →
-              </div>
-            </div>
           </div>
 
-          {/* Contact Help Section */}
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl p-8 text-white text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Need Immediate Booking Help?
+          {/* Contact Support CTA */}
+          <div className="mt-16 bg-gradient-to-r from-zinc-900 to-black p-10 rounded-[3rem] border border-zinc-800 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFD700] opacity-5 blur-[80px]"></div>
+            
+            <h2 className="text-3xl font-black italic uppercase mb-6">
+              Need Help <span className="text-[#FFD700]">Right Away?</span>
             </h2>
-            <p className="text-orange-100 text-lg mb-6">
-              Contact best guest house in Vrindavan for room bookings or directions
-            </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="https://wa.me/919286755109"
+                href="https://wa.me/918969906425"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+                rel="noreferrer"
+                className="w-full sm:w-auto bg-[#25D366] text-white px-10 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 flex items-center justify-center gap-3"
               >
                 <MessageCircle className="h-6 w-6" />
-                WhatsApp Now
+                WhatsApp Support
               </a>
               <a
-                href="tel:+919286755109"
-                className="bg-white hover:bg-gray-100 text-orange-600 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-2xl"
+                href="tel:+918969906425"
+                className="w-full sm:w-auto bg-white text-black px-10 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 flex items-center justify-center gap-3"
               >
-                <Phone className="h-6 w-6" />
-                Call: +91 92867 55109
+                Call Support
               </a>
             </div>
-
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-orange-200 text-sm">
-              <div className="flex items-center justify-center gap-2">
-                <span>🏩</span>
-                <span>Best Guest House</span>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span>🛕</span>
-                <span>Near Banke Bihari</span>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span>💫</span>
-                <span>Near Prem Mandir</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Spiritual Message */}
-          <div className="text-center mt-8">
-            <p className="text-gray-600 flex items-center justify-center gap-2 text-lg">
-              <Heart className="h-5 w-5 text-red-500" />
-              <span>Jai Shri Radhe Krishna - Welcome to Best Guest House in Vrindavan!</span>
-            </p>
           </div>
         </div>
       </section>

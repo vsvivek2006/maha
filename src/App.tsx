@@ -13,6 +13,13 @@ import Terms from './pages/Terms';
 import OnboardingAgreement from './pages/OnboardingAgreement'; 
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
+import BlogPage from './pages/BlogPage';
+import BettingAppPage from './pages/BettingAppPage';
+import BookIdPage from './pages/BookIdPage';
+import FaqPage from './pages/FaqPage';
+
+
+
 
 function App() {
   return (
@@ -59,7 +66,11 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/onboarding-agreement" element={<OnboardingAgreement />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/blog" element={<BlogPage />} /> 
+            <Route path="/betting-app" element={<BettingAppPage />} />  
+            <Route path="/book-id" element={<BookIdPage />} />  
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/faq" element={<FaqPage />} /> 
             
             {/* ✅ UPDATED PAYMENT SUCCESS PAGE */}
             <Route path="/payment/success" element={

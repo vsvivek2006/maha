@@ -1,199 +1,134 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone, MessageCircle, ArrowUp, Home } from "lucide-react";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 type NavItem = { name: string; href: string };
+
 const primaryNav: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Our Rooms", href: "/rooms" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Contact Us", href: "/contact" },
+  { name: "Blog", href: "/blog" },
+  { name: "Mahadev Betting App", href: "/betting-app" },
+  { name: "Mahadev Book ID", href: "/book-id" },
+  { name: "FAQ", href: "/faq" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
-  const location = useLocation();
+  // WhatsApp Number and Message setup
+  const whatsappNumber = "918969906425";
+  const whatsappMessage = encodeURIComponent("I want ID");
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
-
-  // Show/hide scroll to top button
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  // Function to handle redirect
+  const handleAuthClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open(whatsappLink, "_blank");
   };
 
-  const linkBase =
-    "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200";
   const navClass = ({ isActive }: { isActive: boolean }) =>
-    isActive
-      ? `${linkBase} bg-yellow-600 text-white shadow-md`
-      : `${linkBase} text-gray-700 hover:bg-yellow-50 hover:text-yellow-700`;
-
-  // WhatsApp direct message
-  const handleWhatsApp = () => {
-    const message = "Hello! I'm interested in booking a room at your guest house. Could you please share more details?";
-    const url = `https://wa.me/919286755109?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
-  };
-
-  // Direct call function
-  const handleCall = () => {
-    window.open("tel:+919286755109");
-  };
+    `px-2 py-1 text-[15px] font-medium transition-all duration-200 whitespace-nowrap ${
+      isActive 
+        ? "text-[#FFCC00] border-b-2 border-[#FFCC00]" 
+        : "text-white hover:text-[#FFCC00]"
+    }`;
 
   return (
-    <>
-      {/* Header */}
-      <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main">
-          <div className="flex justify-between items-center h-20">
-            {/* Brand - Only Logo */}
-            <div className="flex items-center">
-              <Link
-                to="/"
-                className="flex items-center hover:scale-105 transition-transform duration-200"
-                aria-label="Radhika Sadan Home"
-              >
-                <div className="flex-shrink-0">
-                  {/* Large logo only - no text */}
-                  <div className="h-20 w-20 rounded-full flex items-center justify-center overflow-hidden">
-                    <img
-                      src="/logo.png"
-                      alt="Radhika Sadan Guest House Logo"
-                      className="h-18 w-18 object-contain"
-                      onError={(e) => {
-                        // Fallback if logo doesn't exist
-                        e.currentTarget.style.display = "none";
-                        const parent = e.currentTarget.parentElement;
-                        if (parent) {
-                          parent.innerHTML = `
-                            <div class="h-18 w-18 rounded-full border-2 border-yellow-500 flex items-center justify-center bg-yellow-50">
-                              <Home class="h-10 w-10 text-yellow-600" />
-                            </div>
-                          `;
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              </Link>
+    <header className="bg-black border-b border-zinc-800 sticky top-0 z-50">
+      <nav className="max-w-[1600px] mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center h-20">
+          
+          {/* Left Side: Cricket Badge + Logo + Name */}
+          <div className="flex items-center gap-4 lg:gap-8">
+            <div className="hidden sm:block">
+              <span className="bg-[#1a1a1a] text-[#888] text-xs px-3 py-1.5 rounded-md border border-zinc-800 cursor-default">
+                Cricket
+              </span>
             </div>
 
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-1">
-              {primaryNav.map((item) => (
-                <NavLink key={item.name} to={item.href} className={navClass} end={item.href === "/"}>
-                  {item.name}
-                </NavLink>
-              ))}
-            </div>
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="bg-white p-0.5 rounded-sm">
+                 <img
+                    src="/logo.png" 
+                    alt="Logo"
+                    className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+                  />
+              </div>
+              <span className="text-[#FFCC00] text-xl sm:text-2xl font-bold tracking-tight">
+                Mahadev Book
+              </span>
+            </Link>
+          </div>
 
-            {/* Desktop CTAs */}
-            <div className="hidden md:flex items-center space-x-3">
-              <button
-                onClick={handleCall}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center gap-2"
+          {/* Center: Desktop Links */}
+          <div className="hidden xl:flex items-center gap-6">
+            {primaryNav.map((item) => (
+              <NavLink key={item.name} to={item.href} className={navClass}>
+                {item.name}
+              </NavLink>
+            ))}
+          </div>
+
+          {/* Right Side: WhatsApp Redirect Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={handleAuthClick}
+              className="bg-[#EAB308] hover:bg-[#FACC15] text-black px-5 py-2 rounded-lg font-bold text-sm transition-transform active:scale-95 shadow-lg"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleAuthClick}
+              className="bg-[#EAB308] hover:bg-[#FACC15] text-black px-5 py-2 rounded-lg font-bold text-sm transition-transform active:scale-95 shadow-lg"
+            >
+              Registration
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="xl:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-[#FFCC00] p-2 hover:bg-zinc-900 rounded-md transition-colors"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Sidebar */}
+        {isOpen && (
+          <div className="xl:hidden bg-zinc-950 border-t border-zinc-800 py-6 px-4 space-y-4 animate-in slide-in-from-top duration-300">
+            {primaryNav.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className="block text-white text-lg py-2 hover:text-[#FFCC00]"
+                onClick={() => setIsOpen(false)}
               >
-                <Phone className="h-4 w-4" />
-                <span>Call Now</span>
+                {item.name}
+              </NavLink>
+            ))}
+            <div className="flex flex-col gap-3 pt-4 border-t border-zinc-800">
+              <button 
+                onClick={handleAuthClick} 
+                className="bg-[#EAB308] text-black text-center py-3 rounded-lg font-bold"
+              >
+                Login
               </button>
-              <button
-                onClick={handleWhatsApp}
-                className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-bold transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center gap-2"
+              <button 
+                onClick={handleAuthClick} 
+                className="bg-[#EAB308] text-black text-center py-3 rounded-lg font-bold"
               >
-                <MessageCircle className="h-4 w-4" />
-                <span>WhatsApp</span>
-              </button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen((v) => !v)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500 transition-colors duration-200"
-                aria-label="Toggle menu"
-                aria-expanded={isOpen}
-              >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                Registration
               </button>
             </div>
           </div>
-
-          {/* Mobile menu */}
-          {isOpen && (
-            <div className="md:hidden animate-in fade-in-50 slide-in-from-top-5 duration-200">
-              <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3 bg-white border-t border-gray-100 shadow-xl">
-                {primaryNav.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.href}
-                    className={({ isActive }) =>
-                      `block px-3 py-3 rounded-lg text-base font-medium transition-colors duration-200 ${
-                        isActive ? "bg-yellow-600 text-white shadow-md" : "text-gray-700 hover:bg-yellow-50 hover:text-yellow-700"
-                      }`
-                    }
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </NavLink>
-                ))}
-
-                {/* Mobile CTAs */}
-                <div className="flex flex-col space-y-3 pt-4 border-t border-gray-200">
-                  <button
-                    onClick={() => { handleCall(); setIsOpen(false); }}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg font-medium transition-colors duration-200 text-center flex items-center justify-center gap-2"
-                  >
-                    <Phone className="h-4 w-4" />
-                    Call Now: +91 92867 55109
-                  </button>
-                  <button
-                    onClick={() => { handleWhatsApp(); setIsOpen(false); }}
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white px-4 py-3 rounded-lg font-bold transition-all duration-200 text-center flex items-center justify-center gap-2"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    WhatsApp Us
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </nav>
-      </header>
-
-      {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white p-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 animate-bounce"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="h-6 w-6" />
-        </button>
-      )}
-    </>
+        )}
+      </nav>
+    </header>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { ShieldCheck, Trophy, Zap, Clock, MessageCircle, Phone, Lock, CheckCircle2 } from "lucide-react";
 
 const OnboardingAgreement: React.FC = () => {
   const lastUpdated = new Date().toLocaleDateString(undefined, {
@@ -7,267 +8,150 @@ const OnboardingAgreement: React.FC = () => {
     day: "2-digit",
   });
 
+  // WhatsApp Link
+  const whatsappLink = "https://wa.me/918969906425?text=Hello%20Mahadev%20Book%20Official,%20I%20accept%20the%20onboarding%20terms.";
+
   return (
-    <div>
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center bg-yellow-400 text-blue-900 px-6 py-3 rounded-full text-lg font-bold mb-8 animate-bounce">
-            🦅 Premium Backlink Services
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-[#FFD700] selection:text-black">
+      
+      {/* 1. HERO SECTION */}
+      <section className="relative bg-gradient-to-br from-[#111] via-[#050505] to-black text-white py-24 border-b border-zinc-800 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFD700]/5 via-transparent to-transparent"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 bg-[#FFD700] text-black px-6 py-2 rounded-full text-lg font-black mb-8 animate-pulse uppercase tracking-tighter">
+            <Trophy size={20} /> Official Onboarding
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Onboarding Agreement
+          <h1 className="text-5xl md:text-7xl font-black italic uppercase leading-none mb-4">
+            Mahadev Book <br />
+            <span className="text-[#FFD700]">User Agreement</span>
           </h1>
-          <p className="text-blue-100 text-lg md:text-xl">
-            A clear process to kickstart your SEO & Backlink Services engagement.
+          <p className="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto font-medium">
+            Your official process to kickstart your secure gaming and premium betting ID engagement.
           </p>
-          <p className="text-sm text-blue-200 mt-4">Last updated: {lastUpdated}</p>
+          <p className="text-sm text-zinc-500 mt-6 uppercase font-bold tracking-widest">Effective Date: {lastUpdated}</p>
         </div>
       </section>
 
-      {/* Intro */}
-      <section className="py-12 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-700 space-y-6">
-          <p>
-            This Onboarding Agreement ("Agreement") outlines how 360EagleWeb ("we", "us", "our") will
-            initiate and deliver SEO and backlink services to the Client ("you", "your"). It defines scope, 
-            access, approvals, timelines, deliverables, and responsibilities so your backlink campaign can 
-            launch smoothly and achieve measurable ranking improvements.
-          </p>
-
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
-            <p className="text-sm text-blue-900">
-              <strong>Note:</strong> This Agreement is an operational guide for onboarding. It is used
-              together with any Proposal/Quotation/SOW and our Terms of Service. If there's a conflict,
-              the Proposal/SOW prevails for scope & pricing; Terms of Service prevail for legal terms.
+      {/* 2. INTRO SECTION */}
+      <section className="py-16 bg-[#080808]">
+        <div className="max-w-4xl mx-auto px-6 space-y-8">
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-[2rem] p-8 md:p-12">
+            <p className="text-zinc-300 text-lg leading-relaxed mb-6">
+              This Onboarding Agreement ("Agreement") outlines how **Mahadev Book Official** will initiate and deliver premium betting ID services. It defines account access, security protocols, withdrawal timelines, and user responsibilities to ensure your gaming experience is smooth, secure, and transparent.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Scope */}
-      <section className="py-6 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-700 space-y-8">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">1) Scope of Services</h2>
-            <p className="mb-3">
-              Your Proposal/SOW specifies exactly what's included. Typical service categories:
-            </p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><strong>Premium Backlink Packages:</strong> EAGLE DEMO, START, PRO, BUSINESS, ENTERPRISE, PREMIUM packages</li>
-              <li><strong>SEO Services:</strong> Technical SEO Audit, Keyword Research, Content Optimization</li>
-              <li><strong>Specialized Link Building:</strong> Content-based links, Local SEO backlinks, Authority building</li>
-              <li><strong>Analytics & Reporting:</strong> Ranking tracking, backlink monitoring, performance reports</li>
-              <li><strong>Monthly SEO Management:</strong> Ongoing optimization and performance tracking</li>
-            </ul>
-            <p className="mt-2 text-sm text-gray-600">
-              All backlinks are 100% Google-safe, dofollow, and from premium sources. We guarantee white-hat techniques only.
-            </p>
-          </div>
-
-          {/* Access & Assets */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">2) Access & Assets (Client To Provide)</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Website URL(s) for backlink building</li>
-              <li>Target keywords and competitor analysis if available</li>
-              <li>Brand guidelines and preferred anchor text strategy</li>
-              <li>Google Analytics, Search Console access (for comprehensive SEO services)</li>
-              <li>Any existing backlink profiles or disavow files</li>
-              <li>Point of contact for timely feedback & approvals</li>
-            </ul>
-          </div>
-
-          {/* Deliverables & Timelines */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">3) Deliverables, Milestones & Timelines</h2>
-            <p className="mb-2">
-              We provide clear delivery timelines based on your chosen package:
-            </p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><strong>EAGLE DEMO:</strong> 3 working days delivery</li>
-              <li><strong>EAGLE START/PRO/BUSINESS:</strong> 7 working days delivery</li>
-              <li><strong>EAGLE ENTERPRISE/PREMIUM:</strong> 10 working days delivery</li>
-              <li><strong>Backlink Reports:</strong> Comprehensive report with all built links</li>
-              <li><strong>Indexing Service:</strong> 40 days ping back service included</li>
-              <li><strong>Approvals:</strong> Please review and respond within 2-3 business days to maintain schedule</li>
-            </ul>
-          </div>
-
-          {/* Change Requests */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">4) Change Requests</h2>
-            <p>
-              Any request outside the approved package scope (additional URLs, keywords, or specialized services) 
-              will be quoted separately. We'll confirm effort, cost, and new timelines before proceeding.
-            </p>
-          </div>
-
-          {/* Payments */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">5) Payments & Pricing</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><strong>One-time Packages:</strong> Advance payment required to start service</li>
-              <li><strong>Monthly Services:</strong> Pre-paid monthly, minimum 3-month commitment for tracking services</li>
-              <li><strong>Special Offers:</strong> 70% OFF on all packages + 5% Extra OFF on advance payment</li>
-              <li><strong>Payment Methods:</strong> UPI, Bank Transfer, Credit/Debit Cards, Digital Wallets</li>
-            </ul>
-          </div>
-
-          {/* KPI & Reporting */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">6) KPIs, Tracking & Reporting</h2>
-            <p className="mb-2">
-              We monitor and report on key performance indicators:
-            </p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Backlink quantity and quality metrics</li>
-              <li>Keyword ranking improvements</li>
-              <li>Domain Authority growth</li>
-              <li>Organic traffic increases</li>
-              <li>Search engine indexing status</li>
-            </ul>
-            <p className="mt-2 text-sm text-gray-600">
-              Most clients see ranking improvements within 2-4 weeks of service delivery.
-            </p>
-          </div>
-
-          {/* Communication & SLA */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">7) Communication & SLA</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Primary channel: WhatsApp and email for quick updates</li>
-              <li>Response times: within 1-2 business days (Mon-Fri IST), urgent queries within hours</li>
-              <li>Progress updates at major milestones</li>
-              <li>24/7 support for urgent technical issues</li>
-            </ul>
-          </div>
-
-          {/* Compliance */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">8) Compliance & Search Engine Policies</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>All backlink strategies comply with Google's Webmaster Guidelines</li>
-              <li>White-hat techniques only - no black-hat or risky practices</li>
-              <li>Natural link profile building with diverse anchor texts</li>
-              <li>We do not control search engine algorithm updates or manual actions</li>
-            </ul>
-          </div>
-
-          {/* IP & Content */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">9) Intellectual Property & Licensing</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Upon full payment, backlink reports and deliverables are provided to you</li>
-              <li>Our link building methodologies and processes remain our IP</li>
-              <li>You receive full ownership of the built backlinks and their benefits</li>
-              <li>All content created for backlinks follows platform-specific licenses</li>
-            </ul>
-          </div>
-
-          {/* Data Protection */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">10) Confidentiality & Data Protection</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>We treat your website data and business information as confidential</li>
-              <li>We follow reasonable security practices for data protection</li>
-              <li>Personal data handling aligns with applicable laws (India DPDP Act)</li>
-              <li>Secure methods used for sharing sensitive information</li>
-            </ul>
-          </div>
-
-          {/* Acceptance & Handover */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">11) Acceptance, Delivery & Support</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>We deliver comprehensive backlink report upon completion</li>
-              <li>40-day ping back service for faster indexing</li>
-              <li>Submission to 1020+ search engines included</li>
-              <li>Post-delivery support for 14 days for any reporting issues</li>
-              <li>Guidance on monitoring backlink performance</li>
-            </ul>
-          </div>
-
-          {/* Termination */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">12) Pause, Cancellation & Termination</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Monthly services can be cancelled with 7-day prior notice after minimum commitment</li>
-              <li>One-time packages: work completed to-date remains billable if cancelled</li>
-              <li>Non-payment may lead to service suspension</li>
-              <li>Refunds processed as per our refund policy in Terms of Service</li>
-            </ul>
-          </div>
-
-          {/* Force Majeure & Disputes */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">13) Force Majeure & Dispute Resolution</h2>
-            <p className="mb-2">
-              We are not liable for delays caused by events beyond reasonable control (e.g., search engine 
-              algorithm updates, platform outages, regulatory actions).
-            </p>
-            <p>
-              Disputes will be addressed in good faith discussions first. Failing settlement, competent
-              courts at <em>Jaipur, Rajasthan</em> will have exclusive jurisdiction.
-            </p>
-          </div>
-
-          {/* Guarantees */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">14) Service Guarantees</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><strong>100% Google Safe:</strong> All strategies comply with Google guidelines</li>
-              <li><strong>Fast Results:</strong> Quick 3-10 day delivery with super fast indexing</li>
-              <li><strong>Premium Quality:</strong> High-quality, relevant backlinks from authoritative sources</li>
-              <li><strong>Proven Results:</strong> Most clients see ranking improvements within 2-4 weeks</li>
-              <li><strong>Money-Back Guarantee:</strong> As specified in our Terms of Service</li>
-            </ul>
-          </div>
-
-          {/* Kickoff Checklist */}
-          <div className="border-t pt-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">Kickoff Checklist</h2>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>Approved Package selection & advance payment</li>
-              <li>Primary contact details & communication channel confirmed</li>
-              <li>Target website URL(s) and keywords provided</li>
-              <li>Any specific requirements or competitor analysis shared</li>
-              <li>Preferred anchor text strategy discussed</li>
-              <li>Reporting preferences and KPI expectations aligned</li>
-            </ul>
-          </div>
-
-          {/* Special Offer Notice */}
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-xl mb-6">
-            <h3 className="font-bold text-blue-900 text-lg mb-2">🎯 Special Limited Time Offer</h3>
-            <p className="text-blue-900">
-              <strong>70% OFF</strong> on all backlink packages + <strong>5% Extra OFF</strong> on advance payment!
-              <br />
-              ⚡ Demo package starts at just <strong>₹1</strong> - Perfect for testing our service quality
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div className="border rounded-xl p-5 bg-gray-50">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Ready to Boost Your Rankings?</h3>
-            <p className="text-gray-700 mb-3">
-              Contact us to get started with premium backlink services:
-            </p>
-            <div className="space-y-2">
-              <p>
-                📧 Email: <a className="text-blue-700 underline font-medium" href="mailto:info@360eagleweb.com">info@360eagleweb.com</a>
-              </p>
-              <p>
-                📞 Phone: <a className="text-blue-700 underline font-medium" href="tel:+919310533973">+91 93105 33973</a>
-              </p>
-              <p>
-                💬 WhatsApp: <a className="text-blue-700 underline font-medium" href="https://wa.me/919310533973" target="_blank" rel="noopener noreferrer">Click to Chat</a>
+            <div className="bg-[#FFD700]/5 border-l-4 border-[#FFD700] p-6 rounded-r-xl">
+              <p className="text-sm text-[#FFD700] font-bold leading-relaxed">
+                IMPORTANT: This agreement is an operational guide. By creating your Mahadev Book ID, you agree to these terms alongside our General Privacy Policy. In case of disputes, the terms mentioned here prevail for operational delivery.
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <p className="text-xs text-gray-500">
-            Disclaimer: This template is for general guidance and not legal advice. Please review with your legal counsel if needed.
+      {/* 3. CORE TERMS SECTION */}
+      <section className="py-16 bg-black">
+        <div className="max-w-4xl mx-auto px-6 space-y-12">
+          
+          {/* Section 1: Services */}
+          <div className="group transition-all">
+            <h2 className="text-2xl font-black text-[#FFD700] mb-4 uppercase italic flex items-center gap-3">
+              <Zap className="shrink-0" /> 1) Scope of ID Services
+            </h2>
+            <ul className="space-y-4 text-zinc-400 font-medium">
+              <li className="flex gap-3"><CheckCircle2 className="text-zinc-700 shrink-0" size={20} /> Verified Betting IDs for Cricket, Football, and 500+ Casino Games.</li>
+              <li className="flex gap-3"><CheckCircle2 className="text-zinc-700 shrink-0" size={20} /> 24/7 Priority Support via official WhatsApp channels.</li>
+              <li className="flex gap-3"><CheckCircle2 className="text-zinc-700 shrink-0" size={20} /> Real-time match analytics and expert prediction insights.</li>
+              <li className="flex gap-3"><CheckCircle2 className="text-zinc-700 shrink-0" size={20} /> 100% Google-Safe and encrypted transaction gateways.</li>
+            </ul>
+          </div>
+
+          {/* Section 2: Security */}
+          <div>
+            <h2 className="text-2xl font-black text-[#FFD700] mb-4 uppercase italic flex items-center gap-3">
+              <Lock className="shrink-0" /> 2) Security & Asset Protection
+            </h2>
+            <p className="text-zinc-400 mb-4 italic">To protect your funds, the following protocols are strictly followed:</p>
+            <ul className="list-disc pl-6 space-y-2 text-zinc-400">
+              <li>2-Factor Authentication (2FA) for all login attempts.</li>
+              <li>Verification of KYC documents for large withdrawal requests.</li>
+              <li>Strict privacy—your gaming data is never shared with third parties.</li>
+              <li>Official communication will ONLY happen through our verified WhatsApp (+91 89699 06425).</li>
+            </ul>
+          </div>
+
+          {/* Section 3: Withdrawals */}
+          <div className="bg-zinc-900/30 p-8 rounded-3xl border border-zinc-800">
+            <h2 className="text-2xl font-black text-[#FFD700] mb-4 uppercase italic flex items-center gap-3">
+              <Clock className="shrink-0" /> 3) Withdrawal & Payout SLA
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-6 text-sm">
+              <div className="p-4 bg-black rounded-xl border border-zinc-800">
+                <p className="font-black text-white mb-1">IMPS/UPI Payouts</p>
+                <p className="text-zinc-500">Processed within 30 minutes (24/7).</p>
+              </div>
+              <div className="p-4 bg-black rounded-xl border border-zinc-800">
+                <p className="font-black text-white mb-1">Bank Transfers</p>
+                <p className="text-zinc-500">Processed within 2-4 hours on banking days.</p>
+              </div>
+            </div>
+            <p className="mt-4 text-xs text-zinc-500 font-bold uppercase tracking-widest">Note: Minimum withdrawal ₹500 | No hidden charges.</p>
+          </div>
+
+          {/* Section 4: Responsible Gaming */}
+          <div>
+            <h2 className="text-2xl font-black text-[#FFD700] mb-4 uppercase italic flex items-center gap-3">
+              <ShieldCheck className="shrink-0" /> 4) Responsible Gaming Policy
+            </h2>
+            <ul className="space-y-3 text-zinc-400">
+              <li className="flex gap-2"><span>•</span> Users must be 18+ years of age.</li>
+              <li className="flex gap-2"><span>•</span> We provide daily/weekly loss limit setting tools.</li>
+              <li className="flex gap-2"><span>•</span> Self-exclusion is available upon request through WhatsApp support.</li>
+            </ul>
+          </div>
+
+          {/* Section 5: Bonus Policy */}
+          <div className="bg-gradient-to-r from-zinc-900 to-black p-8 rounded-[2rem] border border-[#FFD700]/20">
+            <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tighter">Exclusive Rewards</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="text-center p-4 rounded-xl bg-black/50 border border-zinc-800">
+                <p className="text-[#FFD700] text-3xl font-black italic">400%</p>
+                <p className="text-[10px] text-zinc-500 uppercase font-bold">Welcome Bonus</p>
+              </div>
+              <div className="text-center p-4 rounded-xl bg-black/50 border border-zinc-800">
+                <p className="text-[#FFD700] text-3xl font-black italic">10%</p>
+                <p className="text-[10px] text-zinc-500 uppercase font-bold">Refill Bonus</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Support Section */}
+          <div className="pt-10 border-t border-zinc-800">
+            <div className="bg-zinc-900 p-8 rounded-[2.5rem] border border-zinc-800 text-center space-y-6">
+              <h3 className="text-2xl font-black uppercase italic">Ready to <span className="text-[#FFD700]">Start Winning?</span></h3>
+              <p className="text-zinc-400">By proceeding, you acknowledge that you have read and agreed to the Mahadev Book Onboarding Terms.</p>
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <a 
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-[#25D366] text-white font-black px-10 py-5 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-[0_15px_40px_rgba(37,211,102,0.3)]"
+                >
+                  <MessageCircle size={24} /> I Accept & Get ID
+                </a>
+                <a 
+                  href="tel:+918969906425"
+                  className="bg-white text-black font-black px-10 py-5 rounded-2xl flex items-center justify-center gap-3 hover:scale-105 transition-all"
+                >
+                  <Phone size={24} /> Call Official
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-[10px] text-zinc-600 text-center uppercase font-bold tracking-widest pb-10">
+            © 2026 Mahadev Book Official. All Rights Reserved. Gaming Involves Financial Risk.
           </p>
         </div>
       </section>

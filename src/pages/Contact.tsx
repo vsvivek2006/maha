@@ -1,610 +1,168 @@
-import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle, Instagram, Facebook, Star, Heart, Calendar, Users, Navigation } from 'lucide-react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
+import { 
+  Phone, MessageCircle, Mail, MapPin, 
+  Clock, ShieldCheck, Headphones, Send 
+} from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    guests: '',
-    checkin: '',
-    checkout: '',
-    roomType: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const whatsappMessage = `🏩 *Radhika Sadan Vrindavan - Room Booking Inquiry*
-
-*Name:* ${formData.fullName}
-*Email:* ${formData.email}
-*Phone:* ${formData.phone}
-*Number of Guests:* ${formData.guests}
-*Check-in Date:* ${formData.checkin}
-*Check-out Date:* ${formData.checkout}
-*Room Type:* ${formData.roomType}
-*Special Request:* ${formData.message}
-
-Hello! I would like to book a room at Radhika Sadan Guest House near Banke Bihari Temple and Prem Mandir. Please share available rooms and rates.`;
-
-    const whatsappUrl = `https://wa.me/919286755109?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, '_blank');
-  };
-
-  const roomTypes = [
-    'AC Room',
-    'Non-AC Room',
-    'Deluxe Room',
-    'Family Suite',
-    'Not Sure - Need Recommendation'
-  ];
-
-  const contactInfo = [
-    {
-      icon: <Phone className="h-5 w-5 md:h-6 md:w-6" />,
-      title: 'Phone / WhatsApp',
-      content: '+91 92867 55109',
-      link: 'tel:+919286755109'
-    },
-    {
-      icon: <Mail className="h-5 w-5 md:h-6 md:w-6" />,
-      title: 'Email',
-      content: 'book@radhikasadan.com',
-      link: 'mailto:book@radhikasadan.com'
-    },
-    {
-      icon: <MapPin className="h-5 w-5 md:h-6 md:w-6" />,
-      title: 'Best Location in Vrindavan',
-      content: 'Near Banke Bihari Temple, Prem Mandir & ISKCON, Vrindavan',
-      link: '#'
-    },
-    {
-      icon: <Clock className="h-5 w-5 md:h-6 md:w-6" />,
-      title: 'Check-in / Check-out',
-      content: '24/7 - Flexible timings',
-      link: '#'
-    }
-  ];
-
-  const nearbyAttractions = [
-    {
-      name: 'Banke Bihari Temple',
-      distance: '3 minutes walk',
-      description: 'Most sacred and famous temple in Vrindavan'
-    },
-    {
-      name: 'Prem Mandir',
-      distance: '5 minutes walk',
-      description: 'Beautiful marble temple with spectacular light shows'
-    },
-    {
-      name: 'ISKCON Temple',
-      distance: '8 minutes walk',
-      description: 'International Society for Krishna Consciousness'
-    },
-    {
-      name: 'Parikrama Marg',
-      distance: '2 minutes walk',
-      description: 'Main parikrama path for spiritual walking'
-    },
-    {
-      name: 'Premanand Ji Maharaj Ashram',
-      distance: '3 minutes walk',
-      description: 'Famous spiritual center and temple'
-    },
-    {
-      name: 'Gouri Gopal Vraddhashram',
-      distance: '5 minutes walk',
-      description: 'Peaceful ashram for meditation'
-    }
-  ];
-
-  const amenities = [
-    {
-      icon: '🛌',
-      title: 'Comfortable Beds',
-      description: 'Orthopedic mattresses for restful sleep'
-    },
-    {
-      icon: '🚿',
-      title: '24x7 Hot Water',
-      description: 'Continuous hot water supply'
-    },
-    {
-      icon: '📶',
-      title: 'Free WiFi',
-      description: 'High-speed internet access'
-    },
-    {
-      icon: '🅿️',
-      title: 'Car Parking',
-      description: 'Secure parking space available'
-    },
-    {
-      icon: '🍴',
-      title: 'Pure Vegetarian Food',
-      description: 'Hygienic & delicious satvik meals'
-    },
-    {
-      icon: '🙏',
-      title: 'Spiritual Atmosphere',
-      description: 'Perfect for meditation and bhajan'
-    }
-  ];
+  // WhatsApp Link using the new number provided
+  const whatsappLink = "https://wa.me/918969906425";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50">
-      {/* ✅ SEO Component */}
+    <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#FFD700] selection:text-black">
       <Helmet>
-        <title>Radhika Sadan Vrindavan | Contact Best Guest House Near Banke Bihari Temple & Prem Mandir</title>
-        <meta
-          name="description"
-          content="Contact Radhika Sadan Vrindavan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON. Book AC/Non-AC rooms from ₹999. Walking distance to all major temples."
-        />
-        <meta
-          name="keywords"
-          content="Radhika Sadan contact, guest house near Banke Bihari Temple, accommodation near Prem Mandir Vrindavan, stay near ISKCON Vrindavan, best guest house Vrindavan, budget hotel Mathura, pilgrim accommodation, Radhika Sadan booking, spiritual stay Mathura Vrindavan"
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://radhikasadan.com/contact" />
-
-        {/* Open Graph */}
-        <meta property="og:title" content="Radhika Sadan Vrindavan - Best Guest House Near Banke Bihari Temple & Prem Mandir" />
-        <meta property="og:description" content="Book your stay at Radhika Sadan - Best guest house in Vrindavan walking distance to Banke Bihari Temple, Prem Mandir & ISKCON. AC/Non-AC rooms from ₹999." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://radhikasadan.com/contact" />
-        <meta property="og:image" content="https://radhikasadan.com/og-image.jpg" />
-
-        {/* JSON-LD Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Hotel",
-            "name": "Radhika Sadan Guest House",
-            "url": "https://radhikasadan.com",
-            "description": "Best guest house in Vrindavan near Banke Bihari Temple, Prem Mandir and ISKCON",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Near Banke Bihari Temple, Prem Mandir Road",
-              "addressLocality": "Vrindavan",
-              "addressRegion": "Uttar Pradesh",
-              "postalCode": "281121",
-              "addressCountry": "IN"
-            },
-            "telephone": "+919286755109",
-            "email": "book@radhikasadan.com",
-            "amenityFeature": [
-              "AirConditioning",
-              "FreeWifi",
-              "Parking",
-              "24HourFrontDesk",
-              "Restaurant"
-            ],
-            "checkinTime": "12:00 PM",
-            "checkoutTime": "11:00 AM",
-            "areaServed": "Vrindavan Mathura"
-          })}
-        </script>
+        <title>Contact Mahadev Book Support | 24/7 Dedicated Assistance</title>
+        <meta name="description" content="Contact Mahadev Book for 24/7 support regarding sports insights, account questions, and technical needs. Reach us via WhatsApp at +91 8969906425." />
       </Helmet>
-      
-      {/* Hero Section - Mobile Optimized */}
-      <section className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 text-white py-12 md:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center bg-white text-orange-600 px-4 py-2 md:px-6 md:py-3 rounded-full text-sm md:text-lg font-bold mb-6 md:mb-8 animate-pulse">
-              🏩 Best Guest House in Vrindavan - Near Banke Bihari Temple
-            </div>
-            
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Stay in <span className="text-yellow-300">Heart of Vrindavan</span>
-            </h1>
-            <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto text-yellow-100 px-2">
-              Radhika Sadan Vrindavan - Your perfect pilgrimage stay near Banke Bihari Temple, Prem Mandir & ISKCON
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-2">
-              <a
-                href="https://wa.me/919286755109?text=Hello Radhika Sadan, I want to book a room near Banke Bihari Temple and Prem Mandir in Vrindavan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
-              >
-                <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
-                <span>WhatsApp Booking</span>
-              </a>
-              <a
-                href="tel:+919286755109"
-                className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
-              >
-                <Phone className="h-4 w-4 md:h-5 md:w-5" />
-                <span>Call: +91 92867 55109</span>
-              </a>
-            </div>
-          </div>
+
+      {/* 1. HERO SECTION (image_4644a6.png) */}
+      <section className="relative pt-24 pb-20 px-6 border-b border-zinc-900 overflow-hidden text-center">
+        <div className="max-w-7xl mx-auto relative z-10 space-y-6">
+          <h1 className="text-4xl md:text-7xl font-black italic uppercase leading-tight shadow-sm">
+            Contact <span className="text-[#FFD700]">Mahadev Book</span> Support
+          </h1>
+          <p className="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl font-medium leading-relaxed">
+            Our dedicated team is available 24/7 to assist with your sports insights, 
+            account questions, and technical support needs.
+          </p>
         </div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFD700]/5 via-transparent to-transparent"></div>
       </section>
 
-      {/* Location Highlights - Mobile Optimized */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Best Location in Vrindavan
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 px-2">
-              Walking distance to all major temples - Best guest house location in Vrindavan
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {nearbyAttractions.map((attraction, index) => (
-              <div key={index} className="bg-orange-50 p-4 md:p-6 rounded-xl border border-orange-100 hover:shadow-lg transition-all duration-300">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-gray-900 text-base md:text-lg">{attraction.name}</h3>
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs md:text-sm font-medium ml-2">
-                    {attraction.distance}
-                  </span>
-                </div>
-                <p className="text-gray-600 text-xs md:text-sm">{attraction.description}</p>
-                <div className="flex items-center mt-2 text-orange-600 text-xs md:text-sm">
-                  <Navigation className="h-3 w-3 md:h-4 md:w-4 mr-1" />
-                  <span>Walking distance from Radhika Sadan</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Amenities Section - Mobile Optimized */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-orange-50 to-yellow-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-              Best Guest House Amenities
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 px-2">
-              Everything you need for comfortable pilgrimage in Vrindavan
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            {amenities.map((amenity, index) => (
-              <div key={index} className="text-center p-4 md:p-6 bg-white rounded-xl hover:shadow-lg transition-all duration-300">
-                <div className="text-2xl md:text-3xl mb-3 md:mb-4">{amenity.icon}</div>
-                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2">{amenity.title}</h3>
-                <p className="text-gray-600 text-xs md:text-sm">{amenity.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form & Info - Mobile Optimized */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-            {/* Booking Form */}
+      {/* 2. CONTACT OPTIONS & FORM */}
+      <section className="py-20 px-6 bg-black">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+          
+          {/* LEFT: GET IN TOUCH FORM (image_4644dd.png & image_4644e6.png) */}
+          <div className="space-y-10">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Book Best Guest House in Vrindavan
-              </h2>
-              <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
-                Fill this form to book your room at Radhika Sadan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON.
-              </p>
+              <h2 className="text-3xl font-black uppercase italic mb-2">Get in Touch <span className="text-[#FFD700]">With Our Team</span></h2>
+              <div className="w-16 h-1 bg-[#FFD700] rounded-full"></div>
+            </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-orange-50 p-4 md:p-6 lg:p-8 rounded-xl shadow-lg">
-                <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                    placeholder="Your full name"
-                  />
-                </div>
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Your Full Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter your name" 
+                  className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-6 py-4 focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] outline-none transition-all"
+                />
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Email Address</label>
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-6 py-4 focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] outline-none transition-all"
+                />
+              </div>
 
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone / WhatsApp *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                      placeholder="+91 XXXXX XXXXX"
-                    />
-                  </div>
-                </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Phone Number (Optional)</label>
+                <input 
+                  type="tel" 
+                  placeholder="Enter your phone number" 
+                  className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-6 py-4 focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] outline-none transition-all"
+                />
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div>
-                    <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
-                      Number of Guests
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="number"
-                        id="guests"
-                        name="guests"
-                        value={formData.guests}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 md:px-4 md:py-3 pl-10 md:pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                        placeholder="2"
-                        min="1"
-                      />
-                      <Users className="h-4 w-4 md:h-5 md:w-5 text-gray-400 absolute left-3 md:left-4 top-2.5 md:top-3" />
-                    </div>
-                  </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">How Can We Help You?</label>
+                <select className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-6 py-4 focus:border-[#FFD700] outline-none appearance-none text-gray-400">
+                  <option>Select a topic</option>
+                  <option>Mahadev Book ID Request</option>
+                  <option>Deposit/Withdrawal Issue</option>
+                  <option>Technical Support</option>
+                  <option>Other Inquiry</option>
+                </select>
+              </div>
 
-                  <div>
-                    <label htmlFor="roomType" className="block text-sm font-medium text-gray-700 mb-1">
-                      Room Type Preferred
-                    </label>
-                    <select
-                      id="roomType"
-                      name="roomType"
-                      value={formData.roomType}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                    >
-                      <option value="">Select room type</option>
-                      {roomTypes.map((roomType, index) => (
-                        <option key={index} value={roomType}>
-                          {roomType}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold uppercase tracking-wider text-gray-400">Detailed Description</label>
+                <textarea 
+                  rows={4} 
+                  placeholder="Please describe your inquiry in detail..." 
+                  className="w-full bg-zinc-900/50 border border-zinc-800 rounded-xl px-6 py-4 focus:border-[#FFD700] outline-none transition-all resize-none"
+                ></textarea>
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div>
-                    <label htmlFor="checkin" className="block text-sm font-medium text-gray-700 mb-1">
-                      Check-in Date
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="date"
-                        id="checkin"
-                        name="checkin"
-                        value={formData.checkin}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 md:px-4 md:py-3 pl-10 md:pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                      />
-                      <Calendar className="h-4 w-4 md:h-5 md:w-5 text-gray-400 absolute left-3 md:left-4 top-2.5 md:top-3" />
-                    </div>
-                  </div>
+              <button className="w-full bg-[#FFD700] text-black font-black py-5 rounded-xl uppercase tracking-tighter hover:bg-yellow-500 hover:scale-[1.02] transition-all flex items-center justify-center gap-3">
+                <Send size={20} /> Send Message to Support Team
+              </button>
+            </form>
+          </div>
 
-                  <div>
-                    <label htmlFor="checkout" className="block text-sm font-medium text-gray-700 mb-1">
-                      Check-out Date
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="date"
-                        id="checkout"
-                        name="checkout"
-                        value={formData.checkout}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 md:px-4 md:py-3 pl-10 md:pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base"
-                      />
-                      <Calendar className="h-4 w-4 md:h-5 md:w-5 text-gray-400 absolute left-3 md:left-4 top-2.5 md:top-3" />
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Special Requirements
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={3}
-                    className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm md:text-base resize-none"
-                    placeholder="Any special requirements, temple visit plans, food preferences, meditation needs..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
+          {/* RIGHT: CONTACT INFO & WHATSAPP */}
+          <div className="space-y-8">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-10 rounded-[2.5rem] space-y-8">
+              <h3 className="text-2xl font-black uppercase italic">Direct <span className="text-[#FFD700]">Assistance</span></h3>
+              
+              <div className="space-y-6">
+                <a 
+                  href={whatsappLink} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-6 p-4 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#25D366] transition-all group"
                 >
-                  <Send className="h-4 w-4 md:h-5 md:w-5" />
-                  <span>Check Availability & Book Now</span>
-                </button>
-
-                <p className="text-xs md:text-sm text-gray-500 text-center">
-                  Best guest house location near Banke Bihari Temple & Prem Mandir - Instant WhatsApp confirmation
-                </p>
-              </form>
-            </div>
-
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 md:mb-6" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Contact Best Guest House
-              </h2>
-              <p className="text-gray-600 mb-6 md:mb-8 text-base md:text-lg">
-                Get the best pilgrimage experience in Vrindavan with our prime location near all temples
-              </p>
-
-              <div className="space-y-4 md:space-y-6 mb-6 md:mb-8">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start space-x-3 md:space-x-4 p-3 md:p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-orange-100">
-                    <div className="bg-orange-100 text-orange-600 p-2 md:p-3 rounded-lg flex-shrink-0">
-                      {info.icon}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-gray-900 mb-1 text-sm md:text-base">{info.title}</h3>
-                      {info.link !== '#' ? (
-                        <a
-                          href={info.link}
-                          className="text-gray-600 hover:text-orange-600 transition-colors text-sm md:text-base break-words"
-                        >
-                          {info.content}
-                        </a>
-                      ) : (
-                        <p className="text-gray-600 text-sm md:text-base break-words">{info.content}</p>
-                      )}
-                    </div>
+                  <div className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(37,211,102,0.3)] group-hover:scale-110 transition-transform">
+                    <MessageCircle size={30} />
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="font-black uppercase text-sm tracking-widest text-gray-300">WhatsApp Support</h4>
+                    <p className="text-xl font-bold text-white">+91 89699 06425</p>
+                  </div>
+                </a>
 
-              {/* Special Location Banner */}
-              <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-4 md:p-6 rounded-xl mb-6 md:mb-8 shadow-lg">
-                <h3 className="font-bold text-gray-900 text-base md:text-lg mb-2 flex items-center">
-                  <Navigation className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                  Best Guest House Location
-                </h3>
-                <p className="text-gray-900 text-xs md:text-sm leading-relaxed">
-                  🎯 <strong>Banke Bihari Temple:</strong> 3 minutes walking distance
-                  <br />
-                  ⚡ <strong>Prem Mandir:</strong> 5 minutes walking distance
-                  <br />
-                  🙏 <strong>ISKCON Temple:</strong> 8 minutes walking distance
-                  <br />
-                  🏛️ <strong>Parikrama Marg:</strong> 2 minutes walking distance
-                </p>
-              </div>
+                <div className="flex items-center gap-6 p-4 border border-zinc-800 rounded-2xl">
+                  <div className="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center text-[#FFD700]">
+                    <Clock size={30} />
+                  </div>
+                  <div>
+                    <h4 className="font-black uppercase text-sm tracking-widest text-gray-300">Availability</h4>
+                    <p className="text-xl font-bold text-white">24 Hours / 7 Days</p>
+                  </div>
+                </div>
 
-              {/* Spiritual Experience */}
-              <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-4 md:p-6 rounded-xl mb-6 md:mb-8 border border-purple-200">
-                <h3 className="font-semibold text-purple-800 mb-2 md:mb-3 flex items-center text-sm md:text-base">
-                  <Star className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                  Perfect for Spiritual Activities
-                </h3>
-                <div className="space-y-1 md:space-y-2 text-purple-700 text-xs md:text-sm">
-                  <div className="flex items-start space-x-2">
-                    <span>•</span>
-                    <span>Early morning darshan at Banke Bihari Temple</span>
+                <div className="flex items-center gap-6 p-4 border border-zinc-800 rounded-2xl">
+                  <div className="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center text-[#FFD700]">
+                    <Headphones size={30} />
                   </div>
-                  <div className="flex items-start space-x-2">
-                    <span>•</span>
-                    <span>Evening aarti at Prem Mandir</span>
-                  </div>
-                  <div className="flex items-start space-x-2">
-                    <span>•</span>
-                    <span>Meditation at ISKCON temple</span>
-                  </div>
-                  <div className="flex items-start space-x-2">
-                    <span>•</span>
-                    <span>Parikrama on Parikrama Marg</span>
+                  <div>
+                    <h4 className="font-black uppercase text-sm tracking-widest text-gray-300">Service Area</h4>
+                    <p className="text-xl font-bold text-white">Nationwide Support</p>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Social Media Links */}
-              <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-orange-100">
-                <h3 className="font-semibold text-gray-900 mb-3 md:mb-4 text-sm md:text-base">Follow Our Spiritual Journey</h3>
-                <div className="flex space-x-3 md:space-x-4">
-                  <a
-                    href="https://wa.me/919286755109"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-green-500 hover:bg-green-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
-                    title="WhatsApp Booking"
-                  >
-                    <MessageCircle className="h-4 w-4 md:h-6 md:w-6" />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/radhikasadan_mathura/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-pink-500 hover:bg-pink-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
-                    title="Instagram"
-                  >
-                    <Instagram className="h-4 w-4 md:h-6 md:w-6" />
-                  </a>
-                  <a
-                    href="https://www.facebook.com/radhikasadanvrindavan/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-blue-500 hover:bg-blue-600 text-white p-2 md:p-3 rounded-lg transition-all hover:scale-110"
-                    title="Facebook"
-                  >
-                    <Facebook className="h-4 w-4 md:h-6 md:w-6" />
-                  </a>
-                </div>
+            {/* SECURITY MESSAGE */}
+            <div className="p-8 rounded-[2rem] border border-[#FFD700]/20 bg-gradient-to-br from-zinc-900 to-black">
+              <div className="flex gap-4">
+                <ShieldCheck className="text-[#FFD700] shrink-0" size={32} />
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  <strong className="text-white">Security Note:</strong> Your data is protected by 256-bit SSL encryption. 
+                  Never share your login password or OTP with anyone, including our support team.
+                </p>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Final CTA - Mobile Optimized */}
-      <section className="py-12 md:py-16 bg-gradient-to-r from-orange-500 to-red-500 text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4" style={{ fontFamily: '"Playfair Display", serif' }}>
-            Book Best Guest House in Vrindavan
-          </h2>
-          <p className="text-lg md:text-xl mb-6 md:mb-8 text-orange-100 px-2">
-            Radhika Sadan - Best guest house near Banke Bihari Temple, Prem Mandir & ISKCON
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-            <a
-              href="https://wa.me/919286755109?text=Hello Radhika Sadan, I want to book a room near Banke Bihari Temple and Prem Mandir in Vrindavan"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
-            >
-              <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
-              <span>Book via WhatsApp</span>
-            </a>
-            <a
-              href="tel:+919286755109"
-              className="w-full sm:w-auto bg-white hover:bg-gray-100 text-orange-600 px-6 py-3 md:px-8 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all hover:scale-105 flex items-center justify-center space-x-2 shadow-lg"
-            >
-              <Phone className="h-4 w-4 md:h-5 md:w-5" />
-              <span>Call: +91 92867 55109</span>
-            </a>
-          </div>
-          <p className="text-orange-200 mt-6 md:mt-8 text-base md:text-lg flex items-center justify-center space-x-2">
-            <Heart className="h-4 w-4 md:h-5 md:w-5" />
-            <span>Jai Shri Radhe Krishna - Welcome to the Holy Land of Vrindavan!</span>
-          </p>
-        </div>
-      </section>
+      {/* 3. FLOATING WHATSAPP BUTTON (image_45c91f.png) */}
+      <a 
+        href={whatsappLink} 
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-8 right-8 z-[1000] bg-[#25D366] text-white px-8 py-4 rounded-full font-black text-lg shadow-[0_15px_40px_rgba(37,211,102,0.4)] flex items-center gap-3 hover:scale-110 transition-all animate-pulse"
+      >
+        <MessageCircle size={28} />
+        <span className="hidden sm:inline text-sm uppercase tracking-tighter">Get Mahadev Book ID</span>
+      </a>
     </div>
   );
 };
