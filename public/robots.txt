@@ -1,17 +1,17 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://radhikasadan.com/sitemap.xml
+# Sitemap
+Sitemap: https://www.mahadevbook.com/sitemap.xml
 
-# Directories
+# Block sensitive directories
 Disallow: /admin/
 Disallow: /cgi-bin/
 Disallow: /includes/
 Disallow: /tmp/
-
-# Files
 Disallow: /private/
+
+# Block sensitive files
 Disallow: /config.php
 Disallow: /error_log
 
@@ -19,10 +19,15 @@ Disallow: /error_log
 Allow: /about
 Allow: /contact
 Allow: /gallery
-Allow: /our-rooms
-Allow: /onboarding
+Allow: /rooms
+Allow: /blog
+Allow: /betting-app
+Allow: /book-id
+Allow: /faq
+Allow: /terms
+Allow: /privacy
 
-# CSS, JS, Images
+# Allow assets (important for SEO & rendering)
 Allow: /css/
 Allow: /js/
 Allow: /images/
